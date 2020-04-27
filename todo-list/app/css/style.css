@@ -18,6 +18,95 @@
   /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
 }
 
+.wrapper {
+  max-width: 768px;
+  margin: 0 auto;
+}
+
+.header {
+  padding-top: 20px;
+}
+
+.header__intro {
+  position: relative;
+  padding-top: 40px;
+  width: 100%;
+  height: 180px;
+  background: -webkit-gradient(linear, left top, left bottom, from(#2339FF), to(rgba(49, 69, 255, 0.8)));
+  background: linear-gradient(180deg, #2339FF 0%, rgba(49, 69, 255, 0.8) 100%);
+  border-radius: 12px 12px 0 0;
+}
+
+.header__title {
+  font-weight: 500;
+  font-size: 36px;
+  line-height: 42px;
+  color: #fff;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.header__stats {
+  margin: 0 auto;
+  position: absolute;
+  top: 130px;
+  left: 50%;
+  -webkit-transform: translateX(-50%);
+      -ms-transform: translateX(-50%);
+          transform: translateX(-50%);
+}
+
+.stats {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: space-evenly;
+  -webkit-justify-content: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
+  width: 679px;
+  min-height: 100px;
+  background: #fff;
+  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.25);
+  border-radius: 12px;
+}
+
+.stats__item {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: column;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.stats__num {
+  font-weight: 500;
+  font-size: 36px;
+  line-height: 122%;
+  color: #000;
+}
+
+.stats__str {
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 100%;
+  text-align: center;
+  color: #8F8F8F;
+}
+
 html {
   box-sizing: border-box;
 }
@@ -95,10 +184,13 @@ div:focus {
 
 body {
   overflow-x: hidden;
-  font-size: 16px;
-  font-weight: 400;
-  line-height: 1.2;
-  font-family: 'Aril', sans-serif;
-  color: black;
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 24px;
+  line-height: 28px;
+  color: #000;
+  margin: 0;
+  background: #E5E5E5;
 }
 /*# sourceMappingURL=style.css.map */
