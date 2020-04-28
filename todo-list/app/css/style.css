@@ -109,7 +109,8 @@
 }
 
 .content-wrap {
-  width: 679px;
+  max-width: 679px;
+  width: 100%;
   margin: 0 auto;
 }
 
@@ -255,6 +256,7 @@
   border: none;
   outline-color: #B9B9B9;
   margin-right: 30px;
+  resize: none;
 }
 
 .note__edit {
