@@ -34,3 +34,11 @@ $(document).ready(() => {
   })();
   body.addClass(isTouch ? 'touch' : 'no-touch');
 });
+
+const tasks = document.querySelectorAll('.note');
+
+
+for (let task of tasks) {
+  console.log(task.children[0]);
+  task.children[0].addEventListener('click', () => { task.classList.toggle('note_completed') })
+}

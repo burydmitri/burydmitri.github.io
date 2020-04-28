@@ -226,10 +226,6 @@
   -webkit-align-items: center;
       -ms-flex-align: center;
           align-items: center;
-  -webkit-box-pack: justify;
-  -webkit-justify-content: space-between;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
   padding: 0 26px;
   background: #FFFFFF;
   box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.3);
@@ -242,10 +238,11 @@
   width: 60px;
   height: 60px;
   border-radius: 50%;
-  background: #fff;
+  background: #fff url(../img/src/task__done.png) no-repeat center;
   border: none;
   outline: none;
   box-shadow: 0px 0px 18px rgba(0, 0, 0, 0.35);
+  margin-right: 40px;
 }
 
 .note__content {
@@ -257,6 +254,7 @@
   background: transparent;
   border: none;
   outline-color: #B9B9B9;
+  margin-right: 30px;
 }
 
 .note__edit {
@@ -266,9 +264,10 @@
   background: url(../img/src/task__edit.png) no-repeat center;
   border: none;
   outline: none;
+  margin-right: 30px;
 }
 
-.note__delete {
+.note__clear {
   position: relative;
   display: block;
   width: 38px;
@@ -278,8 +277,8 @@
   background: transparent;
 }
 
-.note__delete::after,
-.note__delete::before {
+.note__clear::after,
+.note__clear::before {
   content: '';
   display: block;
   width: 53px;
@@ -294,10 +293,21 @@
           transform: translateX(-50%) translateY(-50%) rotate(45deg);
 }
 
-.note__delete::after {
+.note__clear::after {
   -webkit-transform: translateX(-50%) translateY(-50%) rotate(-45deg);
       -ms-transform: translateX(-50%) translateY(-50%) rotate(-45deg);
           transform: translateX(-50%) translateY(-50%) rotate(-45deg);
+}
+
+.note__delete {
+  display: none;
+  position: absolute;
+  right: 30px;
+  width: 42px;
+  height: 42px;
+  background: url(../img/src/task__remove.png) no-repeat center;
+  border: none;
+  outline: none;
 }
 
 .note__border-bot_blue {
@@ -318,6 +328,27 @@
   height: 6px;
   background: #FFA620;
   border-radius: 0px 0px 12px 12px;
+}
+
+.note_completed .note__check {
+  background-color: #39C9C0;
+}
+
+.note_completed .note__content {
+  color: #B5B5B5;
+  text-decoration: line-through;
+}
+
+.note_completed .note__edit {
+  display: none;
+}
+
+.note_completed .note__clear {
+  display: none;
+}
+
+.note_completed .note__delete {
+  display: block;
 }
 
 .opacity-decor {
