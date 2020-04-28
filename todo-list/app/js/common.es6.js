@@ -35,10 +35,15 @@ $(document).ready(() => {
   body.addClass(isTouch ? 'touch' : 'no-touch');
 });
 
-const tasks = document.querySelectorAll('.note');
+const taskCheckboxes = document.querySelectorAll('.note__check');
+const buttonsDelete = document.querySelectorAll('.note__delete');
 
-
-for (let task of tasks) {
-  console.log(task.children[0]);
-  task.children[0].addEventListener('click', () => { task.classList.toggle('note_completed') })
+const giveCompletedListener = (cbox) => {
+  cbox.addEventListener('click', () => { cbox.parentElement.classList.toggle('note_completed') })
 }
+const deleteTaskListener = (but) => {
+  but.addEventListener('click', () => { but.parentElement.remove() })
+}
+
+for (let cbox of taskCheckboxes) { giveCompletedListener(cbox) };
+for (let but of buttonsDelete) { deleteTaskListener(but) };
