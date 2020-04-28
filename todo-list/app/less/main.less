@@ -10,8 +10,27 @@
         background-color: @white;
         border-radius: 0 0 @border-radius @border-radius;
         position: relative;
+        overflow: hidden;
 
         padding-bottom: 80px;
+
+        &::after{
+            content: '';
+            display: block;
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            top: -100%;
+            left: 0;
+            z-index: 7;
+            background: rgba(0, 0, 0, 0.3);
+        }
+
+        &_edit{
+            &::after{
+                top: 0;
+            }
+        }
     }
     &__note{
         width: 100%;
@@ -26,7 +45,7 @@
     }
     &__add-task{
         position: absolute;
-        z-index: 10;
+        z-index: 5;
         left: 50%;
         bottom: 45px;
         transform: translateX(-50%);
@@ -94,7 +113,6 @@
     position: relative;
 
     &__check{
-        display: block;
         width: 60px;
         height: 60px;
         border-radius: 50%;
@@ -105,7 +123,7 @@
         margin-right: 40px;
     }
     &__content{
-        width: 60%;
+        width: 390px;
         height: auto;
         font-size: 24px;
         line-height: 28px;
@@ -117,7 +135,6 @@
         resize: none;
     }
     &__edit{
-        display: block;
         width: 42px;
         height: 42px;
         background: url(../img/src/task__edit.png) no-repeat center;
@@ -127,7 +144,6 @@
     }
     &__clear{
         position: relative;
-        display: block;
         width: 38px;
         height: 38px;
         border: none;
@@ -197,6 +213,19 @@
             display: block;
         }
     }
+    &_edited{
+        z-index: 8;
+
+        .note__check{
+            display: none;
+        }
+        .note__content{
+            width: 500px;
+        }
+        .note__edit{
+            background: url(../img/src/task__edit-done.png) no-repeat center;
+        }
+    }
 }
 .opacity-decor{
     width: 100%;
@@ -221,7 +250,7 @@
         width: 50px;
         height: 5px;
         position: absolute;
-        z-index: 11;
+        z-index: 6;
         top: 50%;
         left: 50%;
         transform: translateX(-50%) translateY(-50%);

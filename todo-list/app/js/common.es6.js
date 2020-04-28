@@ -37,6 +37,8 @@ $(document).ready(() => {
 
 const taskCheckboxes = document.querySelectorAll('.note__check');
 const buttonsDelete = document.querySelectorAll('.note__delete');
+const buttonsEdit = document.querySelectorAll('.note__edit');
+const mainWrap = document.querySelector('.main__wrapper');
 
 const giveCompletedListener = (cbox) => {
   cbox.addEventListener('click', () => { cbox.parentElement.classList.toggle('note_completed') })
@@ -44,6 +46,21 @@ const giveCompletedListener = (cbox) => {
 const deleteTaskListener = (but) => {
   but.addEventListener('click', () => { but.parentElement.remove() })
 }
+const editTaskListener = (but) => {
+  but.addEventListener('click', () => { 
+    but.parentElement.classList.toggle('note_edited');
+    mainWrap.classList.toggle('main__wrapper_edit');
+    but.parentElement.children[1].toggleAttribute('readonly'); 
+    but.parentElement.children[1].focus();  
+  });
+}
 
 for (let cbox of taskCheckboxes) { giveCompletedListener(cbox) };
 for (let but of buttonsDelete) { deleteTaskListener(but) };
+for (let but of buttonsEdit) { editTaskListener(but) };
+
+
+/*
+  alert( input.getAttribute('checked') ); // пустая строка
+  input.removeAttribute('checked'); // снять галочку
+*/
