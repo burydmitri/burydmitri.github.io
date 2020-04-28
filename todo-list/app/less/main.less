@@ -7,6 +7,14 @@
     &__wrapper{
         padding-top: 80px;
         background-color: @white;
+        border-radius: @border-radius;
+
+        padding-bottom: 80px;
+    }
+    &__note{
+        width: 100%;
+        min-height: 130px;
+        margin-bottom: 40px;
     }
 }
 .filter{
@@ -59,5 +67,79 @@
         &:nth-child(3){
             width: 12px;
         }
+    }
+}
+.note{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 26px;
+    background: #FFFFFF;
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.3);
+    border-radius: @border-radius;
+    position: relative;
+
+    &__check{
+        display: block;
+        width: 60px;
+        height: 60px;
+        border-radius: 50%;
+        background: @white;
+        border: none;
+        outline: none;
+        box-shadow: 0px 0px 18px rgba(0, 0, 0, 0.35);
+    }
+    &__content{
+        width: 60%;
+        height: auto;
+        font-size: 24px;
+        line-height: 28px;
+        color: @grey-l;
+        background: transparent;
+        border: none;
+        outline-color: #B9B9B9;
+    }
+    &__edit{
+        display: block;
+        width: 42px;
+        height: 42px;
+        background: url(../img/src/task__edit.png) no-repeat center;
+        border: none;
+        outline: none;
+    }
+    &__delete{
+        position: relative;
+        display: block;
+        width: 38px;
+        height: 38px;
+        border: none;
+        outline: none;
+        background: transparent;
+
+        &::after,
+        &::before{
+            content: '';
+            display: block;
+            width: 53px;
+            height: 2px;
+            position: absolute;
+            z-index: 2;
+            background: @grey-m;
+            top: 50%;
+            left: 50%;
+            transform: translateX(-50%) translateY(-50%) rotate(45deg);
+        }
+        &::after{
+            transform: translateX(-50%) translateY(-50%) rotate(-45deg);
+        }
+    }
+    &__border-bot{
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 6px;
+        background: #39C9C0;
+        border-radius: 0px 0px @border-radius @border-radius
     }
 }
