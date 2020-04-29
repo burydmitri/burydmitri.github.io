@@ -36,8 +36,9 @@ $(document).ready(() => {
 });
 
 const taskCheckboxes = document.querySelectorAll('.note__check');
-const buttonsDelete = document.querySelectorAll('.note__delete');
 const buttonsEdit = document.querySelectorAll('.note__edit');
+const buttonsClear = document.querySelectorAll('.note__clear');
+const buttonsDelete = document.querySelectorAll('.note__delete');
 const mainWrap = document.querySelector('.main__wrapper');
 
 const giveCompletedListener = (cbox) => {
@@ -45,6 +46,14 @@ const giveCompletedListener = (cbox) => {
 }
 const deleteTaskListener = (but) => {
   but.addEventListener('click', () => { but.parentElement.remove() })
+}
+const clearTaskListener = (but) => {
+  but.addEventListener('click', () => { 
+    if (mainWrap.classList.contains('main__wrapper_edit')) { 
+      mainWrap.classList.remove('main__wrapper_edit') 
+    }
+    but.parentElement.remove() 
+  })
 }
 const editTaskListener = (but) => {
   but.addEventListener('click', () => { 
@@ -56,8 +65,9 @@ const editTaskListener = (but) => {
 }
 
 for (let cbox of taskCheckboxes) { giveCompletedListener(cbox) };
-for (let but of buttonsDelete) { deleteTaskListener(but) };
 for (let but of buttonsEdit) { editTaskListener(but) };
+for (let but of buttonsClear) { clearTaskListener(but) };
+for (let but of buttonsDelete) { deleteTaskListener(but) };
 
 
 /*
