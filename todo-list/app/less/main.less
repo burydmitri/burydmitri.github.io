@@ -7,6 +7,7 @@
 .main{
     &__wrapper{
         padding-top: 80px;
+        height: calc(100vh - 230px);
         background-color: @white;
         border-radius: 0 0 @border-radius @border-radius;
         position: relative;
@@ -122,10 +123,6 @@
         box-shadow: 0px 0px 18px rgba(0, 0, 0, 0.35);
         margin-right: 40px;
         transition: @transition;
-
-        &:hover{
-            margin-bottom: 10px;
-        }
     }
     &__content{
         width: 390px;
@@ -146,11 +143,6 @@
         border: none;
         outline: none;
         margin-right: 30px;
-        transition: @transition;
-
-        &:hover{
-            margin-bottom: 10px;
-        }
     }
     &__clear{
         position: relative;
@@ -159,11 +151,6 @@
         border: none;
         outline: none;
         background: transparent;
-        transition: @transition;
-
-        &:hover{
-            margin-bottom: 10px;
-        }
 
         &::after,
         &::before{
@@ -191,11 +178,6 @@
         background: url(../img/src/task__remove.png) no-repeat center;
         border: none;
         outline: none;
-        transition: @transition;
-
-        &:hover{
-            margin-bottom: 10px;
-        }
     }
     &__border-bot_blue{
         position: absolute;

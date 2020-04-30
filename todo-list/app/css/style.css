@@ -116,6 +116,8 @@
 
 .main__wrapper {
   padding-top: 80px;
+  height: -webkit-calc(100vh - 230px);
+  height: calc(100vh - 230px);
   background-color: #fff;
   border-radius: 0 0 12px 12px;
   position: relative;
@@ -264,10 +266,6 @@
   transition: 0.3s;
 }
 
-.note__check:hover {
-  margin-bottom: 10px;
-}
-
 .note__content {
   width: 390px;
   height: auto;
@@ -288,12 +286,6 @@
   border: none;
   outline: none;
   margin-right: 30px;
-  -webkit-transition: 0.3s;
-  transition: 0.3s;
-}
-
-.note__edit:hover {
-  margin-bottom: 10px;
 }
 
 .note__clear {
@@ -303,12 +295,6 @@
   border: none;
   outline: none;
   background: transparent;
-  -webkit-transition: 0.3s;
-  transition: 0.3s;
-}
-
-.note__clear:hover {
-  margin-bottom: 10px;
 }
 
 .note__clear::after,
@@ -342,12 +328,6 @@
   background: url(../img/src/task__remove.png) no-repeat center;
   border: none;
   outline: none;
-  -webkit-transition: 0.3s;
-  transition: 0.3s;
-}
-
-.note__delete:hover {
-  margin-bottom: 10px;
 }
 
 .note__border-bot_blue {
