@@ -35,28 +35,63 @@ $(document).ready(() => {
   body.addClass(isTouch ? 'touch' : 'no-touch');
 });
 
+const numAllTasks = document.querySelector('.js-stats__all');
+const numToDoTasks = document.querySelector('.js-stats__to-do');
+const numCompletedTasks = document.querySelector('.js-stats__completed');
+
+const mainWrap = document.querySelector('.main__wrapper');
+const notesWrap = document.querySelector('.main__notes-wrap');
 const taskCheckboxes = document.querySelectorAll('.note__check');
 const buttonsEdit = document.querySelectorAll('.note__edit');
 const buttonsClear = document.querySelectorAll('.note__clear');
 const buttonsDelete = document.querySelectorAll('.note__delete');
 const createButton = document.querySelector('.add-task');
-const mainWrap = document.querySelector('.main__wrapper');
-const notesWrap = document.querySelector('.main__notes-wrap');
 
 const data = notesWrap.children;
 
+let toDoCounter = 0;
+let completedCounter = 0;
+for (let task of data) {
+  if (task.isCompleted) { completedCounter++ }
+  else {toDoCounter++}
+}
+numToDoTasks.textContent = toDoCounter;
+numCompletedTasks.textContent = completedCounter;
+
 const giveCompletedListener = (cbox) => {
-  cbox.addEventListener('click', () => { cbox.parentElement.classList.toggle('note_completed') })
+  cbox.addEventListener('click', () => { 
+    cbox.parentElement.classList.toggle('note_completed');
+    if (cbox.parentElement.isCompleted){
+      cbox.parentElement.isCompleted = false;
+      toDoCounter++;
+      numToDoTasks.textContent = toDoCounter;
+      completedCounter--;
+      numCompletedTasks.textContent = completedCounter;
+    } else{
+      cbox.parentElement.isCompleted = true;
+      toDoCounter--;
+      numToDoTasks.textContent = toDoCounter;
+      completedCounter++;
+      numCompletedTasks.textContent = completedCounter;
+    }
+  })
 }
 const deleteTaskListener = (but) => {
-  but.addEventListener('click', () => { but.parentElement.remove() })
+  but.addEventListener('click', () => { 
+    but.parentElement.remove();
+    numAllTasks.textContent = data.length;
+    numCompletedTasks.textContent ;
+  })
 }
 const clearTaskListener = (but) => {
   but.addEventListener('click', () => { 
     if (mainWrap.classList.contains('main__wrapper_edit')) { 
       mainWrap.classList.remove('main__wrapper_edit') 
     }
-    but.parentElement.remove() 
+    but.parentElement.remove();
+    toDoCounter--;
+    numToDoTasks.textContent = toDoCounter;
+    numAllTasks.textContent = data.length;
   })
 }
 const editTaskListener = (but) => {
@@ -114,6 +149,9 @@ const createTask = () => {
   task.content = '';
   task.isCompleted = false;
   notesWrap.prepend(task); 
+  numAllTasks.textContent = data.length;
+  toDoCounter++;
+  numToDoTasks.textContent = toDoCounter;
 }
 
 createButton.addEventListener('click', createTask);
