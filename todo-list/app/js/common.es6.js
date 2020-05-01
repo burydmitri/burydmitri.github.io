@@ -39,7 +39,11 @@ const taskCheckboxes = document.querySelectorAll('.note__check');
 const buttonsEdit = document.querySelectorAll('.note__edit');
 const buttonsClear = document.querySelectorAll('.note__clear');
 const buttonsDelete = document.querySelectorAll('.note__delete');
+const createButton = document.querySelector('.add-task');
 const mainWrap = document.querySelector('.main__wrapper');
+const notesWrap = document.querySelector('.main__notes-wrap');
+
+const data = notesWrap.children;
 
 const giveCompletedListener = (cbox) => {
   cbox.addEventListener('click', () => { cbox.parentElement.classList.toggle('note_completed') })
@@ -63,6 +67,56 @@ const editTaskListener = (but) => {
     but.parentElement.children[1].focus();  
   });
 }
+const choiceOfBotColor = () => {
+  if (!(data.length % 2)) return 'note__border-bot_blue';
+  return 'note__border-bot_yellow';
+}
+
+const createTask = () => {
+  let task = document.createElement('div');
+  task.classList.add('note');
+  task.classList.add('main__note');
+
+  let checkbox = document.createElement('button');
+  checkbox.classList.add('note__check');
+  giveCompletedListener(checkbox);
+
+  let noteContent = document.createElement('textarea');
+  noteContent.classList.add('note__content');
+  noteContent.setAttribute('readonly', 'readonly');
+  noteContent.setAttribute('maxlength', 43);
+
+  let editButton = document.createElement('button');
+  editButton.classList.add('note__edit');
+  editTaskListener(editButton);
+
+  let clearButton = document.createElement('button');
+  clearButton.classList.add('note__clear');
+  clearTaskListener(clearButton);
+
+  let deleteButton = document.createElement('button');
+  deleteButton.classList.add('note__delete');
+  deleteTaskListener(deleteButton);
+
+  let borderBot = document.createElement('div');
+  borderBot.classList.add('note__border-bot');
+  borderBot.classList.add(choiceOfBotColor());
+
+  mainWrap.prepend(task);
+  task.append(checkbox);
+  task.append(noteContent);
+  task.append(editButton);
+  task.append(clearButton);
+  task.append(deleteButton);
+  task.append(borderBot);
+
+  task.index = 1;
+  task.content = '';
+  task.isCompleted = false;
+  notesWrap.prepend(task); 
+}
+
+createButton.addEventListener('click', createTask);
 
 for (let cbox of taskCheckboxes) { giveCompletedListener(cbox) };
 for (let but of buttonsEdit) { editTaskListener(but) };

@@ -179,23 +179,20 @@
         border: none;
         outline: none;
     }
-    &__border-bot_blue{
+    &__border-bot{
         position: absolute;
         bottom: 0;
         left: 0;
         width: 100%;
         height: 6px;
-        background: @blue-s;
-        border-radius: 0px 0px @border-radius @border-radius
-    }
-    &__border-bot_yellow{
-        position: absolute;
-        bottom: 0;
-        left: 0;
-        width: 100%;
-        height: 6px;
-        background: @yellow;
-        border-radius: 0px 0px @border-radius @border-radius
+        border-radius: 0px 0px @border-radius @border-radius;
+
+        &_blue{
+            background: @blue-s;
+        }
+        &_yellow{
+            background: @yellow;
+        }
     }
     &_completed{
         & .note__check{
