@@ -45,7 +45,13 @@ const taskCheckboxes = document.querySelectorAll('.note__check');
 const buttonsEdit = document.querySelectorAll('.note__edit');
 const buttonsClear = document.querySelectorAll('.note__clear');
 const buttonsDelete = document.querySelectorAll('.note__delete');
-const createButton = document.querySelector('.add-task');
+
+const addMenuButton = document.querySelector('.add-task');
+const addMenu = document.querySelector('.add-menu');
+const createButton = document.querySelector('.add-menu__add');
+const cancelButton = document.querySelector('.add-menu__calcel');
+const textareaAdd = document.querySelector('.add-menu__content');
+const addMenuBorder = document.querySelector('.add-menu__border-bot');
 
 const data = notesWrap.children;
 
@@ -106,10 +112,15 @@ const choiceOfBotColor = () => {
   if (!(data.length % 2)) return 'note__border-bot_blue';
   return 'note__border-bot_yellow';
 }
-
-const createTask = () => {
+const addMenuCancel = () => {
+  addMenuBorder.classList.remove(addMenuBorder.classList[1]);
+  textareaAdd.value = '';
+  mainWrap.classList.remove('main__wrapper_edit');
+  addMenu.classList.remove('add-menu_active');
+}
+const createTask = (text) => {
   let task = document.createElement('div');
-  task.classList.add('note');
+  task.classList.add('note'); 
   task.classList.add('main__note');
 
   let checkbox = document.createElement('button');
@@ -120,6 +131,7 @@ const createTask = () => {
   noteContent.classList.add('note__content');
   noteContent.setAttribute('readonly', 'readonly');
   noteContent.setAttribute('maxlength', 43);
+  noteContent.textContent = text;
 
   let editButton = document.createElement('button');
   editButton.classList.add('note__edit');
@@ -146,15 +158,24 @@ const createTask = () => {
   task.append(borderBot);
 
   task.index = 1;
-  task.content = '';
   task.isCompleted = false;
   notesWrap.prepend(task); 
   numAllTasks.textContent = data.length;
   toDoCounter++;
   numToDoTasks.textContent = toDoCounter;
+
+  addMenuCancel();
 }
 
-createButton.addEventListener('click', createTask);
+addMenuButton.addEventListener('click', () => { 
+  addMenuBorder.classList.add(choiceOfBotColor());
+  mainWrap.classList.add('main__wrapper_edit');
+  addMenu.classList.add('add-menu_active');
+  setTimeout(() => textareaAdd.focus(), 300);
+});
+
+createButton.addEventListener('click', () => createTask( textareaAdd.value ));
+cancelButton.addEventListener('click', addMenuCancel);
 
 for (let cbox of taskCheckboxes) { giveCompletedListener(cbox) };
 for (let but of buttonsEdit) { editTaskListener(but) };

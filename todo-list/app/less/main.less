@@ -140,7 +140,7 @@
         })
     }
     &__content{
-        width: 61%;
+        width: 62%;
         font-size: 24px;
         line-height: 28px;
         color: @grey-l;
@@ -304,4 +304,88 @@
             width: 60px;
         }
     }
+}
+.add-menu{
+    width: 100%;
+    height: 165px;
+    position: absolute;
+    z-index: 8;
+    left: 0;
+    bottom: -100%;
+    background: @white;
+    display: flex;
+    align-items: center;
+    transition: @transition;
+
+    &_active{
+        bottom: 0;
+    }
+
+    &__content-wrap{
+        display: flex;
+        align-items: center;
+    }
+    &__border-bot{
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 6px;
+    }
+    &__content{
+        width: 77%;
+        font-size: 24px;
+        line-height: 28px;
+        color: @grey-l;
+        background: transparent;
+        border: none;
+        outline-color: #B9B9B9;
+        margin-right: 30px;
+        resize: none;
+        .media(515px, {
+            font-size: 16px
+        });
+    }
+    &__add{
+        width: 40px;
+        height: 40px;
+        background: url(../img/src//task__edit-done.png) no-repeat center;
+        border: none;
+        outline: none;
+        margin-right: 30px;
+    }
+    &__calcel{
+        position: relative;
+        width: 38px;
+        height: 38px;
+        border: none;
+        outline: none;
+        background: transparent;
+
+        .media(515px, {
+            width: 25.5px; 
+            height: 25.5px;
+        });
+
+        &::after,
+        &::before{
+            content: '';
+            display: block;
+            width: 53px;
+            height: 2px;
+            position: absolute;
+            z-index: 2;
+            background: @grey-m;
+            top: 50%;
+            left: 50%;
+            transform: translateX(-50%) translateY(-50%) rotate(45deg);
+            .media(515px, {
+                width: 36px;
+            });
+        }
+        &::after{
+            transform: translateX(-50%) translateY(-50%) rotate(-45deg);
+        }
+    }
+    
 }
