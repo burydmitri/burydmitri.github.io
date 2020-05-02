@@ -1,10 +1,14 @@
 .wrapper{
     max-width: 768px;
+    width: 100%;
     margin: 0 auto;
 }
 
 .header{
     padding-top: 20px;
+    .media(768px, {
+        padding-top: 0;
+    });
 
     &__intro{
         position: relative;
@@ -13,6 +17,10 @@
         height: 180px;
         background: linear-gradient(180deg, #2339FF 0%, rgba(49, 69, 255, 0.8) 100%);
         border-radius: @border-radius @border-radius 0 0;
+
+        .media(768px, {
+            border-radius: 0;
+        })
     }
     &__title{
         font-weight: 500;
@@ -21,6 +29,9 @@
         color: @white;
         margin: 0 auto;
         text-align: center;
+        .media(515px, {
+            font-size: 28px;
+        });
     }
     &__stats{
         margin: 0 auto;
@@ -34,7 +45,7 @@
 .stats{
     display: flex;
     justify-content: space-evenly;
-    width: 679px;
+    width: 88.4%;
     min-height: 100px;
     background: @white;
     box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.25);
@@ -45,12 +56,16 @@
         flex-direction: column;
         align-items: center;
         justify-content: center;
+        width: 69px;
     }
     &__num{
         font-weight: 500;
         font-size: 36px;
         line-height: 122%;
         color: @black;
+        .media(515px, {
+            font-size: 28px
+        });
     }
     &__str{
         font-weight: 500;
@@ -58,5 +73,8 @@
         line-height: 100%;
         text-align: center;
         color: @grey-m;
+        .media(515px, {
+            font-size: 11px
+        });
     }
 }
