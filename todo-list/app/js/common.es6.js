@@ -40,7 +40,7 @@ const numToDoTasks = document.querySelector('.js-stats__to-do');
 const numCompletedTasks = document.querySelector('.js-stats__completed');
 
 const mainWrap = document.querySelector('.main__wrapper');
-const notesWrap = document.querySelector('.main__notes-wrap');
+let notesWrap = document.querySelector('.main__notes-wrap');
 const taskCheckboxes = document.querySelectorAll('.note__check');
 const buttonsEdit = document.querySelectorAll('.note__edit');
 const buttonsClear = document.querySelectorAll('.note__clear');
@@ -57,12 +57,14 @@ const data = notesWrap.children;
 
 let toDoCounter = 0;
 let completedCounter = 0;
-for (let task of data) {
-  if (task.isCompleted) { completedCounter++ }
-  else {toDoCounter++}
-}
 numToDoTasks.textContent = toDoCounter;
 numCompletedTasks.textContent = completedCounter;
+
+const saveData = () => {
+  let dataArray = Array.from(data);
+  localStorage.setItem('tasks', JSON.stringify(dataArray));
+  localStorage.setItem('completedNum', completedCounter)
+}
 
 const giveCompletedListener = (cbox) => {
   cbox.addEventListener('click', () => { 
@@ -73,12 +75,14 @@ const giveCompletedListener = (cbox) => {
       numToDoTasks.textContent = toDoCounter;
       completedCounter--;
       numCompletedTasks.textContent = completedCounter;
+      saveData();
     } else{
       cbox.parentElement.isCompleted = true;
       toDoCounter--;
       numToDoTasks.textContent = toDoCounter;
       completedCounter++;
       numCompletedTasks.textContent = completedCounter;
+      saveData();
     }
   })
 }
@@ -86,7 +90,7 @@ const deleteTaskListener = (but) => {
   but.addEventListener('click', () => { 
     but.parentElement.remove();
     numAllTasks.textContent = data.length;
-    numCompletedTasks.textContent ;
+    saveData();
   })
 }
 const clearTaskListener = (but) => {
@@ -98,6 +102,7 @@ const clearTaskListener = (but) => {
     toDoCounter--;
     numToDoTasks.textContent = toDoCounter;
     numAllTasks.textContent = data.length;
+    saveData();
   })
 }
 const editTaskListener = (but) => {
@@ -105,7 +110,9 @@ const editTaskListener = (but) => {
     but.parentElement.classList.toggle('note_edited');
     mainWrap.classList.toggle('main__wrapper_edit');
     but.parentElement.children[1].toggleAttribute('readonly'); 
-    but.parentElement.children[1].focus();  
+    but.parentElement.children[1].focus();
+    but.parentElement.text = but.parentElement.children[1].value;
+    saveData();  
   });
 }
 const choiceOfBotColor = () => {
@@ -118,7 +125,7 @@ const addMenuCancel = () => {
   mainWrap.classList.remove('main__wrapper_edit');
   addMenu.classList.remove('add-menu_active');
 }
-const createTask = (text) => {
+const createTask = (text = '', isCompleted = false) => {
   let task = document.createElement('div');
   task.classList.add('note'); 
   task.classList.add('main__note');
@@ -127,11 +134,10 @@ const createTask = (text) => {
   checkbox.classList.add('note__check');
   giveCompletedListener(checkbox);
 
-  let noteContent = document.createElement('textarea');
+  let noteContent = document.createElement('textarea'); 
   noteContent.classList.add('note__content');
   noteContent.setAttribute('readonly', 'readonly');
   noteContent.setAttribute('maxlength', 43);
-  noteContent.textContent = text;
 
   let editButton = document.createElement('button');
   editButton.classList.add('note__edit');
@@ -157,14 +163,23 @@ const createTask = (text) => {
   task.append(deleteButton);
   task.append(borderBot);
 
+
   task.index = 1;
-  task.isCompleted = false;
+  task.text = text;
+  noteContent.textContent = text;
+  task.isCompleted = isCompleted;
+  if (task.isCompleted){
+      task.classList.add('note_completed');
+      toDoCounter--;
+      numToDoTasks.textContent = toDoCounter;
+  }
   notesWrap.prepend(task); 
   numAllTasks.textContent = data.length;
   toDoCounter++;
   numToDoTasks.textContent = toDoCounter;
 
   addMenuCancel();
+  saveData();
 }
 
 addMenuButton.addEventListener('click', () => { 
@@ -177,13 +192,17 @@ addMenuButton.addEventListener('click', () => {
 createButton.addEventListener('click', () => createTask( textareaAdd.value ));
 cancelButton.addEventListener('click', addMenuCancel);
 
+const startPage = () => {
+  completedCounter = localStorage.getItem('completedNum') || 0;
+  numCompletedTasks.textContent = completedCounter;
+  let tasks = localStorage.getItem('tasks');
+  let arr = JSON.parse(tasks);
+  if (arr != null) {for (let item of arr) createTask(item.text, item.isCompleted)};
+}
+
 for (let cbox of taskCheckboxes) { giveCompletedListener(cbox) };
 for (let but of buttonsEdit) { editTaskListener(but) };
 for (let but of buttonsClear) { clearTaskListener(but) };
 for (let but of buttonsDelete) { deleteTaskListener(but) };
 
-
-/*
-  alert( input.getAttribute('checked') ); // пустая строка
-  input.removeAttribute('checked'); // снять галочку
-*/
+startPage();
