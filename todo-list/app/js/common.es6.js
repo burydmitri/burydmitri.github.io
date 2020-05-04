@@ -35,209 +35,353 @@ $(document).ready(() => {
   body.addClass(isTouch ? 'touch' : 'no-touch');
 });
 
-const numAllTasks = document.querySelector('.js-stats__all');
-const numToDoTasks = document.querySelector('.js-stats__to-do');
-const numCompletedTasks = document.querySelector('.js-stats__completed');
+(function () {
+    
+  const numAllTasks = document.querySelector('.js-stats__all');
+  const numToDoTasks = document.querySelector('.js-stats__to-do');
+  const numCompletedTasks = document.querySelector('.js-stats__completed');
 
-const sortByButton = document.querySelector('.filter__sort');
-const sortMenu = document.querySelector('.sort-menu');
-const sortMenuWrappers = document.querySelectorAll('.sort-menu__wrap');
-const sortMenuRadio = document.querySelectorAll('.sort-menu__radio');
-
-const mainWrap = document.querySelector('.main__wrapper');
-const notesWrap = document.querySelector('.main__notes-wrap');
-const taskCheckboxes = document.querySelectorAll('.note__check');
-const buttonsEdit = document.querySelectorAll('.note__edit');
-const buttonsClear = document.querySelectorAll('.note__clear');
-const buttonsDelete = document.querySelectorAll('.note__delete');
-
-const addMenuButton = document.querySelector('.add-task');
-const addMenu = document.querySelector('.add-menu');
-const createButton = document.querySelector('.add-menu__add');
-const cancelButton = document.querySelector('.add-menu__calcel');
-const textareaAdd = document.querySelector('.add-menu__content');
-const addMenuBorder = document.querySelector('.add-menu__border-bot');
-
-const data = notesWrap.children;
-
-let toDoCounter = 0;
-let completedCounter = 0;
-numToDoTasks.textContent = toDoCounter;
-numCompletedTasks.textContent = completedCounter;
-
-const saveData = () => {
-  let dataArray = Array.from(data);
-  localStorage.setItem('tasks', JSON.stringify(dataArray));
-  localStorage.setItem('completedNum', completedCounter)
-}
-
-sortByButton.addEventListener('click', () => { 
-  sortMenu.classList.toggle('sort-menu_active');
-});
-
-const sortTasks = (arr) => {
-  for (let radio of sortMenuRadio) {
-    if (radio.hasAttribute('checked') && radio.value === 'by default') {
-      arr.sort((a, b) => {+a.index - +b.index});
+  const counters = {
+    all: 0,
+    todo: 0,
+    completed: 0,
+    addTask() {
+      this.all++;
+      this.todo++;
+      numAllTasks.textContent = this.all;
+      numToDoTasks.textContent = this.todo;
+    },
+    completeTask() {
+      this.todo--;
+      this.completed++;
+      numToDoTasks.textContent = this.todo;
+      numCompletedTasks.textContent = this.completed;
+    },
+    uncompleteTask() {
+      this.todo++;
+      this.completed--;
+      numToDoTasks.textContent = this.todo;
+      numCompletedTasks.textContent = this.completed;
+    },
+    deleteTask(task) {
+      this.all--;
+      if (task.isCompleted){
+        this.completed--;
+        numCompletedTasks.textContent = this.completed;
+      } else{
+        this.todo--;
+        numToDoTasks.textContent = this.todo;
+      }
+      numAllTasks.textContent = this.all;
     }
-    if (radio.hasAttribute('checked') && radio.value === 'active') {
+  };
 
+  (function () {
+    const mainWrap = document.querySelector('.main__wrapper');
+    const notesWrap = document.querySelector('.js-notes-wrap');
+
+    const buttonCreateTask = document.querySelector('.js-create-task');
+    const fieldCreateTask = document.querySelector('.js-field');
+    const buttonAddTask = document.querySelector('.js-field__add');
+    const buttonCancel = document.querySelector('.js-field__calcel');
+    const textareaAdd = document.querySelector('.js-field__content');
+    const fieldBorder = document.querySelector('.js-field__border-bot');
+
+    const data = notesWrap.children;
+
+    const choiceOfColorClass = () => {
+      if (!(data.length % 2)) return 'note__border-bot_blue';
+      return 'note__border-bot_yellow';
     }
-    if (radio.hasAttribute('checked') && radio.value === 'completed') {
-
+    const toggleCompleted = (task) => {
+      return () => {
+        task.classList.toggle('note_completed');
+        if (task.isCompleted){
+          task.isCompleted = false;
+          counters.uncompleteTask();
+          // saveData();
+        } else{
+          task.isCompleted = true;
+          counters.completeTask();
+          // saveData();
+        } 
+      }
     }
-    if (radio.hasAttribute('checked') && radio.value === 'alphabetically') {
-
+    const editTask = (task, textarea) => {
+      return () => {
+        task.classList.toggle('note_edited');
+        mainWrap.classList.toggle('main__wrapper_edit');
+        textarea.toggleAttribute('readonly'); 
+        textarea.focus();
+        task.text = textarea.value;
+        // saveData();
+      }
     }
-  }
-}
-
-for (let wrap of sortMenuWrappers){
-  wrap.addEventListener('click', () => {
-    if (wrap.children[0].hasAttribute('checked')) return '';
-    for (let radio of sortMenuRadio) { radio.removeAttribute('checked') }
-    wrap.children[0].setAttribute('checked', 'checked');
-    sortTasks();
-  })
-}
-
-// elem.setAttribute('Test', 123); // (2) атрибут Test установлен
-// alert( document.body.innerHTML ); // (3) в HTML видны все атрибуты!
-
-const giveCompletedListener = (cbox) => {
-  cbox.addEventListener('click', () => { 
-    cbox.parentElement.classList.toggle('note_completed');
-    if (cbox.parentElement.isCompleted){
-      cbox.parentElement.isCompleted = false;
-      toDoCounter++;
-      numToDoTasks.textContent = toDoCounter;
-      completedCounter--;
-      numCompletedTasks.textContent = completedCounter;
-      saveData();
-    } else{
-      cbox.parentElement.isCompleted = true;
-      toDoCounter--;
-      numToDoTasks.textContent = toDoCounter;
-      completedCounter++;
-      numCompletedTasks.textContent = completedCounter;
-      saveData();
+    const deleteTask = (task) => {
+      return () => {
+        if (mainWrap.classList.contains('main__wrapper_edit')) { 
+          mainWrap.classList.remove('main__wrapper_edit') 
+        }
+        task.remove();
+        counters.deleteTask(task);
+        // saveData();
+      }
     }
-  })
-}
-const deleteTaskListener = (but) => {
-  but.addEventListener('click', () => { 
-    but.parentElement.remove();
-    numAllTasks.textContent = data.length;
-    saveData();
-  })
-}
-const clearTaskListener = (but) => {
-  but.addEventListener('click', () => { 
-    if (mainWrap.classList.contains('main__wrapper_edit')) { 
-      mainWrap.classList.remove('main__wrapper_edit') 
+    const hideField = () => {
+      fieldBorder.classList.remove(fieldBorder.classList[2]);
+      textareaAdd.value = '';
+      mainWrap.classList.remove('main__wrapper_edit');
+      fieldCreateTask.classList.remove('field_active');
     }
-    but.parentElement.remove();
-    toDoCounter--;
-    numToDoTasks.textContent = toDoCounter;
-    numAllTasks.textContent = data.length;
-    saveData();
-  })
-}
-const editTaskListener = (but) => {
-  but.addEventListener('click', () => { 
-    but.parentElement.classList.toggle('note_edited');
-    mainWrap.classList.toggle('main__wrapper_edit');
-    but.parentElement.children[1].toggleAttribute('readonly'); 
-    but.parentElement.children[1].focus();
-    but.parentElement.text = but.parentElement.children[1].value;
-    saveData();  
-  });
-}
-const choiceOfBotColor = () => {
-  if (!(data.length % 2)) return 'note__border-bot_blue';
-  return 'note__border-bot_yellow';
-}
-const addMenuCancel = () => {
-  addMenuBorder.classList.remove(addMenuBorder.classList[1]);
-  textareaAdd.value = '';
-  mainWrap.classList.remove('main__wrapper_edit');
-  addMenu.classList.remove('add-menu_active');
-}
+    const createTask = (text = '', isCompleted = false) => {
+      let task = document.querySelector('.template').content.cloneNode(true).children[0];
+      console.log(task);
 
-let indexOfTask = 1;
-const createTask = (text = '', isCompleted = false) => {
-  let task = document.createElement('div');
-  task.classList.add('note'); 
-  task.classList.add('main__note');
+      let checkbox = task.querySelector('.note__check');
+      checkbox.addEventListener('click', toggleCompleted(task));
 
-  let checkbox = document.createElement('button');
-  checkbox.classList.add('note__check');
-  giveCompletedListener(checkbox);
+      let taskContent = task.querySelector('.note__content');
 
-  let noteContent = document.createElement('textarea'); 
-  noteContent.classList.add('note__content');
-  noteContent.setAttribute('readonly', 'readonly');
-  noteContent.setAttribute('maxlength', 43);
+      let editButton = task.querySelector('.note__edit');
+      editButton.addEventListener('click', editTask(task, task.querySelector('.note__content')));
 
-  let editButton = document.createElement('button');
-  editButton.classList.add('note__edit');
-  editTaskListener(editButton);
+      let deleteButton = task.querySelector('.note__delete');
+      deleteButton.addEventListener('click', deleteTask(task));
 
-  let clearButton = document.createElement('button');
-  clearButton.classList.add('note__clear');
-  clearTaskListener(clearButton);
+      let borderBot = task.querySelector('.note__border-bot');
+      borderBot.classList.add(choiceOfColorClass());
 
-  let deleteButton = document.createElement('button');
-  deleteButton.classList.add('note__delete');
-  deleteTaskListener(deleteButton);
+      notesWrap.prepend(task);
 
-  let borderBot = document.createElement('div');
-  borderBot.classList.add('note__border-bot');
-  borderBot.classList.add(choiceOfBotColor());
+      task.index = 1;
+      task.text = text;
+      taskContent.textContent = text;
+      task.isCompleted = isCompleted;
+      counters.addTask();
+      if (task.isCompleted){
+          task.classList.add('note_completed');
+          counters.completeTask();
+      }
+      
+      hideField();
+      // saveData();
+      }  
 
-  mainWrap.prepend(task);
-  task.append(checkbox);
-  task.append(noteContent);
-  task.append(editButton);
-  task.append(clearButton);
-  task.append(deleteButton);
-  task.append(borderBot);
+    buttonCreateTask.addEventListener('click', () => { 
+      fieldBorder.classList.add(choiceOfColorClass());
+      mainWrap.classList.add('main__wrapper_edit');
+      fieldCreateTask.classList.add('field_active');
+      setTimeout(() => textareaAdd.focus(), 300);
+    });
+
+    buttonAddTask.addEventListener('click', () => createTask( textareaAdd.value ));
+    buttonCancel.addEventListener('click', hideField);
+  }());
+}());
+
+// const numAllTasks = document.querySelector('.js-stats__all');
+// const numToDoTasks = document.querySelector('.js-stats__to-do');
+// const numCompletedTasks = document.querySelector('.js-stats__completed');
+
+// const sortByButton = document.querySelector('.filter__sort');
+// const sortMenu = document.querySelector('.sort-menu');
+// const sortMenuWrappers = document.querySelectorAll('.sort-menu__wrap');
+// const sortMenuRadio = document.querySelectorAll('.sort-menu__radio');
+
+// const mainWrap = document.querySelector('.main__wrapper');
+// const notesWrap = document.querySelector('.main__notes-wrap');
+// const taskCheckboxes = document.querySelectorAll('.note__check');
+// const buttonsEdit = document.querySelectorAll('.note__edit');
+// const buttonsClear = document.querySelectorAll('.note__clear');
+// const buttonsDelete = document.querySelectorAll('.note__delete');
+
+// const addMenuButton = document.querySelector('.add-task');
+// const addMenu = document.querySelector('.add-menu');
+// const createButton = document.querySelector('.add-menu__add');
+// const cancelButton = document.querySelector('.add-menu__calcel');
+// const textareaAdd = document.querySelector('.add-menu__content');
+// const addMenuBorder = document.querySelector('.add-menu__border-bot');
+
+// const data = notesWrap.children;
+
+// let toDoCounter = 0;
+// let completedCounter = 0;
+// numToDoTasks.textContent = toDoCounter;
+// numCompletedTasks.textContent = completedCounter;
+
+// const saveData = () => {
+//   let dataArray = Array.from(data);
+//   localStorage.setItem('tasks', JSON.stringify(dataArray));
+//   localStorage.setItem('completedNum', completedCounter)
+// }
+
+// sortByButton.addEventListener('click', () => { 
+//   sortMenu.classList.toggle('sort-menu_active');
+// });
+
+// const sortTasks = (arr) => {
+//   for (let radio of sortMenuRadio) {
+//     if (radio.hasAttribute('checked') && radio.value === 'by default') {
+//       arr.sort((a, b) => {+a.index - +b.index});
+//     }
+//     if (radio.hasAttribute('checked') && radio.value === 'active') {
+
+//     }
+//     if (radio.hasAttribute('checked') && radio.value === 'completed') {
+
+//     }
+//     if (radio.hasAttribute('checked') && radio.value === 'alphabetically') {
+
+//     }
+//   }
+// }
+
+// for (let wrap of sortMenuWrappers){
+//   wrap.addEventListener('click', () => {
+//     if (wrap.children[0].hasAttribute('checked')) return '';
+//     for (let radio of sortMenuRadio) { radio.removeAttribute('checked') }
+//     wrap.children[0].setAttribute('checked', 'checked');
+//     sortTasks();
+//   })
+// }
+
+// // elem.setAttribute('Test', 123); // (2) атрибут Test установлен
+// // alert( document.body.innerHTML ); // (3) в HTML видны все атрибуты!
+
+// const giveCompletedListener = (cbox) => {
+//   cbox.addEventListener('click', () => { 
+//     cbox.parentElement.classList.toggle('note_completed');
+//     if (cbox.parentElement.isCompleted){
+//       cbox.parentElement.isCompleted = false;
+//       toDoCounter++;
+//       numToDoTasks.textContent = toDoCounter;
+//       completedCounter--;
+//       numCompletedTasks.textContent = completedCounter;
+//       saveData();
+//     } else{
+//       cbox.parentElement.isCompleted = true;
+//       toDoCounter--;
+//       numToDoTasks.textContent = toDoCounter;
+//       completedCounter++;
+//       numCompletedTasks.textContent = completedCounter;
+//       saveData();
+//     }
+//   })
+// }
+// const deleteTaskListener = (but) => {
+//   but.addEventListener('click', () => { 
+//     but.parentElement.remove();
+//     numAllTasks.textContent = data.length;
+//     saveData();
+//   })
+// }
+// const clearTaskListener = (but) => {
+//   but.addEventListener('click', () => { 
+//     if (mainWrap.classList.contains('main__wrapper_edit')) { 
+//       mainWrap.classList.remove('main__wrapper_edit') 
+//     }
+//     but.parentElement.remove();
+//     toDoCounter--;
+//     numToDoTasks.textContent = toDoCounter;
+//     numAllTasks.textContent = data.length;
+//     saveData();
+//   })
+// }
+// const editTaskListener = (but) => {
+//   but.addEventListener('click', () => { 
+//     but.parentElement.classList.toggle('note_edited');
+//     mainWrap.classList.toggle('main__wrapper_edit');
+//     but.parentElement.children[1].toggleAttribute('readonly'); 
+//     but.parentElement.children[1].focus();
+//     but.parentElement.text = but.parentElement.children[1].value;
+//     saveData();  
+//   });
+// }
+// const choiceOfBotColor = () => {
+//   if (!(data.length % 2)) return 'note__border-bot_blue';
+//   return 'note__border-bot_yellow';
+// }
+// const addMenuCancel = () => {
+//   addMenuBorder.classList.remove(addMenuBorder.classList[1]);
+//   textareaAdd.value = '';
+//   mainWrap.classList.remove('main__wrapper_edit');
+//   addMenu.classList.remove('add-menu_active');
+// }
+
+// let indexOfTask = 1;
+// const createTask = (text = '', isCompleted = false) => {
+//   let task = document.createElement('div');
+//   task.classList.add('note'); 
+//   task.classList.add('main__note');
+
+//   let checkbox = document.createElement('button');
+//   checkbox.classList.add('note__check');
+//   giveCompletedListener(checkbox);
+
+//   let noteContent = document.createElement('textarea'); 
+//   noteContent.classList.add('note__content');
+//   noteContent.setAttribute('readonly', 'readonly');
+//   noteContent.setAttribute('maxlength', 43);
+
+//   let editButton = document.createElement('button');
+//   editButton.classList.add('note__edit');
+//   editTaskListener(editButton);
+
+//   let clearButton = document.createElement('button');
+//   clearButton.classList.add('note__clear');
+//   clearTaskListener(clearButton);
+
+//   let deleteButton = document.createElement('button');
+//   deleteButton.classList.add('note__delete');
+//   deleteTaskListener(deleteButton);
+
+//   let borderBot = document.createElement('div');
+//   borderBot.classList.add('note__border-bot');
+//   borderBot.classList.add(choiceOfBotColor());
+
+//   mainWrap.prepend(task);
+//   task.append(checkbox);
+//   task.append(noteContent);
+//   task.append(editButton);
+//   task.append(clearButton);
+//   task.append(deleteButton);
+//   task.append(borderBot);
 
 
-  task.index = indexOfTask++;
-  task.text = text;
-  noteContent.textContent = text;
-  task.isCompleted = isCompleted;
-  if (task.isCompleted){
-      task.classList.add('note_completed');
-      toDoCounter--;
-      numToDoTasks.textContent = toDoCounter;
-  }
-  notesWrap.prepend(task); 
-  numAllTasks.textContent = data.length;
-  toDoCounter++;
-  numToDoTasks.textContent = toDoCounter;
+//   task.index = indexOfTask++;
+//   task.text = text;
+//   noteContent.textContent = text;
+//   task.isCompleted = isCompleted;
+//   if (task.isCompleted){
+//       task.classList.add('note_completed');
+//       toDoCounter--;
+//       numToDoTasks.textContent = toDoCounter;
+//   }
+//   notesWrap.prepend(task); 
+//   numAllTasks.textContent = data.length;
+//   toDoCounter++;
+//   numToDoTasks.textContent = toDoCounter;
 
-  addMenuCancel();
-  saveData();
-}
+//   addMenuCancel();
+//   saveData();
+// }
 
-addMenuButton.addEventListener('click', () => { 
-  addMenuBorder.classList.add(choiceOfBotColor());
-  mainWrap.classList.add('main__wrapper_edit');
-  addMenu.classList.add('add-menu_active');
-  setTimeout(() => textareaAdd.focus(), 300);
-});
+// addMenuButton.addEventListener('click', () => { 
+//   addMenuBorder.classList.add(choiceOfBotColor());
+//   mainWrap.classList.add('main__wrapper_edit');
+//   addMenu.classList.add('add-menu_active');
+//   setTimeout(() => textareaAdd.focus(), 300);
+// });
 
-createButton.addEventListener('click', () => createTask( textareaAdd.value ));
-cancelButton.addEventListener('click', addMenuCancel);
+// createButton.addEventListener('click', () => createTask( textareaAdd.value ));
+// cancelButton.addEventListener('click', addMenuCancel);
 
-const startPage = () => {
-  completedCounter = localStorage.getItem('completedNum') || 0;
-  numCompletedTasks.textContent = completedCounter;
-  let tasks = localStorage.getItem('tasks');
-  let arr = JSON.parse(tasks);
-  if (arr != null) {for (let item of arr) createTask(item.text, item.isCompleted)};
-}
+// const startPage = () => {
+//   completedCounter = localStorage.getItem('completedNum') || 0;
+//   numCompletedTasks.textContent = completedCounter;
+//   let tasks = localStorage.getItem('tasks');
+//   let arr = JSON.parse(tasks);
+//   if (arr != null) {for (let item of arr) createTask(item.text, item.isCompleted)};
+// }
 
-startPage();
+// startPage();

@@ -87,7 +87,7 @@
         bottom: 0;
         left: 0;
     }
-    &__add-task{
+    &__create-task{
         position: absolute;
         z-index: 5;
         left: 50%;
@@ -278,42 +278,8 @@
             background-size: cover;
         });
     }
-    &__clear{
-        position: relative;
-        width: 38px;
-        height: 38px;
-        border: none;
-        outline: none;
-        background: transparent;
-        cursor: pointer;
-
-        .media(515px, {
-            width: 25.5px; 
-            height: 25.5px;
-        });
-
-        &::after,
-        &::before{
-            content: '';
-            display: block;
-            width: 53px;
-            height: 2px;
-            position: absolute;
-            z-index: 2;
-            background: @grey-m;
-            top: 50%;
-            left: 50%;
-            transform: translateX(-50%) translateY(-50%) rotate(45deg);
-            .media(515px, {
-                width: 36px;
-            });
-        }
-        &::after{
-            transform: translateX(-50%) translateY(-50%) rotate(-45deg);
-        }
-    }
     &__delete{
-        display: none;
+        display: block;
         position: absolute;
         right: 30px;
         width: 42px;
@@ -355,12 +321,6 @@
         & .note__edit{
             display: none;
         }
-        & .note__clear{
-            display: none;
-        }
-        & .note__delete{
-            display: block;
-        }
     }
     &_edited{
         z-index: 8;
@@ -382,7 +342,7 @@
     border-radius: 0 0 @border-radius @border-radius;
     background: linear-gradient(180deg, rgba(255, 255, 255, 0.45) 0%, #FFFFFF 100%);
 }
-.add-task{
+.create-task{
     width: 100px;
     height: 100px;
     border-radius: 50%;
@@ -420,20 +380,21 @@
         }
     }
 }
-.add-menu{
+.field{
     width: 100%;
     height: 165px;
     position: absolute;
     z-index: 8;
     left: 0;
-    bottom: -100%;
+    bottom: 0;
     background: @white;
     display: flex;
     align-items: center;
     transition: @transition;
+    transform: translateY(100%);
 
     &_active{
-        bottom: 0;
+        transform: translateY(0);
     }
 
     &__content-wrap{

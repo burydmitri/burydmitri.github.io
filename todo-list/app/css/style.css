@@ -193,7 +193,7 @@
   left: 0;
 }
 
-.main__add-task {
+.main__create-task {
   position: absolute;
   z-index: 5;
   left: 50%;
@@ -415,40 +415,8 @@
   cursor: pointer;
 }
 
-.note__clear {
-  position: relative;
-  width: 38px;
-  height: 38px;
-  border: none;
-  outline: none;
-  background: transparent;
-  cursor: pointer;
-}
-
-.note__clear::after,
-.note__clear::before {
-  content: '';
-  display: block;
-  width: 53px;
-  height: 2px;
-  position: absolute;
-  z-index: 2;
-  background: #8F8F8F;
-  top: 50%;
-  left: 50%;
-  -webkit-transform: translateX(-50%) translateY(-50%) rotate(45deg);
-      -ms-transform: translateX(-50%) translateY(-50%) rotate(45deg);
-          transform: translateX(-50%) translateY(-50%) rotate(45deg);
-}
-
-.note__clear::after {
-  -webkit-transform: translateX(-50%) translateY(-50%) rotate(-45deg);
-      -ms-transform: translateX(-50%) translateY(-50%) rotate(-45deg);
-          transform: translateX(-50%) translateY(-50%) rotate(-45deg);
-}
-
 .note__delete {
-  display: none;
+  display: block;
   position: absolute;
   right: 30px;
   width: 42px;
@@ -489,14 +457,6 @@
   display: none;
 }
 
-.note_completed .note__clear {
-  display: none;
-}
-
-.note_completed .note__delete {
-  display: block;
-}
-
 .note_edited {
   z-index: 8;
 }
@@ -521,7 +481,7 @@
   background: linear-gradient(180deg, rgba(255, 255, 255, 0.45) 0%, #FFFFFF 100%);
 }
 
-.add-task {
+.create-task {
   width: 100px;
   height: 100px;
   border-radius: 50%;
@@ -534,8 +494,8 @@
   cursor: pointer;
 }
 
-.add-task::before,
-.add-task::after {
+.create-task::before,
+.create-task::after {
   content: '';
   display: block;
   width: 50px;
@@ -552,28 +512,28 @@
   transition: 0.3s;
 }
 
-.add-task::after {
+.create-task::after {
   -webkit-transform: translateX(-50%) translateY(-50%) rotate(90deg);
       -ms-transform: translateX(-50%) translateY(-50%) rotate(90deg);
           transform: translateX(-50%) translateY(-50%) rotate(90deg);
 }
 
-.add-task:hover {
+.create-task:hover {
   box-shadow: 0px 0px 40px rgba(0, 0, 0, 0.65);
 }
 
-.add-task:hover::after,
-.add-task:hover::before {
+.create-task:hover::after,
+.create-task:hover::before {
   width: 60px;
 }
 
-.add-menu {
+.field {
   width: 100%;
   height: 165px;
   position: absolute;
   z-index: 8;
   left: 0;
-  bottom: -100%;
+  bottom: 0;
   background: #fff;
   display: -webkit-box;
   display: -webkit-flex;
@@ -585,13 +545,18 @@
           align-items: center;
   -webkit-transition: 0.3s;
   transition: 0.3s;
+  -webkit-transform: translateY(100%);
+      -ms-transform: translateY(100%);
+          transform: translateY(100%);
 }
 
-.add-menu_active {
-  bottom: 0;
+.field_active {
+  -webkit-transform: translateY(0);
+      -ms-transform: translateY(0);
+          transform: translateY(0);
 }
 
-.add-menu__content-wrap {
+.field__content-wrap {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -602,7 +567,7 @@
           align-items: center;
 }
 
-.add-menu__border-bot {
+.field__border-bot {
   position: absolute;
   top: 0;
   left: 0;
@@ -610,7 +575,7 @@
   height: 6px;
 }
 
-.add-menu__content {
+.field__content {
   width: 77%;
   font-size: 24px;
   line-height: 28px;
@@ -623,7 +588,7 @@
   padding: 5px;
 }
 
-.add-menu__add {
+.field__add {
   width: 40px;
   height: 40px;
   background: url(../img/src//task__edit-done.png) no-repeat center;
@@ -633,7 +598,7 @@
   cursor: pointer;
 }
 
-.add-menu__calcel {
+.field__calcel {
   position: relative;
   width: 38px;
   height: 38px;
@@ -643,8 +608,8 @@
   cursor: pointer;
 }
 
-.add-menu__calcel::after,
-.add-menu__calcel::before {
+.field__calcel::after,
+.field__calcel::before {
   content: '';
   display: block;
   width: 53px;
@@ -659,7 +624,7 @@
           transform: translateX(-50%) translateY(-50%) rotate(45deg);
 }
 
-.add-menu__calcel::after {
+.field__calcel::after {
   -webkit-transform: translateX(-50%) translateY(-50%) rotate(-45deg);
       -ms-transform: translateX(-50%) translateY(-50%) rotate(-45deg);
           transform: translateX(-50%) translateY(-50%) rotate(-45deg);
@@ -806,33 +771,23 @@ body {
     background-size: cover;
   }
 
-  .note__clear {
-    width: 25.5px;
-    height: 25.5px;
-  }
-
-  .note__clear::after,
-  .note__clear::before {
-    width: 36px;
-  }
-
   .note__delete {
     width: 28px;
     height: 28px;
     background-size: cover;
   }
 
-  .add-menu__content {
+  .field__content {
     font-size: 16px;
   }
 
-  .add-menu__calcel {
+  .field__calcel {
     width: 25.5px;
     height: 25.5px;
   }
 
-  .add-menu__calcel::after,
-  .add-menu__calcel::before {
+  .field__calcel::after,
+  .field__calcel::before {
     width: 36px;
   }
 }
