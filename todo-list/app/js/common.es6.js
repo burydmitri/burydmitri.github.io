@@ -39,8 +39,13 @@ const numAllTasks = document.querySelector('.js-stats__all');
 const numToDoTasks = document.querySelector('.js-stats__to-do');
 const numCompletedTasks = document.querySelector('.js-stats__completed');
 
+const sortByButton = document.querySelector('.filter__sort');
+const sortMenu = document.querySelector('.sort-menu');
+const sortMenuWrappers = document.querySelectorAll('.sort-menu__wrap');
+const sortMenuRadio = document.querySelectorAll('.sort-menu__radio');
+
 const mainWrap = document.querySelector('.main__wrapper');
-let notesWrap = document.querySelector('.main__notes-wrap');
+const notesWrap = document.querySelector('.main__notes-wrap');
 const taskCheckboxes = document.querySelectorAll('.note__check');
 const buttonsEdit = document.querySelectorAll('.note__edit');
 const buttonsClear = document.querySelectorAll('.note__clear');
@@ -65,6 +70,39 @@ const saveData = () => {
   localStorage.setItem('tasks', JSON.stringify(dataArray));
   localStorage.setItem('completedNum', completedCounter)
 }
+
+sortByButton.addEventListener('click', () => { 
+  sortMenu.classList.toggle('sort-menu_active');
+});
+
+const sortTasks = (arr) => {
+  for (let radio of sortMenuRadio) {
+    if (radio.hasAttribute('checked') && radio.value === 'by default') {
+      arr.sort((a, b) => {+a.index - +b.index});
+    }
+    if (radio.hasAttribute('checked') && radio.value === 'active') {
+
+    }
+    if (radio.hasAttribute('checked') && radio.value === 'completed') {
+
+    }
+    if (radio.hasAttribute('checked') && radio.value === 'alphabetically') {
+
+    }
+  }
+}
+
+for (let wrap of sortMenuWrappers){
+  wrap.addEventListener('click', () => {
+    if (wrap.children[0].hasAttribute('checked')) return '';
+    for (let radio of sortMenuRadio) { radio.removeAttribute('checked') }
+    wrap.children[0].setAttribute('checked', 'checked');
+    sortTasks();
+  })
+}
+
+// elem.setAttribute('Test', 123); // (2) атрибут Test установлен
+// alert( document.body.innerHTML ); // (3) в HTML видны все атрибуты!
 
 const giveCompletedListener = (cbox) => {
   cbox.addEventListener('click', () => { 
@@ -125,6 +163,8 @@ const addMenuCancel = () => {
   mainWrap.classList.remove('main__wrapper_edit');
   addMenu.classList.remove('add-menu_active');
 }
+
+let indexOfTask = 1;
 const createTask = (text = '', isCompleted = false) => {
   let task = document.createElement('div');
   task.classList.add('note'); 
@@ -164,7 +204,7 @@ const createTask = (text = '', isCompleted = false) => {
   task.append(borderBot);
 
 
-  task.index = 1;
+  task.index = indexOfTask++;
   task.text = text;
   noteContent.textContent = text;
   task.isCompleted = isCompleted;

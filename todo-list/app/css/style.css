@@ -174,6 +174,7 @@
       -ms-flex-pack: justify;
           justify-content: space-between;
   margin-bottom: 30px;
+  position: relative;
 }
 
 .filter__sort,
@@ -225,16 +226,100 @@
   margin-bottom: 0;
 }
 
-.filter__sort:hover .filter__icon-span:nth-child(1) {
-  width: 6px;
-}
-
-.filter__sort:hover .filter__icon-span:nth-child(2) {
+.filter__sort:hover .filter__icon-span:nth-child(2),
+.filter__sort:focus .filter__icon-span:nth-child(2),
+.filter__sort:active .filter__icon-span:nth-child(2) {
   width: 18px;
 }
 
-.filter__sort:hover .filter__icon-span:nth-child(3) {
-  width: 12px;
+.filter__sort:hover .filter__icon-span:nth-child(3),
+.filter__sort:focus .filter__icon-span:nth-child(3),
+.filter__sort:active .filter__icon-span:nth-child(3) {
+  width: 18px;
+}
+
+.filter__sort-menu {
+  position: absolute;
+  top: 30px;
+  left: 0;
+  z-index: 3;
+}
+
+.sort-menu {
+  display: none;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: column;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  width: 250px;
+  min-height: 160px;
+  background: #fff;
+  box-shadow: 0px 0px 12px rgba(0, 0, 0, 0.45);
+  border-radius: 12px;
+  padding: 24px 19px;
+}
+
+.sort-menu_active {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.sort-menu__wrap {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
+  margin-bottom: 13px;
+  cursor: pointer;
+}
+
+.sort-menu__wrap:last-child {
+  margin-bottom: 0;
+}
+
+.sort-menu__radio {
+  display: block;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background-color: #fff;
+  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.35);
+  margin-right: 10px;
+  outline: none;
+  cursor: pointer;
+  position: relative;
+}
+
+.sort-menu__radio:after {
+  content: '';
+  display: none;
+  width: 8px;
+  height: 8px;
+  background: #C4C4C4;
+  border-radius: 50%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translateX(-50%) translateY(-50%);
+      -ms-transform: translateX(-50%) translateY(-50%);
+          transform: translateX(-50%) translateY(-50%);
+}
+
+.sort-menu__radio:checked:after {
+  display: block;
+}
+
+.sort-menu__caption {
+  font-size: 14px;
+  line-height: 14px;
+  color: #8E8E8E;
 }
 
 .note {
@@ -276,6 +361,7 @@
   outline-color: #B9B9B9;
   margin-right: 30px;
   resize: none;
+  padding: 5px;
 }
 
 .note__edit {
