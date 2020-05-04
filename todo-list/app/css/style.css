@@ -115,6 +115,37 @@
   margin: 0 auto;
 }
 
+::-webkit-scrollbar-button {
+  background-image: url('');
+  background-repeat: no-repeat;
+  width: 5px;
+  height: 0px;
+}
+
+::-webkit-scrollbar-track {
+  background-color: #ecedee;
+}
+
+::-webkit-scrollbar-thumb {
+  border-radius: 0px;
+  background-color: #39C9C0;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: #FFA620;
+}
+
+::-webkit-resizer {
+  background-image: url('');
+  background-repeat: no-repeat;
+  width: 4px;
+  height: 0px;
+}
+
+::-webkit-scrollbar {
+  width: 4px;
+}
+
 .main__wrapper {
   padding-top: 80px;
   height: -webkit-calc(100vh - 230px);
@@ -139,6 +170,14 @@
 
 .main__wrapper_edit::after {
   top: 0;
+}
+
+.main__notes-wrap {
+  padding: 5px;
+  margin: -5px;
+  height: -webkit-calc(100vh - 450px);
+  height: calc(100vh - 450px);
+  overflow-y: auto;
 }
 
 .main__note {
@@ -192,6 +231,7 @@
   background: transparent;
   border: none;
   outline: none;
+  cursor: pointer;
 }
 
 .filter__icon {
@@ -349,6 +389,7 @@
   margin-right: 40px;
   -webkit-transition: 0.3s;
   transition: 0.3s;
+  cursor: pointer;
 }
 
 .note__content {
@@ -371,6 +412,7 @@
   border: none;
   outline: none;
   margin-right: 30px;
+  cursor: pointer;
 }
 
 .note__clear {
@@ -380,6 +422,7 @@
   border: none;
   outline: none;
   background: transparent;
+  cursor: pointer;
 }
 
 .note__clear::after,
@@ -413,6 +456,7 @@
   background: url(../img/src/task__remove.png) no-repeat center;
   border: none;
   outline: none;
+  cursor: pointer;
 }
 
 .note__border-bot {
@@ -487,6 +531,7 @@
   outline: none;
   -webkit-transition: 0.3s;
   transition: 0.3s;
+  cursor: pointer;
 }
 
 .add-task::before,
@@ -571,10 +616,11 @@
   line-height: 28px;
   color: #555555;
   background: transparent;
-  border: none;
+  border: 1px solid rgba(0, 0, 0, 0.2);
   outline-color: #B9B9B9;
   margin-right: 30px;
   resize: none;
+  padding: 5px;
 }
 
 .add-menu__add {
@@ -584,6 +630,7 @@
   border: none;
   outline: none;
   margin-right: 30px;
+  cursor: pointer;
 }
 
 .add-menu__calcel {
@@ -593,6 +640,7 @@
   border: none;
   outline: none;
   background: transparent;
+  cursor: pointer;
 }
 
 .add-menu__calcel::after,

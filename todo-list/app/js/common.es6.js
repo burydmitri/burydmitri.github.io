@@ -240,9 +240,4 @@ const startPage = () => {
   if (arr != null) {for (let item of arr) createTask(item.text, item.isCompleted)};
 }
 
-for (let cbox of taskCheckboxes) { giveCompletedListener(cbox) };
-for (let but of buttonsEdit) { editTaskListener(but) };
-for (let but of buttonsClear) { clearTaskListener(but) };
-for (let but of buttonsDelete) { deleteTaskListener(but) };
-
 startPage();
