@@ -78,6 +78,13 @@ $(document).ready(() => {
 
   (function () {
     const mainWrap = document.querySelector('.main__wrapper');
+
+    const sortByButton = document.querySelector('.filter__sort');
+    const sortMenu = document.querySelector('.sort-menu');
+    const sortMenuWrappers = document.querySelectorAll('.sort-menu__wrap');
+    const sortMenuRadio = document.querySelectorAll('.sort-menu__radio');
+
+
     const notesWrap = document.querySelector('.js-notes-wrap');
 
     const buttonCreateTask = document.querySelector('.js-create-task');
@@ -89,6 +96,44 @@ $(document).ready(() => {
 
     const data = notesWrap.children;
 
+    const getSortedArr = (arr) => {
+      if (arr === null) return;
+      for (let radio of sortMenuRadio) {
+        if (!(radio.hasAttribute('checked'))) continue;
+        switch (radio.value) {
+          case 'active':
+            arr.sort((a, b) => {
+              if (a.isCompleted && !b.isCompleted) return 1
+              if (!a.isCompleted && b.isCompleted) return -1
+              return 0
+            });
+            break;
+          case 'completed':
+            arr.sort((a, b) => {
+              if (a.isCompleted && !b.isCompleted) return -1
+              if (!a.isCompleted && b.isCompleted) return 1
+              return 0
+            });
+            break;
+          case 'alphabetically':
+            arr.sort((a, b) => {
+              if (a.text > b.text) return 1
+              if (a.text == b.text) return 0
+              if (a.text < b.text) return -1
+            });
+            break;
+          default:
+            arr.sort((a, b) => {return +b.index - +a.index});
+        }
+      }
+      return arr;
+    }
+    const sortTasks = (arr) => {
+      notesWrap.innerHTML = '';
+      for (let item of arr) {
+        notesWrap.append(item);
+      }
+    }
     const saveData = () => {
       let dataArray = Array.from(data);
       localStorage.setItem('tasks', JSON.stringify(dataArray));
@@ -137,7 +182,7 @@ $(document).ready(() => {
       mainWrap.classList.remove('main__wrapper_edit');
       fieldCreateTask.classList.remove('field_active');
     }
-    const createTask = (text = '', isCompleted = false) => {
+    const createTask = (text = '', isCompleted = false, index = data.length) => {
       let task = document.querySelector('.template').content.cloneNode(true).children[0];
 
       let checkbox = task.querySelector('.note__check');
@@ -156,7 +201,7 @@ $(document).ready(() => {
 
       notesWrap.prepend(task);
 
-      task.index = 1;
+      task.index = index;
       task.text = text;
       taskContent.textContent = text;
       task.isCompleted = isCompleted;
@@ -168,7 +213,21 @@ $(document).ready(() => {
       
       hideField();
       saveData();
-      }  
+    } 
+
+    sortByButton.addEventListener('click', () => { 
+      sortMenu.classList.toggle('sort-menu_active');
+    });
+    for (let wrap of sortMenuWrappers){
+      const radio = wrap.querySelector('.sort-menu__radio');
+      wrap.addEventListener('click', () => {
+        if (radio.hasAttribute('checked')) return '';
+        for (let radioEl of sortMenuRadio) { radioEl.removeAttribute('checked') }
+        radio.setAttribute('checked', 'checked');
+        let arrSorted = getSortedArr(Array.from(data));
+        sortTasks(arrSorted);
+      })
+    }
 
     buttonCreateTask.addEventListener('click', () => { 
       fieldBorder.classList.add(getColorClass());
@@ -181,9 +240,12 @@ $(document).ready(() => {
     buttonCancel.addEventListener('click', hideField);
 
     const startPage = () => {
-      let tasks = localStorage.getItem('tasks');
-      let arr = JSON.parse(tasks);
-      if (arr != null) {for (let item of arr) createTask(item.text, item.isCompleted)};
+      const tasks = localStorage.getItem('tasks');
+      const arr = JSON.parse(tasks);
+      console.log(arr);
+      const arrSorted = getSortedArr(arr);
+      console.log(arrSorted);
+      if (arr != null) {for (let item of arrSorted) createTask(item.text, item.isCompleted, item.index)};
     }
 
     startPage();
