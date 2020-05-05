@@ -89,7 +89,11 @@ $(document).ready(() => {
 
     const data = notesWrap.children;
 
-    const choiceOfColorClass = () => {
+    const saveData = () => {
+      let dataArray = Array.from(data);
+      localStorage.setItem('tasks', JSON.stringify(dataArray));
+    }
+    const getColorClass = () => {
       if (!(data.length % 2)) return 'note__border-bot_blue';
       return 'note__border-bot_yellow';
     }
@@ -99,11 +103,11 @@ $(document).ready(() => {
         if (task.isCompleted){
           task.isCompleted = false;
           counters.uncompleteTask();
-          // saveData();
+          saveData();
         } else{
           task.isCompleted = true;
           counters.completeTask();
-          // saveData();
+          saveData();
         } 
       }
     }
@@ -114,7 +118,7 @@ $(document).ready(() => {
         textarea.toggleAttribute('readonly'); 
         textarea.focus();
         task.text = textarea.value;
-        // saveData();
+        saveData();
       }
     }
     const deleteTask = (task) => {
@@ -124,7 +128,7 @@ $(document).ready(() => {
         }
         task.remove();
         counters.deleteTask(task);
-        // saveData();
+        saveData();
       }
     }
     const hideField = () => {
@@ -135,7 +139,6 @@ $(document).ready(() => {
     }
     const createTask = (text = '', isCompleted = false) => {
       let task = document.querySelector('.template').content.cloneNode(true).children[0];
-      console.log(task);
 
       let checkbox = task.querySelector('.note__check');
       checkbox.addEventListener('click', toggleCompleted(task));
@@ -149,7 +152,7 @@ $(document).ready(() => {
       deleteButton.addEventListener('click', deleteTask(task));
 
       let borderBot = task.querySelector('.note__border-bot');
-      borderBot.classList.add(choiceOfColorClass());
+      borderBot.classList.add(getColorClass());
 
       notesWrap.prepend(task);
 
@@ -164,11 +167,11 @@ $(document).ready(() => {
       }
       
       hideField();
-      // saveData();
+      saveData();
       }  
 
     buttonCreateTask.addEventListener('click', () => { 
-      fieldBorder.classList.add(choiceOfColorClass());
+      fieldBorder.classList.add(getColorClass());
       mainWrap.classList.add('main__wrapper_edit');
       fieldCreateTask.classList.add('field_active');
       setTimeout(() => textareaAdd.focus(), 300);
@@ -176,6 +179,14 @@ $(document).ready(() => {
 
     buttonAddTask.addEventListener('click', () => createTask( textareaAdd.value ));
     buttonCancel.addEventListener('click', hideField);
+
+    const startPage = () => {
+      let tasks = localStorage.getItem('tasks');
+      let arr = JSON.parse(tasks);
+      if (arr != null) {for (let item of arr) createTask(item.text, item.isCompleted)};
+    }
+
+    startPage();
   }());
 }());
 
