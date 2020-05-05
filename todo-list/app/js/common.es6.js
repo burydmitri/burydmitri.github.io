@@ -111,27 +111,27 @@ $(document).ready(() => {
         switch (radio.value) {
           case 'active':
             arr.sort((a, b) => {
-              if (a.isCompleted && !b.isCompleted) return 1
-              if (!a.isCompleted && b.isCompleted) return -1
-              return 0
-            });
-            break;
-          case 'completed':
-            arr.sort((a, b) => {
               if (a.isCompleted && !b.isCompleted) return -1
               if (!a.isCompleted && b.isCompleted) return 1
               return 0
             });
             break;
+          case 'completed':
+            arr.sort((a, b) => {
+              if (a.isCompleted && !b.isCompleted) return 1
+              if (!a.isCompleted && b.isCompleted) return -1
+              return 0
+            });
+            break;
           case 'alphabetically':
             arr.sort((a, b) => {
-              if (a.text > b.text) return 1
+              if (a.text > b.text) return -1
               if (a.text == b.text) return 0
-              if (a.text < b.text) return -1
+              if (a.text < b.text) return 1
             });
             break;
           default:
-            arr.sort((a, b) => {return +b.index - +a.index});
+            arr.sort((a, b) => {return +a.index - +b.index});
         }
       }
       return arr;
@@ -139,8 +139,9 @@ $(document).ready(() => {
     const sortTasks = (arr) => {
       notesWrap.innerHTML = '';
       for (let item of arr) {
-        notesWrap.append(item);
+        notesWrap.prepend(item);
       }
+      saveData();
     }
     const saveData = () => {
       let dataArray = Array.from(data);
@@ -256,6 +257,7 @@ $(document).ready(() => {
     const startPage = () => {
       const tasks = localStorage.getItem('tasks');
       const arr = JSON.parse(tasks);
+      console.log(data);
       console.log(arr);
       const arrSorted = getSortedArr(arr);
       console.log(arrSorted);
@@ -265,210 +267,3 @@ $(document).ready(() => {
     startPage();
   }());
 }());
-
-// const numAllTasks = document.querySelector('.js-stats__all');
-// const numToDoTasks = document.querySelector('.js-stats__to-do');
-// const numCompletedTasks = document.querySelector('.js-stats__completed');
-
-// const sortByButton = document.querySelector('.filter__sort');
-// const sortMenu = document.querySelector('.sort-menu');
-// const sortMenuWrappers = document.querySelectorAll('.sort-menu__wrap');
-// const sortMenuRadio = document.querySelectorAll('.sort-menu__radio');
-
-// const mainWrap = document.querySelector('.main__wrapper');
-// const notesWrap = document.querySelector('.main__notes-wrap');
-// const taskCheckboxes = document.querySelectorAll('.note__check');
-// const buttonsEdit = document.querySelectorAll('.note__edit');
-// const buttonsClear = document.querySelectorAll('.note__clear');
-// const buttonsDelete = document.querySelectorAll('.note__delete');
-
-// const addMenuButton = document.querySelector('.add-task');
-// const addMenu = document.querySelector('.add-menu');
-// const createButton = document.querySelector('.add-menu__add');
-// const cancelButton = document.querySelector('.add-menu__calcel');
-// const textareaAdd = document.querySelector('.add-menu__content');
-// const addMenuBorder = document.querySelector('.add-menu__border-bot');
-
-// const data = notesWrap.children;
-
-// let toDoCounter = 0;
-// let completedCounter = 0;
-// numToDoTasks.textContent = toDoCounter;
-// numCompletedTasks.textContent = completedCounter;
-
-// const saveData = () => {
-//   let dataArray = Array.from(data);
-//   localStorage.setItem('tasks', JSON.stringify(dataArray));
-//   localStorage.setItem('completedNum', completedCounter)
-// }
-
-// sortByButton.addEventListener('click', () => { 
-//   sortMenu.classList.toggle('sort-menu_active');
-// });
-
-// const sortTasks = (arr) => {
-//   for (let radio of sortMenuRadio) {
-//     if (radio.hasAttribute('checked') && radio.value === 'by default') {
-//       arr.sort((a, b) => {+a.index - +b.index});
-//     }
-//     if (radio.hasAttribute('checked') && radio.value === 'active') {
-
-//     }
-//     if (radio.hasAttribute('checked') && radio.value === 'completed') {
-
-//     }
-//     if (radio.hasAttribute('checked') && radio.value === 'alphabetically') {
-
-//     }
-//   }
-// }
-
-// for (let wrap of sortMenuWrappers){
-//   wrap.addEventListener('click', () => {
-//     if (wrap.children[0].hasAttribute('checked')) return '';
-//     for (let radio of sortMenuRadio) { radio.removeAttribute('checked') }
-//     wrap.children[0].setAttribute('checked', 'checked');
-//     sortTasks();
-//   })
-// }
-
-// // elem.setAttribute('Test', 123); // (2) атрибут Test установлен
-// // alert( document.body.innerHTML ); // (3) в HTML видны все атрибуты!
-
-// const giveCompletedListener = (cbox) => {
-//   cbox.addEventListener('click', () => { 
-//     cbox.parentElement.classList.toggle('note_completed');
-//     if (cbox.parentElement.isCompleted){
-//       cbox.parentElement.isCompleted = false;
-//       toDoCounter++;
-//       numToDoTasks.textContent = toDoCounter;
-//       completedCounter--;
-//       numCompletedTasks.textContent = completedCounter;
-//       saveData();
-//     } else{
-//       cbox.parentElement.isCompleted = true;
-//       toDoCounter--;
-//       numToDoTasks.textContent = toDoCounter;
-//       completedCounter++;
-//       numCompletedTasks.textContent = completedCounter;
-//       saveData();
-//     }
-//   })
-// }
-// const deleteTaskListener = (but) => {
-//   but.addEventListener('click', () => { 
-//     but.parentElement.remove();
-//     numAllTasks.textContent = data.length;
-//     saveData();
-//   })
-// }
-// const clearTaskListener = (but) => {
-//   but.addEventListener('click', () => { 
-//     if (mainWrap.classList.contains('main__wrapper_edit')) { 
-//       mainWrap.classList.remove('main__wrapper_edit') 
-//     }
-//     but.parentElement.remove();
-//     toDoCounter--;
-//     numToDoTasks.textContent = toDoCounter;
-//     numAllTasks.textContent = data.length;
-//     saveData();
-//   })
-// }
-// const editTaskListener = (but) => {
-//   but.addEventListener('click', () => { 
-//     but.parentElement.classList.toggle('note_edited');
-//     mainWrap.classList.toggle('main__wrapper_edit');
-//     but.parentElement.children[1].toggleAttribute('readonly'); 
-//     but.parentElement.children[1].focus();
-//     but.parentElement.text = but.parentElement.children[1].value;
-//     saveData();  
-//   });
-// }
-// const choiceOfBotColor = () => {
-//   if (!(data.length % 2)) return 'note__border-bot_blue';
-//   return 'note__border-bot_yellow';
-// }
-// const addMenuCancel = () => {
-//   addMenuBorder.classList.remove(addMenuBorder.classList[1]);
-//   textareaAdd.value = '';
-//   mainWrap.classList.remove('main__wrapper_edit');
-//   addMenu.classList.remove('add-menu_active');
-// }
-
-// let indexOfTask = 1;
-// const createTask = (text = '', isCompleted = false) => {
-//   let task = document.createElement('div');
-//   task.classList.add('note'); 
-//   task.classList.add('main__note');
-
-//   let checkbox = document.createElement('button');
-//   checkbox.classList.add('note__check');
-//   giveCompletedListener(checkbox);
-
-//   let noteContent = document.createElement('textarea'); 
-//   noteContent.classList.add('note__content');
-//   noteContent.setAttribute('readonly', 'readonly');
-//   noteContent.setAttribute('maxlength', 43);
-
-//   let editButton = document.createElement('button');
-//   editButton.classList.add('note__edit');
-//   editTaskListener(editButton);
-
-//   let clearButton = document.createElement('button');
-//   clearButton.classList.add('note__clear');
-//   clearTaskListener(clearButton);
-
-//   let deleteButton = document.createElement('button');
-//   deleteButton.classList.add('note__delete');
-//   deleteTaskListener(deleteButton);
-
-//   let borderBot = document.createElement('div');
-//   borderBot.classList.add('note__border-bot');
-//   borderBot.classList.add(choiceOfBotColor());
-
-//   mainWrap.prepend(task);
-//   task.append(checkbox);
-//   task.append(noteContent);
-//   task.append(editButton);
-//   task.append(clearButton);
-//   task.append(deleteButton);
-//   task.append(borderBot);
-
-
-//   task.index = indexOfTask++;
-//   task.text = text;
-//   noteContent.textContent = text;
-//   task.isCompleted = isCompleted;
-//   if (task.isCompleted){
-//       task.classList.add('note_completed');
-//       toDoCounter--;
-//       numToDoTasks.textContent = toDoCounter;
-//   }
-//   notesWrap.prepend(task); 
-//   numAllTasks.textContent = data.length;
-//   toDoCounter++;
-//   numToDoTasks.textContent = toDoCounter;
-
-//   addMenuCancel();
-//   saveData();
-// }
-
-// addMenuButton.addEventListener('click', () => { 
-//   addMenuBorder.classList.add(choiceOfBotColor());
-//   mainWrap.classList.add('main__wrapper_edit');
-//   addMenu.classList.add('add-menu_active');
-//   setTimeout(() => textareaAdd.focus(), 300);
-// });
-
-// createButton.addEventListener('click', () => createTask( textareaAdd.value ));
-// cancelButton.addEventListener('click', addMenuCancel);
-
-// const startPage = () => {
-//   completedCounter = localStorage.getItem('completedNum') || 0;
-//   numCompletedTasks.textContent = completedCounter;
-//   let tasks = localStorage.getItem('tasks');
-//   let arr = JSON.parse(tasks);
-//   if (arr != null) {for (let item of arr) createTask(item.text, item.isCompleted)};
-// }
-
-// startPage();
