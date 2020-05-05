@@ -73,6 +73,14 @@ $(document).ready(() => {
         numToDoTasks.textContent = this.todo;
       }
       numAllTasks.textContent = this.all;
+    },
+    clearAll() {
+      this.all = 0;
+      this.todo = 0;
+      this.completed = 0;
+      numAllTasks.textContent = this.all;
+      numToDoTasks.textContent = this.todo;
+      numCompletedTasks.textContent = this.completed;
     }
   };
 
@@ -83,7 +91,7 @@ $(document).ready(() => {
     const sortMenu = document.querySelector('.sort-menu');
     const sortMenuWrappers = document.querySelectorAll('.sort-menu__wrap');
     const sortMenuRadio = document.querySelectorAll('.sort-menu__radio');
-
+    const buttonClearAll = document.querySelector('.filter__clear');
 
     const notesWrap = document.querySelector('.js-notes-wrap');
 
@@ -176,6 +184,11 @@ $(document).ready(() => {
         saveData();
       }
     }
+    const clearAll = () => {
+      notesWrap.innerHTML = '';
+      counters.clearAll();
+      saveData();
+    }
     const hideField = () => {
       fieldBorder.classList.remove(fieldBorder.classList[2]);
       textareaAdd.value = '';
@@ -235,6 +248,7 @@ $(document).ready(() => {
       fieldCreateTask.classList.add('field_active');
       setTimeout(() => textareaAdd.focus(), 300);
     });
+    buttonClearAll.addEventListener('click', clearAll);
 
     buttonAddTask.addEventListener('click', () => createTask( textareaAdd.value ));
     buttonCancel.addEventListener('click', hideField);

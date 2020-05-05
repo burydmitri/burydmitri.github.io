@@ -234,6 +234,15 @@
   cursor: pointer;
 }
 
+.filter__sort:hover,
+.filter__clear:hover,
+.filter__sort:focus,
+.filter__clear:focus,
+.filter__sort:active,
+.filter__clear:active {
+  color: #555555;
+}
+
 .filter__icon {
   display: -webkit-box;
   display: -webkit-flex;
@@ -253,8 +262,6 @@
   height: 2px;
   background-color: #8F8F8F;
   margin-bottom: 3px;
-  -webkit-transition: 0.3s;
-  transition: 0.3s;
 }
 
 .filter__icon-span:nth-child(2) {
@@ -266,16 +273,10 @@
   margin-bottom: 0;
 }
 
-.filter__sort:hover .filter__icon-span:nth-child(2),
-.filter__sort:focus .filter__icon-span:nth-child(2),
-.filter__sort:active .filter__icon-span:nth-child(2) {
-  width: 18px;
-}
-
-.filter__sort:hover .filter__icon-span:nth-child(3),
-.filter__sort:focus .filter__icon-span:nth-child(3),
-.filter__sort:active .filter__icon-span:nth-child(3) {
-  width: 18px;
+.filter__sort:hover .filter__icon-span,
+.filter__sort:focus .filter__icon-span,
+.filter__sort:active .filter__icon-span {
+  background-color: #555555;
 }
 
 .filter__sort-menu {
