@@ -332,7 +332,7 @@
   border-radius: 50%;
   background-color: #fff;
   box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.35);
-  margin-right: 10px;
+  margin: 0 10px 0 0;
   outline: none;
   cursor: pointer;
   position: relative;
@@ -846,11 +846,6 @@ body {
     height: 75px;
   }
 
-  .create-task {
-    width: 50px;
-    height: 50px;
-  }
-
   .create-task::before,
   .create-task::after {
     width: 37px;
@@ -948,6 +943,27 @@ body {
     margin-bottom: 0;
   }
 
+  .sort-menu {
+    width: 150px;
+    min-height: 128px;
+    padding: 20px 15px;
+  }
+
+  .sort-menu__radio {
+    width: 14px;
+    height: 14px;
+  }
+
+  .sort-menu__radio:after {
+    width: 6px;
+    height: 6px;
+  }
+
+  .sort-menu__caption {
+    font-size: 11px;
+    line-height: 11px;
+  }
+
   .note__check {
     width: 30px;
     height: 30px;
@@ -976,6 +992,11 @@ body {
 
   .note__border-bot {
     height: 4px;
+  }
+
+  .create-task {
+    width: 50px;
+    height: 50px;
   }
 
   .create-task::before,

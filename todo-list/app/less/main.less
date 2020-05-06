@@ -218,6 +218,11 @@
     border-radius: @border-radius;
     padding: 24px 19px;
 
+    .media(370px, {
+        width: 150px;
+        min-height: 128px;
+        padding: 20px 15px;
+    });
     &_active{
         display: flex;
     }
@@ -239,11 +244,16 @@
         border-radius: 50%;
         background-color: @white;
         box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.35);
-        margin-right: 10px;
+        margin: 0 10px 0 0;
         outline: none;
         cursor: pointer;
 
         position: relative;
+
+        .media(370px, {
+            width: 14px;
+            height: 14px;
+        });
 
         &:after{
             content: '';
@@ -257,6 +267,11 @@
             top: 50%;
             left: 50%;
             transform: translateX(-50%) translateY(-50%);
+
+            .media(370px, {
+                width: 6px;
+                height: 6px;
+            });
         }
         &:checked{
             &:after{
@@ -268,6 +283,11 @@
         font-size: 14px;
         line-height: 14px;
         color: #8E8E8E;
+
+        .media(370px, {
+            font-size: 11px;
+            line-height: 11px;
+        });
     }
 }   
 .note{
@@ -441,7 +461,7 @@
         width: 75px;
         height: 75px;
     });
-    .media(630px, {
+    .media(370px, {
         width: 50px;
         height: 50px;
     });
