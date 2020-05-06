@@ -46,7 +46,14 @@
         .media(768px, {
             height: calc(100vh - 180px);
         }); 
-
+        .media(630px, {
+            height: calc(100vh - 130px);
+            padding-top: 60px;
+        }); 
+        .media(370px, {
+            height: calc(100vh - 100px);
+            padding-top: 45px;
+        }); 
         &::after{
             content: '';
             display: block;
@@ -68,17 +75,28 @@
     &__notes-wrap{
         padding: 5px;
         margin: -5px;
-        height: calc(100vh - 450px);
+        height: calc(100vh - 420px);
         overflow-y: auto;
+
+        .media(630px, {
+            height: calc(100vh - 320px);
+        }); 
+        .media(370px, {
+            height: calc(100vh - 220px);
+        });
     }
     &__note{
         width: 100%;
         min-height: 130px;
         margin-bottom: 40px;
 
-        .media(515px, {
-            min-height: 100px;
+        .media(630px, {
+            min-height: 90px;
             margin-bottom: 25px;
+        });
+        .media(370px, {
+            min-height: 70px;
+            margin-bottom: 15px;
         });
     }
     &__opacity-decor{
@@ -101,6 +119,9 @@
     margin-bottom: 30px;
     position: relative;
     
+    .media(630px, {
+        margin-bottom: 20px;
+    }); 
     &__sort,
     &__clear{
         display: flex;
@@ -115,8 +136,11 @@
         outline: none; 
         cursor: pointer;
 
-        .media(515px, {
+        .media(630px, {
             font-size: 11px;
+        });
+        .media(370px, {
+            font-size: 9px;
         });
         &:hover,
         &:focus,
@@ -128,6 +152,13 @@
         display: flex;
         flex-direction: column;
         margin-right: 8px;
+        .media(630px, {
+            margin-right: 6px;
+            padding-top: 1px;
+        });
+        .media(370px, {
+            padding-top: 3px;
+        });
 
         &-span{
             display: block;
@@ -143,6 +174,25 @@
                 width: 6px;
                 margin-bottom: 0;
             }
+            .media(630px, {
+                width: 15px;
+                height: 1px;
+                margin-bottom: 3px;
+                &:nth-child(2){
+                    width: 10px;
+                }
+            });
+            .media(370px, {
+                width: 12px;
+                margin-bottom: 2px;
+                &:nth-child(2){
+                    width: 8px;
+                }
+                &:nth-child(3){
+                    width: 4px;
+                    margin-bottom: 0;
+                }
+            });
         }
     }
     &__sort:hover &__icon-span,
@@ -229,6 +279,9 @@
     border-radius: @border-radius;
     position: relative;
 
+    .media(630px, {
+        padding: 0 18px;
+    });
     &__check{
         width: 60px;
         height: 60px;
@@ -241,14 +294,22 @@
         transition: @transition;
         cursor: pointer;
 
-        .media(515px, {
+        .media(630px, {
             width: 40px;
             height: 40px;
             background-size: 20px 20px;
+            margin-right: 20px;
+        });
+        .media(370px, {
+            width: 30px;
+            height: 30px;
+            background-size: 15px 15px;
+            margin-right: 15px;
         })
     }
     &__content{
-        width: 62%;
+        width: calc(100% - 237px);
+        font-family: 'Roboto';
         font-size: 24px;
         line-height: 28px;
         color: @grey-l;
@@ -258,9 +319,18 @@
         margin-right: 30px;
         resize: none;
         padding: 5px;
-        .media(515px, {
-            font-size: 16px
+        .media(630px, {
+            width: calc(100% - 146px);
+            font-size: 16px;
+            line-height: 18px;
+            margin-right: 15px;
         });
+        .media(370px, {
+            width: calc(100% - 111px);
+            font-size: 12px;
+            line-height: 13px;
+            margin-right: 12px;
+        })
     }
     &__edit{
         width: 42px;
@@ -271,28 +341,36 @@
         margin-right: 30px;
         cursor: pointer;
 
-        .media(515px, {
+        .media(630px, {
             width: 28px;
             height: 28px;
             background-size: cover;
+            margin-right: 15px;
         });
+        .media(370px, {
+            width: 21px;
+            height: 21px;
+            margin-right: 12px;
+        })
     }
     &__delete{
         display: block;
-        position: absolute;
-        right: 30px;
-        width: 42px;
+        width: 35px;
         height: 42px;
         background: url(../img/src/task__remove.png) no-repeat center;
         border: none;
         outline: none;
         cursor: pointer;
 
-        .media(515px, {
+        .media(630px, {
             width: 28px;
             height: 28px;
             background-size: cover;
         });
+        .media(370px, {
+            width: 21px;
+            height: 21px;
+        })
     }
     &__border-bot{
         position: absolute;
@@ -308,6 +386,9 @@
         &_yellow{
             background: @yellow;
         }
+        .media(370px, {
+            height: 4px;
+        })
     }
     &_completed{
         & .note__check{
@@ -340,6 +421,10 @@
     height: 20vh;
     border-radius: 0 0 @border-radius @border-radius;
     background: linear-gradient(180deg, rgba(255, 255, 255, 0.45) 0%, #FFFFFF 100%);
+
+    .media(630px, {
+        height: 15vh;
+    });
 }
 .create-task{
     width: 100px;
@@ -351,6 +436,15 @@
     outline: none;
     transition: @transition;
     cursor: pointer;
+
+    .media(630px, {
+        width: 75px;
+        height: 75px;
+    });
+    .media(630px, {
+        width: 50px;
+        height: 50px;
+    });
 
     &::before,
     &::after{
@@ -365,17 +459,32 @@
         transform: translateX(-50%) translateY(-50%);
         background-color: @white;
         transition: @transition;
+
+        .media(630px, {
+            width: 37px;
+            height: 3px;
+        });
+        .media(370px, {
+            width: 25px;
+            height: 2px;
+        });
     }
     &::after{
         transform: translateX(-50%) translateY(-50%) rotate(90deg);
     }
 
-    &:hover{
+    &:hover,
+    &:focus,
+    &:active{
         box-shadow: 0px 0px 40px rgba(0, 0, 0, 0.65);  
 
         &::after,
         &::before{
             width: 60px;
+
+            .media(630px, {
+                width: 45px;
+            });
         }
     }
 }
