@@ -152,28 +152,35 @@ $(document).ready(() => {
       return 'note__border-bot_yellow';
     }
     const toggleCompleted = (task) => {
-      return () => {
-        task.classList.toggle('note_completed');
-        if (task.isCompleted){
-          task.isCompleted = false;
-          counters.uncompleteTask();
-          saveData();
-        } else{
-          task.isCompleted = true;
-          counters.completeTask();
-          saveData();
-        } 
-      }
+      task.classList.toggle('note_completed');
+      if (task.isCompleted){
+        task.isCompleted = false;
+        counters.uncompleteTask();
+        saveData();
+      } else{
+        task.isCompleted = true;
+        counters.completeTask();
+        saveData();
+      } 
     }
     const editTask = (task, textarea) => {
-      return () => {
-        task.classList.toggle('note_edited');
-        mainWrap.classList.toggle('main__wrapper_edit');
-        textarea.toggleAttribute('readonly'); 
-        textarea.focus();
-        task.text = textarea.value;
-        saveData();
-      }
+      task.classList.add('note_edited');
+      mainWrap.classList.add('main__wrapper_edit');
+      textarea.removeAttribute('readonly'); 
+      textarea.focus();
+    }
+    const saveTask = (task, textarea) => {
+      task.classList.remove('note_edited');
+      mainWrap.classList.remove('main__wrapper_edit');
+      textarea.setAttribute('readonly', 'readonly'); 
+      task.text = textarea.value;
+      saveData();
+    }
+    const cancelEdit = (task, textarea) => {
+      task.classList.remove('note_edited');
+      mainWrap.classList.remove('main__wrapper_edit');
+      textarea.value = task.text;
+      textarea.setAttribute('readonly','readonly'); 
     }
     const deleteTask = (task) => {
       return () => {
@@ -200,12 +207,19 @@ $(document).ready(() => {
       let task = document.querySelector('.template').content.cloneNode(true).children[0];
 
       let checkbox = task.querySelector('.note__check');
-      checkbox.addEventListener('click', toggleCompleted(task));
+      checkbox.addEventListener('click', () => toggleCompleted(task));
 
       let taskContent = task.querySelector('.note__content');
 
       let editButton = task.querySelector('.note__edit');
-      editButton.addEventListener('click', editTask(task, task.querySelector('.note__content')));
+      editButton.addEventListener('click', () => editTask(task, task.querySelector('.note__content')));
+
+      let saveButton = task.querySelector('.note__save');
+      saveButton.addEventListener('click', () => saveTask(task, task.querySelector('.note__content')));
+
+      let cancelButton = task.querySelector('.note__cancel');
+      cancelButton.addEventListener('click', () => cancelEdit(task, task.querySelector('.note__content')));
+
 
       let deleteButton = task.querySelector('.note__delete');
       deleteButton.addEventListener('click', deleteTask(task));
