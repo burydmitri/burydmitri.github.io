@@ -32,6 +32,9 @@
     
 ::-webkit-scrollbar{
     width: 4px;
+    .media(370px, {
+        width: 3px;
+    });
 }
 
 .main{
@@ -46,7 +49,14 @@
         .media(768px, {
             height: calc(100vh - 180px);
         }); 
-
+        .media(630px, {
+            height: calc(100vh - 130px);
+            padding-top: 60px;
+        }); 
+        .media(370px, {
+            height: calc(100vh - 100px);
+            padding-top: 45px;
+        }); 
         &::after{
             content: '';
             display: block;
@@ -68,17 +78,28 @@
     &__notes-wrap{
         padding: 5px;
         margin: -5px;
-        height: calc(100vh - 450px);
+        height: calc(100vh - 420px);
         overflow-y: auto;
+
+        .media(630px, {
+            height: calc(100vh - 320px);
+        }); 
+        .media(370px, {
+            height: calc(100vh - 220px);
+        });
     }
     &__note{
         width: 100%;
         min-height: 130px;
         margin-bottom: 40px;
 
-        .media(515px, {
-            min-height: 100px;
+        .media(630px, {
+            min-height: 90px;
             margin-bottom: 25px;
+        });
+        .media(370px, {
+            min-height: 70px;
+            margin-bottom: 15px;
         });
     }
     &__opacity-decor{
@@ -101,6 +122,9 @@
     margin-bottom: 30px;
     position: relative;
     
+    .media(630px, {
+        margin-bottom: 20px;
+    }); 
     &__sort,
     &__clear{
         display: flex;
@@ -115,8 +139,11 @@
         outline: none; 
         cursor: pointer;
 
-        .media(515px, {
+        .media(630px, {
             font-size: 11px;
+        });
+        .media(370px, {
+            font-size: 9px;
         });
         &:hover,
         &:focus,
@@ -128,6 +155,13 @@
         display: flex;
         flex-direction: column;
         margin-right: 8px;
+        .media(630px, {
+            margin-right: 6px;
+            padding-top: 1px;
+        });
+        .media(370px, {
+            padding-top: 3px;
+        });
 
         &-span{
             display: block;
@@ -143,6 +177,25 @@
                 width: 6px;
                 margin-bottom: 0;
             }
+            .media(630px, {
+                width: 15px;
+                height: 1px;
+                margin-bottom: 3px;
+                &:nth-child(2){
+                    width: 10px;
+                }
+            });
+            .media(370px, {
+                width: 12px;
+                margin-bottom: 2px;
+                &:nth-child(2){
+                    width: 8px;
+                }
+                &:nth-child(3){
+                    width: 4px;
+                    margin-bottom: 0;
+                }
+            });
         }
     }
     &__sort:hover &__icon-span,
@@ -168,6 +221,11 @@
     border-radius: @border-radius;
     padding: 24px 19px;
 
+    .media(370px, {
+        width: 150px;
+        min-height: 128px;
+        padding: 20px 15px;
+    });
     &_active{
         display: flex;
     }
@@ -189,11 +247,16 @@
         border-radius: 50%;
         background-color: @white;
         box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.35);
-        margin-right: 10px;
+        margin: 0 10px 0 0;
         outline: none;
         cursor: pointer;
 
         position: relative;
+
+        .media(370px, {
+            width: 14px;
+            height: 14px;
+        });
 
         &:after{
             content: '';
@@ -207,6 +270,11 @@
             top: 50%;
             left: 50%;
             transform: translateX(-50%) translateY(-50%);
+
+            .media(370px, {
+                width: 6px;
+                height: 6px;
+            });
         }
         &:checked{
             &:after{
@@ -218,6 +286,11 @@
         font-size: 14px;
         line-height: 14px;
         color: #8E8E8E;
+
+        .media(370px, {
+            font-size: 11px;
+            line-height: 11px;
+        });
     }
 }   
 .note{
@@ -228,7 +301,11 @@
     box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.3);
     border-radius: @border-radius;
     position: relative;
+    overflow: hidden;
 
+    .media(630px, {
+        padding: 0 18px;
+    });
     &__check{
         width: 60px;
         height: 60px;
@@ -241,14 +318,22 @@
         transition: @transition;
         cursor: pointer;
 
-        .media(515px, {
+        .media(630px, {
             width: 40px;
             height: 40px;
             background-size: 20px 20px;
+            margin-right: 20px;
+        });
+        .media(370px, {
+            width: 30px;
+            height: 30px;
+            background-size: 15px 15px;
+            margin-right: 15px;
         })
     }
     &__content{
-        width: 62%;
+        width: calc(100% - 240px);
+        font-family: 'Roboto';
         font-size: 24px;
         line-height: 28px;
         color: @grey-l;
@@ -258,9 +343,18 @@
         margin-right: 30px;
         resize: none;
         padding: 5px;
-        .media(515px, {
-            font-size: 16px
+        .media(630px, {
+            width: calc(100% - 146px);
+            font-size: 16px;
+            line-height: 18px;
+            margin-right: 15px;
         });
+        .media(370px, {
+            width: calc(100% - 111px);
+            font-size: 12px;
+            line-height: 13px;
+            margin-right: 12px;
+        })
     }
     &__edit{
         width: 42px;
@@ -271,28 +365,102 @@
         margin-right: 30px;
         cursor: pointer;
 
-        .media(515px, {
+        .media(630px, {
             width: 28px;
             height: 28px;
             background-size: cover;
+            margin-right: 15px;
         });
+        .media(370px, {
+            width: 21px;
+            height: 21px;
+            margin-right: 12px;
+        })
     }
     &__delete{
         display: block;
-        position: absolute;
-        right: 30px;
-        width: 42px;
+        width: 38px;
         height: 42px;
         background: url(../img/src/task__remove.png) no-repeat center;
         border: none;
         outline: none;
         cursor: pointer;
 
-        .media(515px, {
+        .media(630px, {
             width: 28px;
             height: 28px;
             background-size: cover;
         });
+        .media(370px, {
+            width: 21px;
+            height: 21px;
+        })
+    }
+    &__save{
+        display: none;
+        width: 42px;
+        height: 42px;
+        background: url(../img/src//task__edit-done.png) no-repeat center;
+        background-size: cover;
+        border: none;
+        outline: none;
+        margin-right: 30px;
+        cursor: pointer;
+
+        .media(630px, {
+            width: 28px;
+            height: 28px;
+            margin-right: 15px;
+        });
+        .media(370px, {
+            width: 21px;
+            height: 21px;
+            margin-right: 12px;
+        })
+    }
+    &__cancel{
+        display: none;
+        position: relative;
+        width: 38px;
+        height: 38px;
+        border: none;
+        outline: none;
+        background: transparent;
+        cursor: pointer;
+
+        .media(630px, {
+            width: 28px;
+            height: 28px;
+            background-size: cover;
+        });
+        .media(370px, {
+            width: 21px;
+            height: 21px;
+        });
+
+        &::after,
+        &::before{
+            content: '';
+            display: block;
+            width: 53px;
+            height: 2px;
+            position: absolute;
+            z-index: 2;
+            background: @grey-m;
+            top: 50%;
+            left: 50%;
+            transform: translateX(-50%) translateY(-50%) rotate(45deg);
+            .media(630px, {
+                width: 39px;
+            });
+            .media(370px, {
+                width: 29px;
+                height: 1px;
+            });
+        }
+        &::after{
+            transform: translateX(-50%) translateY(-50%) rotate(-45deg);
+        }
     }
     &__border-bot{
         position: absolute;
@@ -300,7 +468,6 @@
         left: 0;
         width: 100%;
         height: 6px;
-        border-radius: 0px 0px @border-radius @border-radius;
 
         &_blue{
             background: @blue-s;
@@ -308,6 +475,9 @@
         &_yellow{
             background: @yellow;
         }
+        .media(370px, {
+            height: 4px;
+        })
     }
     &_completed{
         & .note__check{
@@ -316,6 +486,12 @@
         & .note__content{
             color: @grey-s;
             text-decoration: line-through;
+            .media(630px, {
+                width: calc(100% - 103px);
+            });
+            .media(370px, {
+                width: calc(100% - 78px);
+            })
         }
         & .note__edit{
             display: none;
@@ -328,10 +504,25 @@
             display: none;
         }
         .note__content{
-            width: 500px;
+            width: calc(100% - 140px);
+            .media(630px, {
+                width: calc(100% - 86px);
+            });
+            .media(370px, {
+                width: calc(100% - 66px);
+            })
         }
         .note__edit{
-            background: url(../img/src/task__edit-done.png) no-repeat center;
+            display: none;
+        }
+        .note__delete{
+            display: none;
+        }
+        .note__save{
+            display: block;
+        }
+        .note__cancel{
+            display: block;
         }
     }
 }
@@ -340,6 +531,10 @@
     height: 20vh;
     border-radius: 0 0 @border-radius @border-radius;
     background: linear-gradient(180deg, rgba(255, 255, 255, 0.45) 0%, #FFFFFF 100%);
+
+    .media(630px, {
+        height: 15vh;
+    });
 }
 .create-task{
     width: 100px;
@@ -351,6 +546,15 @@
     outline: none;
     transition: @transition;
     cursor: pointer;
+
+    .media(630px, {
+        width: 75px;
+        height: 75px;
+    });
+    .media(370px, {
+        width: 50px;
+        height: 50px;
+    });
 
     &::before,
     &::after{
@@ -365,25 +569,43 @@
         transform: translateX(-50%) translateY(-50%);
         background-color: @white;
         transition: @transition;
+
+        .media(630px, {
+            width: 37px;
+            height: 3px;
+        });
+        .media(370px, {
+            width: 25px;
+            height: 2px;
+        });
     }
     &::after{
         transform: translateX(-50%) translateY(-50%) rotate(90deg);
     }
 
-    &:hover{
+    &:hover,
+    &:focus,
+    &:active{
         box-shadow: 0px 0px 40px rgba(0, 0, 0, 0.65);  
 
         &::after,
         &::before{
             width: 60px;
+
+            .media(630px, {
+                width: 45px;
+            });
+            .media(370px, {
+                width: 30px;
+            });
         }
     }
 }
 .field{
     width: 100%;
-    height: 165px;
+    min-height: 165px;
     position: absolute;
-    z-index: 8;
+    z-index: 11;
     left: 0;
     bottom: 0;
     background: @white;
@@ -391,6 +613,13 @@
     align-items: center;
     transition: @transition;
     transform: translateY(100%);
+
+    .media(630px, {
+        min-height: 110px;
+    });
+    .media(370px, {
+        min-height: 80px;
+    });
 
     &_active{
         transform: translateY(0);
@@ -406,9 +635,12 @@
         left: 0;
         width: 100%;
         height: 6px;
+        .media(370px, {
+            height: 4px;
+        })
     }
     &__content{
-        width: 77%;
+        width: calc(100% - 140px);
         font-size: 24px;
         line-height: 28px;
         color: @grey-l;
@@ -418,18 +650,39 @@
         margin-right: 30px;
         resize: none;
         padding: 5px;
-        .media(515px, {
-            font-size: 16px
+        .media(630px, {
+            width: calc(100% - 86px);
+            font-size: 16px;
+            line-height: 18px;
+            margin-right: 15px;
+        });
+        .media(370px, {
+            width: calc(100% - 66px);
+            font-size: 12px;
+            line-height: 13px;
+            margin-right: 12px;
         });
     }
     &__add{
-        width: 40px;
-        height: 40px;
+        width: 42px;
+        height: 42px;
         background: url(../img/src//task__edit-done.png) no-repeat center;
+        background-size: cover;
         border: none;
         outline: none;
         margin-right: 30px;
         cursor: pointer;
+
+        .media(630px, {
+            width: 28px;
+            height: 28px;
+            margin-right: 15px;
+        });
+        .media(370px, {
+            width: 21px;
+            height: 21px;
+            margin-right: 12px;
+        })
     }
     &__calcel{
         position: relative;
@@ -440,9 +693,14 @@
         background: transparent;
         cursor: pointer;
 
-        .media(515px, {
-            width: 25.5px; 
-            height: 25.5px;
+        .media(630px, {
+            width: 28px;
+            height: 28px;
+            background-size: cover;
+        });
+        .media(370px, {
+            width: 21px;
+            height: 21px;
         });
 
         &::after,
@@ -457,8 +715,12 @@
             top: 50%;
             left: 50%;
             transform: translateX(-50%) translateY(-50%) rotate(45deg);
-            .media(515px, {
-                width: 36px;
+            .media(630px, {
+                width: 39px;
+            });
+            .media(370px, {
+                width: 29px;
+                height: 1px;
             });
         }
         &::after{

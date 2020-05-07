@@ -175,8 +175,8 @@
 .main__notes-wrap {
   padding: 5px;
   margin: -5px;
-  height: -webkit-calc(100vh - 450px);
-  height: calc(100vh - 450px);
+  height: -webkit-calc(100vh - 420px);
+  height: calc(100vh - 420px);
   overflow-y: auto;
 }
 
@@ -332,7 +332,7 @@
   border-radius: 50%;
   background-color: #fff;
   box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.35);
-  margin-right: 10px;
+  margin: 0 10px 0 0;
   outline: none;
   cursor: pointer;
   position: relative;
@@ -377,6 +377,7 @@
   box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.3);
   border-radius: 12px;
   position: relative;
+  overflow: hidden;
 }
 
 .note__check {
@@ -394,7 +395,9 @@
 }
 
 .note__content {
-  width: 62%;
+  width: -webkit-calc(100% - 240px);
+  width: calc(100% - 240px);
+  font-family: 'Roboto';
   font-size: 24px;
   line-height: 28px;
   color: #555555;
@@ -418,14 +421,57 @@
 
 .note__delete {
   display: block;
-  position: absolute;
-  right: 30px;
-  width: 42px;
+  width: 38px;
   height: 42px;
   background: url(../img/src/task__remove.png) no-repeat center;
   border: none;
   outline: none;
   cursor: pointer;
+}
+
+.note__save {
+  display: none;
+  width: 42px;
+  height: 42px;
+  background: url(../img/src//task__edit-done.png) no-repeat center;
+  background-size: cover;
+  border: none;
+  outline: none;
+  margin-right: 30px;
+  cursor: pointer;
+}
+
+.note__cancel {
+  display: none;
+  position: relative;
+  width: 38px;
+  height: 38px;
+  border: none;
+  outline: none;
+  background: transparent;
+  cursor: pointer;
+}
+
+.note__cancel::after,
+.note__cancel::before {
+  content: '';
+  display: block;
+  width: 53px;
+  height: 2px;
+  position: absolute;
+  z-index: 2;
+  background: #8F8F8F;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translateX(-50%) translateY(-50%) rotate(45deg);
+      -ms-transform: translateX(-50%) translateY(-50%) rotate(45deg);
+          transform: translateX(-50%) translateY(-50%) rotate(45deg);
+}
+
+.note__cancel::after {
+  -webkit-transform: translateX(-50%) translateY(-50%) rotate(-45deg);
+      -ms-transform: translateX(-50%) translateY(-50%) rotate(-45deg);
+          transform: translateX(-50%) translateY(-50%) rotate(-45deg);
 }
 
 .note__border-bot {
@@ -434,7 +480,6 @@
   left: 0;
   width: 100%;
   height: 6px;
-  border-radius: 0px 0px 12px 12px;
 }
 
 .note__border-bot_blue {
@@ -467,11 +512,24 @@
 }
 
 .note_edited .note__content {
-  width: 500px;
+  width: -webkit-calc(100% - 140px);
+  width: calc(100% - 140px);
 }
 
 .note_edited .note__edit {
-  background: url(../img/src/task__edit-done.png) no-repeat center;
+  display: none;
+}
+
+.note_edited .note__delete {
+  display: none;
+}
+
+.note_edited .note__save {
+  display: block;
+}
+
+.note_edited .note__cancel {
+  display: block;
 }
 
 .opacity-decor {
@@ -519,20 +577,26 @@
           transform: translateX(-50%) translateY(-50%) rotate(90deg);
 }
 
-.create-task:hover {
+.create-task:hover,
+.create-task:focus,
+.create-task:active {
   box-shadow: 0px 0px 40px rgba(0, 0, 0, 0.65);
 }
 
 .create-task:hover::after,
-.create-task:hover::before {
+.create-task:focus::after,
+.create-task:active::after,
+.create-task:hover::before,
+.create-task:focus::before,
+.create-task:active::before {
   width: 60px;
 }
 
 .field {
   width: 100%;
-  height: 165px;
+  min-height: 165px;
   position: absolute;
-  z-index: 8;
+  z-index: 11;
   left: 0;
   bottom: 0;
   background: #fff;
@@ -577,7 +641,8 @@
 }
 
 .field__content {
-  width: 77%;
+  width: -webkit-calc(100% - 140px);
+  width: calc(100% - 140px);
   font-size: 24px;
   line-height: 28px;
   color: #555555;
@@ -590,9 +655,10 @@
 }
 
 .field__add {
-  width: 40px;
-  height: 40px;
+  width: 42px;
+  height: 42px;
   background: url(../img/src//task__edit-done.png) no-repeat center;
+  background-size: cover;
   border: none;
   outline: none;
   margin-right: 30px;
@@ -733,9 +799,22 @@ body {
   }
 }
 
-@media screen and (max-width: 515px) {
+@media screen and (max-width: 630px) {
+  .header__intro {
+    height: 130px;
+    padding-top: 35px;
+  }
+
   .header__title {
-    font-size: 28px;
+    font-size: 24px;
+  }
+
+  .header__stats {
+    top: 95px;
+  }
+
+  .stats {
+    min-height: 70px;
   }
 
   .stats__num {
@@ -746,9 +825,24 @@ body {
     font-size: 11px;
   }
 
+  .main__wrapper {
+    height: -webkit-calc(100vh - 130px);
+    height: calc(100vh - 130px);
+    padding-top: 60px;
+  }
+
+  .main__notes-wrap {
+    height: -webkit-calc(100vh - 320px);
+    height: calc(100vh - 320px);
+  }
+
   .main__note {
-    min-height: 100px;
+    min-height: 90px;
     margin-bottom: 25px;
+  }
+
+  .filter {
+    margin-bottom: 20px;
   }
 
   .filter__sort,
@@ -756,20 +850,45 @@ body {
     font-size: 11px;
   }
 
+  .filter__icon {
+    margin-right: 6px;
+    padding-top: 1px;
+  }
+
+  .filter__icon-span {
+    width: 15px;
+    height: 1px;
+    margin-bottom: 3px;
+  }
+
+  .filter__icon-span:nth-child(2) {
+    width: 10px;
+  }
+
+  .note {
+    padding: 0 18px;
+  }
+
   .note__check {
     width: 40px;
     height: 40px;
     background-size: 20px 20px;
+    margin-right: 20px;
   }
 
   .note__content {
+    width: -webkit-calc(100% - 146px);
+    width: calc(100% - 146px);
     font-size: 16px;
+    line-height: 18px;
+    margin-right: 15px;
   }
 
   .note__edit {
     width: 28px;
     height: 28px;
     background-size: cover;
+    margin-right: 15px;
   }
 
   .note__delete {
@@ -778,18 +897,285 @@ body {
     background-size: cover;
   }
 
+  .note__save {
+    width: 28px;
+    height: 28px;
+    margin-right: 15px;
+  }
+
+  .note__cancel {
+    width: 28px;
+    height: 28px;
+    background-size: cover;
+  }
+
+  .note__cancel::after,
+  .note__cancel::before {
+    width: 39px;
+  }
+
+  .note_completed .note__content {
+    width: -webkit-calc(100% - 103px);
+    width: calc(100% - 103px);
+  }
+
+  .note_edited .note__content {
+    width: -webkit-calc(100% - 86px);
+    width: calc(100% - 86px);
+  }
+
+  .opacity-decor {
+    height: 15vh;
+  }
+
+  .create-task {
+    width: 75px;
+    height: 75px;
+  }
+
+  .create-task::before,
+  .create-task::after {
+    width: 37px;
+    height: 3px;
+  }
+
+  .create-task:hover::after,
+  .create-task:focus::after,
+  .create-task:active::after,
+  .create-task:hover::before,
+  .create-task:focus::before,
+  .create-task:active::before {
+    width: 45px;
+  }
+
+  .field {
+    min-height: 110px;
+  }
+
   .field__content {
+    width: -webkit-calc(100% - 86px);
+    width: calc(100% - 86px);
     font-size: 16px;
+    line-height: 18px;
+    margin-right: 15px;
+  }
+
+  .field__add {
+    width: 28px;
+    height: 28px;
+    margin-right: 15px;
   }
 
   .field__calcel {
-    width: 25.5px;
-    height: 25.5px;
+    width: 28px;
+    height: 28px;
+    background-size: cover;
   }
 
   .field__calcel::after,
   .field__calcel::before {
-    width: 36px;
+    width: 39px;
+  }
+}
+
+@media screen and (max-width: 370px) {
+  .header__intro {
+    height: 100px;
+    padding-top: 25px;
+  }
+
+  .header__title {
+    font-size: 18px;
+  }
+
+  .header__stats {
+    top: 75px;
+  }
+
+  .stats {
+    min-height: 50px;
+  }
+
+  .stats__num {
+    font-size: 18px;
+  }
+
+  .stats__str {
+    font-size: 9px;
+  }
+
+  ::-webkit-scrollbar {
+    width: 3px;
+  }
+
+  .main__wrapper {
+    height: -webkit-calc(100vh - 100px);
+    height: calc(100vh - 100px);
+    padding-top: 45px;
+  }
+
+  .main__notes-wrap {
+    height: -webkit-calc(100vh - 220px);
+    height: calc(100vh - 220px);
+  }
+
+  .main__note {
+    min-height: 70px;
+    margin-bottom: 15px;
+  }
+
+  .filter__sort,
+  .filter__clear {
+    font-size: 9px;
+  }
+
+  .filter__icon {
+    padding-top: 3px;
+  }
+
+  .filter__icon-span {
+    width: 12px;
+    margin-bottom: 2px;
+  }
+
+  .filter__icon-span:nth-child(2) {
+    width: 8px;
+  }
+
+  .filter__icon-span:nth-child(3) {
+    width: 4px;
+    margin-bottom: 0;
+  }
+
+  .sort-menu {
+    width: 150px;
+    min-height: 128px;
+    padding: 20px 15px;
+  }
+
+  .sort-menu__radio {
+    width: 14px;
+    height: 14px;
+  }
+
+  .sort-menu__radio:after {
+    width: 6px;
+    height: 6px;
+  }
+
+  .sort-menu__caption {
+    font-size: 11px;
+    line-height: 11px;
+  }
+
+  .note__check {
+    width: 30px;
+    height: 30px;
+    background-size: 15px 15px;
+    margin-right: 15px;
+  }
+
+  .note__content {
+    width: -webkit-calc(100% - 111px);
+    width: calc(100% - 111px);
+    font-size: 12px;
+    line-height: 13px;
+    margin-right: 12px;
+  }
+
+  .note__edit {
+    width: 21px;
+    height: 21px;
+    margin-right: 12px;
+  }
+
+  .note__delete {
+    width: 21px;
+    height: 21px;
+  }
+
+  .note__save {
+    width: 21px;
+    height: 21px;
+    margin-right: 12px;
+  }
+
+  .note__cancel {
+    width: 21px;
+    height: 21px;
+  }
+
+  .note__cancel::after,
+  .note__cancel::before {
+    width: 29px;
+    height: 1px;
+  }
+
+  .note__border-bot {
+    height: 4px;
+  }
+
+  .note_completed .note__content {
+    width: -webkit-calc(100% - 78px);
+    width: calc(100% - 78px);
+  }
+
+  .note_edited .note__content {
+    width: -webkit-calc(100% - 66px);
+    width: calc(100% - 66px);
+  }
+
+  .create-task {
+    width: 50px;
+    height: 50px;
+  }
+
+  .create-task::before,
+  .create-task::after {
+    width: 25px;
+    height: 2px;
+  }
+
+  .create-task:hover::after,
+  .create-task:focus::after,
+  .create-task:active::after,
+  .create-task:hover::before,
+  .create-task:focus::before,
+  .create-task:active::before {
+    width: 30px;
+  }
+
+  .field {
+    min-height: 80px;
+  }
+
+  .field__border-bot {
+    height: 4px;
+  }
+
+  .field__content {
+    width: -webkit-calc(100% - 66px);
+    width: calc(100% - 66px);
+    font-size: 12px;
+    line-height: 13px;
+    margin-right: 12px;
+  }
+
+  .field__add {
+    width: 21px;
+    height: 21px;
+    margin-right: 12px;
+  }
+
+  .field__calcel {
+    width: 21px;
+    height: 21px;
+  }
+
+  .field__calcel::after,
+  .field__calcel::before {
+    width: 29px;
+    height: 1px;
   }
 }
 /*# sourceMappingURL=style.css.map */
