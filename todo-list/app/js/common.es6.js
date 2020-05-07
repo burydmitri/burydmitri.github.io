@@ -257,10 +257,7 @@ $(document).ready(() => {
     const startPage = () => {
       const tasks = localStorage.getItem('tasks');
       const arr = JSON.parse(tasks);
-      console.log(data);
-      console.log(arr);
       const arrSorted = getSortedArr(arr);
-      console.log(arrSorted);
       if (arr != null) {for (let item of arrSorted) createTask(item.text, item.isCompleted, item.index)};
     }
 

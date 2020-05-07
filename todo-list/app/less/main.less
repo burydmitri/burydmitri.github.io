@@ -32,6 +32,9 @@
     
 ::-webkit-scrollbar{
     width: 4px;
+    .media(370px, {
+        width: 3px;
+    });
 }
 
 .main{
@@ -328,7 +331,7 @@
         })
     }
     &__content{
-        width: calc(100% - 237px);
+        width: calc(100% - 240px);
         font-family: 'Roboto';
         font-size: 24px;
         line-height: 28px;
@@ -375,7 +378,7 @@
     }
     &__delete{
         display: block;
-        width: 35px;
+        width: 38px;
         height: 42px;
         background: url(../img/src/task__remove.png) no-repeat center;
         border: none;
@@ -417,6 +420,12 @@
         & .note__content{
             color: @grey-s;
             text-decoration: line-through;
+            .media(630px, {
+                width: calc(100% - 103px);
+            });
+            .media(370px, {
+                width: calc(100% - 78px);
+            })
         }
         & .note__edit{
             display: none;
@@ -429,11 +438,17 @@
             display: none;
         }
         .note__content{
-            width: 500px;
+            width: calc(100% - 110px);
+            .media(630px, {
+                width: calc(100% - 86px);
+            });
+            .media(370px, {
+                width: calc(100% - 66px);
+            })
         }
-        .note__edit{
-            background: url(../img/src/task__edit-done.png) no-repeat center;
-        }
+        // .note__edit{
+        //     // display: none;
+        // }
     }
 }
 .opacity-decor{
@@ -505,14 +520,17 @@
             .media(630px, {
                 width: 45px;
             });
+            .media(370px, {
+                width: 30px;
+            });
         }
     }
 }
 .field{
     width: 100%;
-    height: 165px;
+    min-height: 165px;
     position: absolute;
-    z-index: 8;
+    z-index: 11;
     left: 0;
     bottom: 0;
     background: @white;
@@ -520,6 +538,13 @@
     align-items: center;
     transition: @transition;
     transform: translateY(100%);
+
+    .media(630px, {
+        min-height: 110px;
+    });
+    .media(370px, {
+        min-height: 80px;
+    });
 
     &_active{
         transform: translateY(0);
@@ -535,9 +560,12 @@
         left: 0;
         width: 100%;
         height: 6px;
+        .media(370px, {
+            height: 4px;
+        })
     }
     &__content{
-        width: 77%;
+        width: calc(100% - 140px);
         font-size: 24px;
         line-height: 28px;
         color: @grey-l;
@@ -547,18 +575,39 @@
         margin-right: 30px;
         resize: none;
         padding: 5px;
-        .media(515px, {
-            font-size: 16px
+        .media(630px, {
+            width: calc(100% - 86px);
+            font-size: 16px;
+            line-height: 18px;
+            margin-right: 15px;
+        });
+        .media(370px, {
+            width: calc(100% - 66px);
+            font-size: 12px;
+            line-height: 13px;
+            margin-right: 12px;
         });
     }
     &__add{
-        width: 40px;
-        height: 40px;
+        width: 42px;
+        height: 42px;
         background: url(../img/src//task__edit-done.png) no-repeat center;
+        background-size: cover;
         border: none;
         outline: none;
         margin-right: 30px;
         cursor: pointer;
+
+        .media(630px, {
+            width: 28px;
+            height: 28px;
+            margin-right: 15px;
+        });
+        .media(370px, {
+            width: 21px;
+            height: 21px;
+            margin-right: 12px;
+        })
     }
     &__calcel{
         position: relative;
@@ -569,9 +618,14 @@
         background: transparent;
         cursor: pointer;
 
-        .media(515px, {
-            width: 25.5px; 
-            height: 25.5px;
+        .media(630px, {
+            width: 28px;
+            height: 28px;
+            background-size: cover;
+        });
+        .media(370px, {
+            width: 21px;
+            height: 21px;
         });
 
         &::after,
@@ -586,8 +640,12 @@
             top: 50%;
             left: 50%;
             transform: translateX(-50%) translateY(-50%) rotate(45deg);
-            .media(515px, {
-                width: 36px;
+            .media(630px, {
+                width: 39px;
+            });
+            .media(370px, {
+                width: 29px;
+                height: 1px;
             });
         }
         &::after{
