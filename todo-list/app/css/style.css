@@ -384,7 +384,7 @@
   width: 60px;
   height: 60px;
   border-radius: 50%;
-  background: #fff url(../img/src/task__done.png) no-repeat center;
+  background: #fff url(../img/dist/task__done.png) no-repeat center;
   border: none;
   outline: none;
   box-shadow: 0px 0px 18px rgba(0, 0, 0, 0.35);
@@ -412,7 +412,7 @@
 .note__edit {
   width: 42px;
   height: 42px;
-  background: url(../img/src/task__edit.png) no-repeat center;
+  background: url(../img/dist/task__edit.png) no-repeat center;
   border: none;
   outline: none;
   margin-right: 30px;
@@ -423,7 +423,7 @@
   display: block;
   width: 38px;
   height: 42px;
-  background: url(../img/src/task__remove.png) no-repeat center;
+  background: url(../img/dist/task__remove.png) no-repeat center;
   border: none;
   outline: none;
   cursor: pointer;
@@ -433,7 +433,7 @@
   display: none;
   width: 42px;
   height: 42px;
-  background: url(../img/src//task__edit-done.png) no-repeat center;
+  background: url(../img/dist/task__edit-done.png) no-repeat center;
   background-size: cover;
   border: none;
   outline: none;
@@ -514,6 +514,7 @@
 .note_edited .note__content {
   width: -webkit-calc(100% - 140px);
   width: calc(100% - 140px);
+  border: 1px solid rgba(0, 0, 0, 0.2);
 }
 
 .note_edited .note__edit {
@@ -657,7 +658,7 @@
 .field__add {
   width: 42px;
   height: 42px;
-  background: url(../img/src//task__edit-done.png) no-repeat center;
+  background: url(../img/dist/task__edit-done.png) no-repeat center;
   background-size: cover;
   border: none;
   outline: none;
