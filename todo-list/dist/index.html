@@ -13,11 +13,18 @@
       href="./img/favicon/favicon.ico"
       type="image/x-icon"
     />
+    <link rel="apple-touch-icon" sizes="180x180" href="./img/favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="./img/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="./img/favicon/favicon-16x16.png">
+    <link rel="manifest" href="./img/favicon/site.webmanifest">
+    <link rel="mask-icon" href="./img/favicon/safari-pinned-tab.svg" color="#5bbad5">
+    <meta name="msapplication-TileColor" content="#b91d47">
+    <meta name="theme-color" content="#ffffff">
     <!-- css libs-->
     <!-- user css-->
     <link property="stylesheet" href="./css/style.min.css" rel="stylesheet" />
   </head>
-  <body>
+  <body class="body">
     <!-- Header start -->
     <header class="header">
       <div class="wrapper">
@@ -59,22 +66,22 @@
             </button>
             <button class="filter__clear">clear all</button>
             <div class="sort-menu filter__sort-menu">
-              <div class="sort-menu__wrap">
+              <label class="sort-menu__wrap">
                 <input class="sort-menu__radio" type="radio" value="by default" name="sort-radio" checked>
                 <span class="sort-menu__caption">По  умолчанию</span>
-              </div>
-              <div class="sort-menu__wrap">
+              </label>
+              <label class="sort-menu__wrap">
                 <input class="sort-menu__radio" type="radio" value="active" name="sort-radio">
                 <span class="sort-menu__caption">Активные</span>
-              </div>
-              <div class="sort-menu__wrap">
+              </label>
+              <label class="sort-menu__wrap">
                 <input class="sort-menu__radio" type="radio" value="completed" name="sort-radio">
                 <span class="sort-menu__caption">Выполненные</span>
-              </div>
-              <div class="sort-menu__wrap">
+              </label>
+              <label class="sort-menu__wrap">
                 <input class="sort-menu__radio" type="radio" value="alphabetically" name="sort-radio">
                 <span class="sort-menu__caption">A-z</span>
-              </div>
+              </label>
             </div>
           </div>
           <div class="main__notes-wrap js-notes-wrap">
