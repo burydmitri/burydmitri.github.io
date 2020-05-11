@@ -31,6 +31,25 @@
   const numToDoTasks = document.querySelector('.js-stats__to-do');
   const numCompletedTasks = document.querySelector('.js-stats__completed');
 
+  const mainWrap = document.querySelector('.main__wrapper');
+
+  const sortByButton = document.querySelector('.filter__sort');
+  const sortMenu = document.querySelector('.sort-menu');
+  const sortMenuWrappers = document.querySelectorAll('.sort-menu__wrap');
+  const sortMenuRadio = document.querySelectorAll('.sort-menu__radio');
+  const buttonClearAll = document.querySelector('.filter__clear');
+
+  const notesWrap = document.querySelector('.js-notes-wrap');
+
+  const buttonCreateTask = document.querySelector('.js-create-task');
+  const fieldCreateTask = document.querySelector('.js-field');
+  const buttonAddTask = document.querySelector('.js-field__add');
+  const buttonCancel = document.querySelector('.js-field__calcel');
+  const textareaAdd = document.querySelector('.js-field__content');
+  const fieldBorder = document.querySelector('.js-field__border-bot');
+
+  const data = notesWrap.children;
+
   const counters = {
     all: 0,
     todo: 0,
@@ -74,197 +93,176 @@
     }
   };
 
-  (function () {
-    const mainWrap = document.querySelector('.main__wrapper');
-
-    const sortByButton = document.querySelector('.filter__sort');
-    const sortMenu = document.querySelector('.sort-menu');
-    const sortMenuWrappers = document.querySelectorAll('.sort-menu__wrap');
-    const sortMenuRadio = document.querySelectorAll('.sort-menu__radio');
-    const buttonClearAll = document.querySelector('.filter__clear');
-
-    const notesWrap = document.querySelector('.js-notes-wrap');
-
-    const buttonCreateTask = document.querySelector('.js-create-task');
-    const fieldCreateTask = document.querySelector('.js-field');
-    const buttonAddTask = document.querySelector('.js-field__add');
-    const buttonCancel = document.querySelector('.js-field__calcel');
-    const textareaAdd = document.querySelector('.js-field__content');
-    const fieldBorder = document.querySelector('.js-field__border-bot');
-
-    const data = notesWrap.children;
-
-    const getSortedArr = (arr) => {
-      if (arr === null) return;
-      for (let radio of sortMenuRadio) {
-        if (!(radio.hasAttribute('checked'))) continue;
-        switch (radio.value) {
-          case 'active':
-            arr.sort((a, b) => {
-              if (a.isCompleted && !b.isCompleted) return -1
-              if (!a.isCompleted && b.isCompleted) return 1
-              return 0
-            });
-            break;
-          case 'completed':
-            arr.sort((a, b) => {
-              if (a.isCompleted && !b.isCompleted) return 1
-              if (!a.isCompleted && b.isCompleted) return -1
-              return 0
-            });
-            break;
-          case 'alphabetically':
-            arr.sort((a, b) => {
-              if (a.text > b.text) return -1
-              if (a.text == b.text) return 0
-              if (a.text < b.text) return 1
-            });
-            break;
-          default:
-            arr.sort((a, b) => {return +a.index - +b.index});
-        }
+  const getSortedArr = (arr) => {
+    if (arr === null) return;
+    for (let radio of sortMenuRadio) {
+      if (!(radio.hasAttribute('checked'))) continue;
+      switch (radio.value) {
+        case 'active':
+          arr.sort((a, b) => {
+            if (a.isCompleted && !b.isCompleted) return -1
+            if (!a.isCompleted && b.isCompleted) return 1
+            return 0
+          });
+          break;
+        case 'completed':
+          arr.sort((a, b) => {
+            if (a.isCompleted && !b.isCompleted) return 1
+            if (!a.isCompleted && b.isCompleted) return -1
+            return 0
+          });
+          break;
+        case 'alphabetically':
+          arr.sort((a, b) => {
+            if (a.text > b.text) return -1
+            if (a.text == b.text) return 0
+            if (a.text < b.text) return 1
+          });
+          break;
+        default:
+          arr.sort((a, b) => {return +a.index - +b.index});
       }
-      return arr;
     }
-    const sortTasks = (arr) => {
-      notesWrap.innerHTML = '';
-      for (let item of arr) {
-        notesWrap.prepend(item);
-      }
+    return arr;
+  }
+  const sortTasks = (arr) => {
+    notesWrap.innerHTML = '';
+    for (let item of arr) {
+      notesWrap.prepend(item);
+    }
+    saveData();
+  }
+  const saveData = () => {
+    let dataArray = Array.from(data);
+    localStorage.setItem('tasks', JSON.stringify(dataArray));
+  }
+  const getColorClass = () => {
+    if (!(data.length % 2)) return 'note__border-bot_blue';
+    return 'note__border-bot_yellow';
+  }
+  const toggleCompleted = (task) => {
+    task.classList.toggle('note_completed');
+    if (task.isCompleted){
+      task.isCompleted = false;
+      counters.uncompleteTask();
       saveData();
-    }
-    const saveData = () => {
-      let dataArray = Array.from(data);
-      localStorage.setItem('tasks', JSON.stringify(dataArray));
-    }
-    const getColorClass = () => {
-      if (!(data.length % 2)) return 'note__border-bot_blue';
-      return 'note__border-bot_yellow';
-    }
-    const toggleCompleted = (task) => {
-      task.classList.toggle('note_completed');
-      if (task.isCompleted){
-        task.isCompleted = false;
-        counters.uncompleteTask();
-        saveData();
-      } else{
-        task.isCompleted = true;
-        counters.completeTask();
-        saveData();
-      } 
-    }
-    const editTask = (task, textarea) => {
-      task.classList.add('note_edited');
-      mainWrap.classList.add('main__wrapper_edit');
-      textarea.removeAttribute('readonly'); 
-      textarea.focus();
-    }
-    const saveTask = (task, textarea) => {
-      task.classList.remove('note_edited');
-      mainWrap.classList.remove('main__wrapper_edit');
-      textarea.setAttribute('readonly', 'readonly'); 
-      task.text = textarea.value;
-      saveData();
-    }
-    const cancelEdit = (task, textarea) => {
-      task.classList.remove('note_edited');
-      mainWrap.classList.remove('main__wrapper_edit');
-      textarea.value = task.text;
-      textarea.setAttribute('readonly','readonly'); 
-    }
-    const deleteTask = (task) => {
-      return () => {
-        if (mainWrap.classList.contains('main__wrapper_edit')) { 
-          mainWrap.classList.remove('main__wrapper_edit') 
-        }
-        task.remove();
-        counters.deleteTask(task);
-        saveData();
-      }
-    }
-    const clearAll = () => {
-      notesWrap.innerHTML = '';
-      counters.clearAll();
-      saveData();
-    }
-    const hideField = () => {
-      fieldBorder.classList.remove(fieldBorder.classList[2]);
-      textareaAdd.value = '';
-      mainWrap.classList.remove('main__wrapper_edit');
-      fieldCreateTask.classList.remove('field_active');
-    }
-    const createTask = (text = '', isCompleted = false, index = data.length) => {
-      let task = document.querySelector('.template').content.cloneNode(true).children[0];
-
-      let checkbox = task.querySelector('.note__check');
-      checkbox.addEventListener('click', () => toggleCompleted(task));
-
-      let taskContent = task.querySelector('.note__content');
-
-      let editButton = task.querySelector('.note__edit');
-      editButton.addEventListener('click', () => editTask(task, task.querySelector('.note__content')));
-
-      let saveButton = task.querySelector('.note__save');
-      saveButton.addEventListener('click', () => saveTask(task, task.querySelector('.note__content')));
-
-      let cancelButton = task.querySelector('.note__cancel');
-      cancelButton.addEventListener('click', () => cancelEdit(task, task.querySelector('.note__content')));
-
-
-      let deleteButton = task.querySelector('.note__delete');
-      deleteButton.addEventListener('click', deleteTask(task));
-
-      let borderBot = task.querySelector('.note__border-bot');
-      borderBot.classList.add(getColorClass());
-
-      notesWrap.prepend(task);
-
-      task.index = index;
-      task.text = text;
-      taskContent.textContent = text;
-      task.isCompleted = isCompleted;
-      counters.addTask();
-      if (task.isCompleted){
-          task.classList.add('note_completed');
-          counters.completeTask();
-      }
-      
-      hideField();
+    } else{
+      task.isCompleted = true;
+      counters.completeTask();
       saveData();
     } 
-
-    sortByButton.addEventListener('click', () => { 
-      sortMenu.classList.toggle('sort-menu_active');
-    });
-    for (let wrap of sortMenuWrappers){
-      const radio = wrap.querySelector('.sort-menu__radio');
-      wrap.addEventListener('click', () => {
-        if (radio.hasAttribute('checked')) return '';
-        for (let radioEl of sortMenuRadio) { radioEl.removeAttribute('checked') }
-        radio.setAttribute('checked', 'checked');
-        let arrSorted = getSortedArr(Array.from(data));
-        sortTasks(arrSorted);
-      })
+  }
+  const editTask = (task, textarea) => {
+    task.classList.add('note_edited');
+    mainWrap.classList.add('main__wrapper_edit');
+    textarea.removeAttribute('readonly'); 
+    textarea.focus();
+  }
+  const saveTask = (task, textarea) => {
+    task.classList.remove('note_edited');
+    mainWrap.classList.remove('main__wrapper_edit');
+    textarea.setAttribute('readonly', 'readonly'); 
+    task.text = textarea.value;
+    saveData();
+  }
+  const cancelEdit = (task, textarea) => {
+    task.classList.remove('note_edited');
+    mainWrap.classList.remove('main__wrapper_edit');
+    textarea.value = task.text;
+    textarea.setAttribute('readonly','readonly'); 
+  }
+  const deleteTask = (task) => {
+    return () => {
+      if (mainWrap.classList.contains('main__wrapper_edit')) { 
+        mainWrap.classList.remove('main__wrapper_edit') 
+      }
+      task.remove();
+      counters.deleteTask(task);
+      saveData();
     }
+  }
+  const clearAll = () => {
+    notesWrap.innerHTML = '';
+    counters.clearAll();
+    saveData();
+  }
+  const hideField = () => {
+    fieldBorder.classList.remove(fieldBorder.classList[2]);
+    textareaAdd.value = '';
+    mainWrap.classList.remove('main__wrapper_edit');
+    fieldCreateTask.classList.remove('field_active');
+  }
+  const createTask = (text = '', isCompleted = false, index = data.length) => {
+    let task = document.querySelector('.template').content.cloneNode(true).children[0];
 
-    buttonCreateTask.addEventListener('click', () => { 
-      fieldBorder.classList.add(getColorClass());
-      mainWrap.classList.add('main__wrapper_edit');
-      fieldCreateTask.classList.add('field_active');
-      setTimeout(() => textareaAdd.focus(), 300);
-    });
-    buttonClearAll.addEventListener('click', clearAll);
+    let checkbox = task.querySelector('.note__check');
+    checkbox.addEventListener('click', () => toggleCompleted(task));
 
-    buttonAddTask.addEventListener('click', () => createTask( textareaAdd.value ));
-    buttonCancel.addEventListener('click', hideField);
+    let taskContent = task.querySelector('.note__content');
 
-    const startPage = () => {
-      const tasks = localStorage.getItem('tasks');
-      const arr = JSON.parse(tasks);
-      const arrSorted = getSortedArr(arr);
-      if (arr != null) {for (let item of arrSorted) createTask(item.text, item.isCompleted, item.index)};
+    let editButton = task.querySelector('.note__edit');
+    editButton.addEventListener('click', () => editTask(task, task.querySelector('.note__content')));
+
+    let saveButton = task.querySelector('.note__save');
+    saveButton.addEventListener('click', () => saveTask(task, task.querySelector('.note__content')));
+
+    let cancelButton = task.querySelector('.note__cancel');
+    cancelButton.addEventListener('click', () => cancelEdit(task, task.querySelector('.note__content')));
+
+
+    let deleteButton = task.querySelector('.note__delete');
+    deleteButton.addEventListener('click', deleteTask(task));
+
+    let borderBot = task.querySelector('.note__border-bot');
+    borderBot.classList.add(getColorClass());
+
+    notesWrap.prepend(task);
+
+    task.index = index;
+    task.text = text;
+    taskContent.textContent = text;
+    task.isCompleted = isCompleted;
+    counters.addTask();
+    if (task.isCompleted){
+        task.classList.add('note_completed');
+        counters.completeTask();
     }
+      
+    hideField();
+    saveData();
+  } 
 
-    startPage();
-  }());
+  sortByButton.addEventListener('click', () => { 
+    sortMenu.classList.toggle('sort-menu_active');
+  });
+  for (let wrap of sortMenuWrappers){
+    const radio = wrap.querySelector('.sort-menu__radio');
+    wrap.addEventListener('click', () => {
+      if (radio.hasAttribute('checked')) return '';
+      for (let radioEl of sortMenuRadio) { radioEl.removeAttribute('checked') }
+      radio.setAttribute('checked', 'checked');
+      let arrSorted = getSortedArr(Array.from(data));
+      sortTasks(arrSorted);
+    })
+  }
+
+  buttonCreateTask.addEventListener('click', () => { 
+    fieldBorder.classList.add(getColorClass());
+    mainWrap.classList.add('main__wrapper_edit');
+    fieldCreateTask.classList.add('field_active');
+    setTimeout(() => textareaAdd.focus(), 300);
+  });
+  buttonClearAll.addEventListener('click', clearAll);
+
+  buttonAddTask.addEventListener('click', () => createTask( textareaAdd.value ));
+  buttonCancel.addEventListener('click', hideField);
+
+  const startPage = () => {
+    const tasks = localStorage.getItem('tasks');
+    const arr = JSON.parse(tasks);
+    const arrSorted = getSortedArr(arr);
+    if (arr != null) {for (let item of arrSorted) createTask(item.text, item.isCompleted, item.index)};
+  }
+
+  startPage();
 }());
