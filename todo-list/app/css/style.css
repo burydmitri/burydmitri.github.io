@@ -990,28 +990,28 @@ body {
 
 @media screen and (max-width: 370px) {
   .header__intro {
-    height: 100px;
+    height: 110px;
     padding-top: 25px;
   }
 
   .header__title {
-    font-size: 18px;
+    font-size: 20px;
   }
 
   .header__stats {
-    top: 75px;
+    top: 82px;
   }
 
   .stats {
-    min-height: 50px;
+    min-height: 56px;
   }
 
   .stats__num {
-    font-size: 18px;
+    font-size: 20px;
   }
 
   .stats__str {
-    font-size: 9px;
+    font-size: 10px;
   }
 
   ::-webkit-scrollbar {
@@ -1019,8 +1019,8 @@ body {
   }
 
   .main__wrapper {
-    height: -webkit-calc(100vh - 100px);
-    height: calc(100vh - 100px);
+    height: -webkit-calc(100vh - 110px);
+    height: calc(100vh - 110px);
     padding-top: 45px;
   }
 
@@ -1030,13 +1030,13 @@ body {
   }
 
   .main__note {
-    min-height: 70px;
+    min-height: 80px;
     margin-bottom: 15px;
   }
 
   .filter__sort,
   .filter__clear {
-    font-size: 9px;
+    font-size: 10px;
   }
 
   .filter__icon {
@@ -1064,85 +1064,85 @@ body {
   }
 
   .sort-menu__radio {
-    width: 14px;
-    height: 14px;
+    width: 16px;
+    height: 16px;
   }
 
   .sort-menu__radio:after {
-    width: 6px;
-    height: 6px;
+    width: 7px;
+    height: 7px;
   }
 
   .sort-menu__caption {
-    font-size: 11px;
-    line-height: 11px;
+    font-size: 12px;
+    line-height: 12px;
   }
 
   .note__check {
-    width: 30px;
-    height: 30px;
-    background-size: 15px 15px;
+    width: 34px;
+    height: 34px;
+    background-size: 17px 17px;
     margin-right: 15px;
   }
 
   .note__content {
-    width: -webkit-calc(100% - 111px);
-    width: calc(100% - 111px);
-    font-size: 12px;
-    line-height: 13px;
+    width: -webkit-calc(100% - 121px);
+    width: calc(100% - 121px);
+    font-size: 14px;
+    line-height: 15px;
     margin-right: 12px;
   }
 
   .note__edit {
-    width: 21px;
-    height: 21px;
+    width: 24px;
+    height: 24px;
     margin-right: 12px;
   }
 
   .note__delete {
-    width: 21px;
-    height: 21px;
+    width: 24px;
+    height: 24px;
   }
 
   .note__save {
-    width: 21px;
-    height: 21px;
+    width: 24px;
+    height: 24px;
     margin-right: 12px;
   }
 
   .note__cancel {
-    width: 21px;
-    height: 21px;
+    width: 24px;
+    height: 24px;
   }
 
   .note__cancel::after,
   .note__cancel::before {
-    width: 29px;
+    width: 33px;
     height: 1px;
   }
 
   .note__border-bot {
-    height: 4px;
+    height: 5px;
   }
 
   .note_completed .note__content {
-    width: -webkit-calc(100% - 78px);
-    width: calc(100% - 78px);
+    width: -webkit-calc(100% - 85px);
+    width: calc(100% - 85px);
   }
 
   .note_edited .note__content {
-    width: -webkit-calc(100% - 66px);
-    width: calc(100% - 66px);
+    width: -webkit-calc(100% - 72px);
+    width: calc(100% - 72px);
   }
 
   .create-task {
-    width: 50px;
-    height: 50px;
+    width: 60px;
+    height: 60px;
   }
 
   .create-task::before,
   .create-task::after {
-    width: 25px;
+    width: 30px;
     height: 2px;
   }
 
@@ -1152,39 +1152,39 @@ body {
   .create-task:hover::before,
   .create-task:focus::before,
   .create-task:active::before {
-    width: 30px;
+    width: 35px;
   }
 
   .field {
-    min-height: 80px;
+    min-height: 90px;
   }
 
   .field__border-bot {
-    height: 4px;
+    height: 5px;
   }
 
   .field__content {
-    width: -webkit-calc(100% - 66px);
-    width: calc(100% - 66px);
-    font-size: 12px;
-    line-height: 13px;
+    width: -webkit-calc(100% - 72px);
+    width: calc(100% - 72px);
     margin-right: 12px;
+    font-size: 14px;
+    line-height: 15px;
   }
 
   .field__add {
-    width: 21px;
-    height: 21px;
+    width: 24px;
+    height: 24px;
     margin-right: 12px;
   }
 
   .field__calcel {
-    width: 21px;
-    height: 21px;
+    width: 24px;
+    height: 24px;
   }
 
   .field__calcel::after,
   .field__calcel::before {
-    width: 29px;
+    width: 33px;
     height: 1px;
   }
 }
