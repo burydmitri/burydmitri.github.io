@@ -231,9 +231,16 @@
     hideField();
     saveData();
   } 
-
+  const closeSortMenu = () => {
+    if (event.target != sortByButton) {
+      sortMenu.classList.remove('sort-menu_active');
+      document.body.removeEventListener('click', closeSortMenu)
+    }
+  }
   sortByButton.addEventListener('click', () => { 
     sortMenu.classList.toggle('sort-menu_active');
+
+    document.body.addEventListener('click', closeSortMenu);
   });
   for (let wrap of sortMenuWrappers){
     const radio = wrap.querySelector('.sort-menu__radio');
