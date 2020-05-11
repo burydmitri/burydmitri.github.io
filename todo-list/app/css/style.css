@@ -503,6 +503,11 @@
   display: none;
 }
 
+.note_completed .note__delete {
+  position: absolute;
+  right: 26px;
+}
+
 .note_edited {
   z-index: 8;
 }
@@ -918,6 +923,10 @@ body {
   .note_completed .note__content {
     width: -webkit-calc(100% - 103px);
     width: calc(100% - 103px);
+  }
+
+  .note_completed .note__delete {
+    right: 18px;
   }
 
   .note_edited .note__content {
