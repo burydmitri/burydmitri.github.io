@@ -76,13 +76,15 @@
         }
     }
     &__notes-wrap{
-        padding: 5px;
-        margin: -5px;
+        padding: 7px;
+        margin: -7px;
         height: calc(100vh - 420px);
         overflow-y: auto;
 
         .media(630px, {
             height: calc(100vh - 320px);
+            padding: 5px;
+            margin: -5px;
         }); 
         .media(370px, {
             height: calc(100vh - 220px);
@@ -305,12 +307,17 @@
 
     .media(630px, {
         padding: 0 18px;
+        box-shadow: 0px 4px 9px rgba(0, 0, 0, 0.3);
+    });
+    .media(370px, {
+        padding: 0 18px;
+        box-shadow: 0px 3px 7px rgba(0, 0, 0, 0.3);
     });
     &__check{
         width: 60px;
         height: 60px;
         border-radius: 50%;
-        background: @white url(../img/dist/task__done.png) no-repeat center;
+        background: @white;
         border: none;
         outline: none;
         box-shadow: 0px 0px 18px rgba(0, 0, 0, 0.35);
@@ -321,13 +328,11 @@
         .media(630px, {
             width: 40px;
             height: 40px;
-            background-size: 20px 20px;
             margin-right: 20px;
         });
         .media(370px, {
             width: 34px;
             height: 34px;
-            background-size: 17px 17px;
             margin-right: 15px;
         })
     }
@@ -342,7 +347,6 @@
         outline-color: #B9B9B9;
         margin-right: 30px;
         resize: none;
-        padding: 5px;
         .media(630px, {
             width: calc(100% - 146px);
             font-size: 16px;
@@ -481,7 +485,13 @@
     }
     &_completed{
         & .note__check{
-            background-color: @blue-s;
+            background: @blue-s url(../img/dist/task__done.png) no-repeat center;
+            .media(630px, {
+                background-size: 20px 20px;
+            });
+            .media(370px, {
+                background-size: 17px 17px;
+            })
         }
         & .note__content{
             color: @grey-s;
@@ -513,6 +523,7 @@
         .note__content{
             width: calc(100% - 140px);
             border: 1px solid rgba(0, 0, 0, 0.2);
+            padding: 5px;
             .media(630px, {
                 width: calc(100% - 86px);
             });

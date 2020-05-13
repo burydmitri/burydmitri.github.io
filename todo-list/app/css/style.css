@@ -173,8 +173,8 @@
 }
 
 .main__notes-wrap {
-  padding: 5px;
-  margin: -5px;
+  padding: 7px;
+  margin: -7px;
   height: -webkit-calc(100vh - 420px);
   height: calc(100vh - 420px);
   overflow-y: auto;
@@ -384,7 +384,7 @@
   width: 60px;
   height: 60px;
   border-radius: 50%;
-  background: #fff url(../img/dist/task__done.png) no-repeat center;
+  background: #fff;
   border: none;
   outline: none;
   box-shadow: 0px 0px 18px rgba(0, 0, 0, 0.35);
@@ -406,7 +406,6 @@
   outline-color: #B9B9B9;
   margin-right: 30px;
   resize: none;
-  padding: 5px;
 }
 
 .note__edit {
@@ -491,7 +490,7 @@
 }
 
 .note_completed .note__check {
-  background-color: #39C9C0;
+  background: #39C9C0 url(../img/dist/task__done.png) no-repeat center;
 }
 
 .note_completed .note__content {
@@ -520,6 +519,7 @@
   width: -webkit-calc(100% - 140px);
   width: calc(100% - 140px);
   border: 1px solid rgba(0, 0, 0, 0.2);
+  padding: 5px;
 }
 
 .note_edited .note__edit {
@@ -840,6 +840,8 @@ body {
   .main__notes-wrap {
     height: -webkit-calc(100vh - 320px);
     height: calc(100vh - 320px);
+    padding: 5px;
+    margin: -5px;
   }
 
   .main__note {
@@ -873,12 +875,12 @@ body {
 
   .note {
     padding: 0 18px;
+    box-shadow: 0px 4px 9px rgba(0, 0, 0, 0.3);
   }
 
   .note__check {
     width: 40px;
     height: 40px;
-    background-size: 20px 20px;
     margin-right: 20px;
   }
 
@@ -918,6 +920,10 @@ body {
   .note__cancel::after,
   .note__cancel::before {
     width: 39px;
+  }
+
+  .note_completed .note__check {
+    background-size: 20px 20px;
   }
 
   .note_completed .note__content {
@@ -1078,10 +1084,14 @@ body {
     line-height: 12px;
   }
 
+  .note {
+    padding: 0 18px;
+    box-shadow: 0px 3px 7px rgba(0, 0, 0, 0.3);
+  }
+
   .note__check {
     width: 34px;
     height: 34px;
-    background-size: 17px 17px;
     margin-right: 15px;
   }
 
@@ -1123,6 +1133,10 @@ body {
 
   .note__border-bot {
     height: 5px;
+  }
+
+  .note_completed .note__check {
+    background-size: 17px 17px;
   }
 
   .note_completed .note__content {
