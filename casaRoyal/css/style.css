@@ -602,7 +602,12 @@ body {
   .menu__wrap {
     width: 100%;
     justify-content: space-between;
+    position: relative;
+    overflow: hidden;
   }
+}
+.menu__wrap_active {
+  overflow: visible;
 }
 .menu__logo {
   display: flex;
@@ -633,7 +638,7 @@ body {
     background-color: #ffffff;
     position: absolute;
     left: 0;
-    top: 136px;
+    top: 60px;
     transform: translateX(100%);
     overflow-y: auto;
     z-index: 10;

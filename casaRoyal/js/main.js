@@ -31,6 +31,7 @@ $(document).ready(function() {
   let body = document.querySelector(".body");
   let burger = document.querySelector(".burger");
   let menu = document.querySelector(".menu__nav");
+  let menuWrap = document.querySelector(".menu__wrap")
   let menuItems = document.querySelectorAll(".menu__item");
   let menuLinksWrap = document.querySelectorAll(".menu__links")
   let menuLinks = document.querySelectorAll(".menu__link");
@@ -40,11 +41,13 @@ $(document).ready(function() {
     } else {
       menu.classList.remove('menu__nav_active');
       burger.classList.remove('burger_close');
+      menuWrap.classList.remove("menu__wrap_active");
       document.removeEventListener("click", closeMenuHandler);
     }
   };
   burger.addEventListener("click", evt => {
     evt.stopPropagation(); 
+    menuWrap.classList.toggle("menu__wrap_active");
     menu.classList.toggle("menu__nav_active");
     burger.classList.toggle("burger_close");
     for (let i = 0; i < menuLinksWrap.length; i++) {
