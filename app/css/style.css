@@ -18,6 +18,57 @@
   /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
 }
 
+.scroll-section {
+  width: 100%;
+  height: 100vh;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  background-color: #fff;
+}
+
+.hi {
+  background: #8A2387;
+  /* fallback for old browsers */
+  /* Chrome 10-25, Safari 5.1-6 */
+  background: -webkit-gradient(linear, left top, right top, from(#F27121), color-stop(#E94057), to(#8A2387));
+  background: linear-gradient(to right, #F27121, #E94057, #8A2387);
+  /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+
+.hi__title {
+  font-size: 100px;
+}
+
+.intro {
+  background: #00F260;
+  /* fallback for old browsers */
+  /* Chrome 10-25, Safari 5.1-6 */
+  background: -webkit-gradient(linear, left top, right top, from(#0575E6), to(#00F260));
+  background: linear-gradient(to right, #0575E6, #00F260);
+  /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+
+.intro__title {
+  font-size: 80px;
+  max-width: 80%;
+  text-align: center;
+}
+
+.projects__title {
+  font-size: 80px;
+  text-shadow: 0 1px 5px rgba(0, 0, 0, 0.2), 0 3px 7px rgba(0, 0, 0, 0.2);
+}
+
 html {
   box-sizing: border-box;
 }
@@ -101,5 +152,11 @@ body {
   font-size: 16px;
   line-height: 1.2;
   color: white;
+  margin: 0;
+}
+
+h1,
+h2 {
+  margin: 0;
 }
 /*# sourceMappingURL=style.css.map */
