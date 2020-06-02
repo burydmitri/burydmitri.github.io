@@ -5,6 +5,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    text-align: center;
 
     background-color: #fff;
 }
@@ -14,7 +15,12 @@
     background: linear-gradient(to right, #F27121, #E94057, #8A2387); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 
     &__title{
-        font-size: 100px;
+        max-width: 80%;
+        font-size: calc(40px + 60 * (100vw / 1440));
+
+        .media(320px, {
+            font-size: calc(40px + (60 + 60 * .7) * ((100vw - 320px) / 1440));
+        });
     }
 }
 .intro{
@@ -23,15 +29,23 @@
     background: linear-gradient(to right, #0575E6, #00F260); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 
     &__title{
-        font-size: 80px;
+        font-size: calc(34px + 46 * (100vw / 1440));
         max-width: 80%;
-        text-align: center;
+
+        .media(320px, {
+            font-size: calc(34px + (46 + 46 * .7) * ((100vw - 320px) / 1440));
+        });
     }
 }
 .projects{
     &__title{
-        font-size: 80px;
+        font-size: calc(34px + 46 * (100vw / 1440));
+        max-width: 80%;
         text-shadow: 0 1px 5px rgba(0, 0, 0, .2),
                      0 3px 7px rgba(0, 0, 0, .2);
+
+        .media(320px, {
+            font-size: calc(34px + (46 + 46 * .7) * ((100vw - 320px) / 1440));
+        });
     }
 }
