@@ -67,11 +67,84 @@
   max-width: 80%;
 }
 
+.projects {
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: column;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: space-evenly;
+  -webkit-justify-content: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
+}
+
 .projects__title {
   font-size: -webkit-calc(34px + 46 * (100vw / 1440));
   font-size: calc(34px + 46 * (100vw / 1440));
   max-width: 80%;
-  text-shadow: 0 1px 5px rgba(0, 0, 0, 0.2), 0 3px 7px rgba(0, 0, 0, 0.2);
+  color: #000;
+}
+
+.projects__wrap {
+  width: 100%;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-wrap: wrap;
+      -ms-flex-wrap: wrap;
+          flex-wrap: wrap;
+  -webkit-box-pack: space-evenly;
+  -webkit-justify-content: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
+}
+
+.project {
+  position: relative;
+}
+
+.project .bg {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 0;
+  opacity: 0;
+}
+
+.project__casa,
+.project__todo,
+.project__react {
+  width: 300px;
+  height: 300px;
+  position: relative;
+  z-index: 1;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: column;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: space-evenly;
+  -webkit-justify-content: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
+  color: #000;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+  -webkit-transition: 0.3s;
+  transition: 0.3s;
+  margin: 15px;
+  padding: 10px;
 }
 
 html {
@@ -161,7 +234,8 @@ body {
 }
 
 h1,
-h2 {
+h2,
+h3 {
   margin: 0;
 }
 
