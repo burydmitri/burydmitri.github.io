@@ -1,3 +1,23 @@
+/* muli-regular - latin */
+
+@font-face {
+  font-family: 'Muli';
+  font-style: normal;
+  font-weight: 400;
+  src: local(''), url('../fonts/muli-v20-latin-regular.woff2') format('woff2'),  url('../fonts/muli-v20-latin-regular.woff') format('woff');
+  /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+}
+
+/* muli-900 - latin */
+
+@font-face {
+  font-family: 'Muli';
+  font-style: normal;
+  font-weight: 900;
+  src: local(''), url('../fonts/muli-v20-latin-900.woff2') format('woff2'),  url('../fonts/muli-v20-latin-900.woff') format('woff');
+  /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+}
+
 html {
   box-sizing: border-box;
 }
@@ -75,10 +95,11 @@ div:focus {
 
 body {
   overflow-x: hidden;
-  font-size: 16px;
+  font-family: 'Muli';
+  font-style: normal;
   font-weight: 400;
+  font-size: 16px;
   line-height: 1.2;
-  font-family: 'Aril', sans-serif;
-  color: black;
+  color: white;
 }
 /*# sourceMappingURL=style.css.map */
