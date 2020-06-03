@@ -97,6 +97,15 @@
     margin: 15px;
     padding: 10px;
     
+    .media(720px, {
+        height: 20vh;
+        width: 70vw;
+        font-size: 18px;
+    });
+    .media(374px, {
+        font-size: 14px;
+    });
+
     &:hover,
     &:hover + .bg{
         color: #fff;
@@ -141,6 +150,9 @@
     &:hover::before{
         display: block;
     }
+}
+.project__caption{
+    margin: 0;
 }
 .project__todo{
     &:hover,

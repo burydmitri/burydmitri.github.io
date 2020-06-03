@@ -203,6 +203,10 @@
   display: block;
 }
 
+.project__caption {
+  margin: 0;
+}
+
 .project__todo:hover,
 .project__todo:hover + .bg {
   background: #134E5E;
@@ -317,6 +321,24 @@ h1,
 h2,
 h3 {
   margin: 0;
+}
+
+@media screen and (max-width: 720px) {
+  .project__casa,
+  .project__todo,
+  .project__react {
+    height: 20vh;
+    width: 70vw;
+    font-size: 18px;
+  }
+}
+
+@media screen and (max-width: 374px) {
+  .project__casa,
+  .project__todo,
+  .project__react {
+    font-size: 14px;
+  }
 }
 
 @media screen and (max-width: 320px) {
