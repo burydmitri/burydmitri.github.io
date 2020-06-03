@@ -80,10 +80,12 @@
 }
 
 .projects__title {
+  color: #fff;
+  text-shadow: 0 3px 5px rgba(0, 0, 0, 0.3);
   font-size: -webkit-calc(34px + 46 * (100vw / 1440));
   font-size: calc(34px + 46 * (100vw / 1440));
   max-width: 80%;
-  color: #000;
+  z-index: 2;
 }
 
 .projects__wrap {
@@ -101,27 +103,27 @@
           justify-content: space-evenly;
 }
 
-.project {
-  position: relative;
-}
-
-.project .bg {
+.bg {
   width: 100%;
   height: 100%;
   position: absolute;
   top: 0;
   left: 0;
-  z-index: 0;
+  z-index: 1;
   opacity: 0;
+  -webkit-transition: 0.5s;
+  transition: 0.5s;
+  pointer-events: none;
+  background-color: #E94057;
 }
 
 .project__casa,
 .project__todo,
 .project__react {
-  width: 300px;
-  height: 300px;
+  width: 30vw;
+  height: 30vh;
   position: relative;
-  z-index: 1;
+  z-index: 2;
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -140,11 +142,89 @@
       -ms-flex-pack: space-evenly;
           justify-content: space-evenly;
   color: #000;
+  font-size: 20px;
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-  -webkit-transition: 0.3s;
-  transition: 0.3s;
+  text-decoration: none;
+  overflow: hidden;
   margin: 15px;
   padding: 10px;
+}
+
+.project__casa:hover,
+.project__todo:hover,
+.project__react:hover,
+.project__casa:hover + .bg,
+.project__todo:hover + .bg,
+.project__react:hover + .bg {
+  color: #fff;
+  opacity: 1;
+  background: #03001e;
+  /* fallback for old browsers */
+  /* Chrome 10-25, Safari 5.1-6 */
+  background: -webkit-gradient(linear, left top, left bottom, from(#fdeff9), color-stop(#ec38bc), color-stop(#7303c0), to(#03001e));
+  background: linear-gradient(to bottom, #fdeff9, #ec38bc, #7303c0, #03001e);
+  /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+
+.project__casa::before,
+.project__todo::before,
+.project__react::before {
+  content: '';
+  width: 100%;
+  height: 100%;
+  display: none;
+  position: absolute;
+  top: 0;
+  left: -50%;
+  background-color: rgba(255, 255, 255, 0.2);
+  pointer-events: none;
+}
+
+.project__casa::after,
+.project__todo::after,
+.project__react::after {
+  content: '</>';
+  display: block;
+  font-family: 'Muli';
+  font-weight: 900;
+  font-size: 100px;
+  color: rgba(255, 255, 255, 0.1);
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  -webkit-filter: invert(1);
+          filter: invert(1);
+  pointer-events: none;
+}
+
+.project__casa:hover::before,
+.project__todo:hover::before,
+.project__react:hover::before {
+  display: block;
+}
+
+.project__todo:hover,
+.project__todo:hover + .bg {
+  background: #134E5E;
+  /* fallback for old browsers */
+  /* Chrome 10-25, Safari 5.1-6 */
+  background: -webkit-gradient(linear, left top, left bottom, from(#71B280), to(#134E5E));
+  background: linear-gradient(to bottom, #71B280, #134E5E);
+  /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+
+.project__todo::after {
+  content: 'js';
+}
+
+.project__react:hover,
+.project__react:hover + .bg {
+  background: #f7ff00;
+  /* fallback for old browsers */
+  /* Chrome 10-25, Safari 5.1-6 */
+  background: -webkit-gradient(linear, left top, left bottom, from(#03A9F4), to(#e91e63));
+  background: linear-gradient(to bottom, #03A9F4, #e91e63);
+  /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 }
 
 html {
