@@ -67,6 +67,76 @@
   max-width: 80%;
 }
 
+.skills {
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: column;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: space-evenly;
+  -webkit-justify-content: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
+  background: #FFE000;
+  /* fallback for old browsers */
+  /* Chrome 10-25, Safari 5.1-6 */
+  background: -webkit-gradient(linear, left top, right top, from(#799F0C), to(#FFE000));
+  background: linear-gradient(to right, #799F0C, #FFE000);
+  /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+
+.skills__card {
+  height: 20vh;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  position: relative;
+  font-size: 42px;
+  font-weight: normal;
+  background-color: rgba(255, 255, 255, 0.2);
+  padding: 30px;
+}
+
+.skills__card::before {
+  content: '1';
+  position: absolute;
+  top: 50%;
+  left: -20%;
+  -webkit-transform: translateY(-50%);
+      -ms-transform: translateY(-50%);
+          transform: translateY(-50%);
+  font-size: 100px;
+  font-weight: 900;
+  color: rgba(255, 255, 255, 0.3);
+}
+
+.skills__card:nth-child(2)::before {
+  content: '2';
+  left: 90%;
+  font-size: 200px;
+}
+
+.skills__card:nth-child(3)::before {
+  content: '3';
+  left: -10%;
+  font-size: 150px;
+}
+
+.skills__card:nth-child(4)::before {
+  content: '4';
+  left: 100%;
+  font-size: 400px;
+}
+
 .projects {
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
@@ -158,11 +228,11 @@
 .project__react:hover + .bg {
   color: #fff;
   opacity: 1;
-  background: #03001e;
+  background: #c31432;
   /* fallback for old browsers */
   /* Chrome 10-25, Safari 5.1-6 */
-  background: -webkit-gradient(linear, left top, left bottom, from(#fdeff9), color-stop(#ec38bc), color-stop(#7303c0), to(#03001e));
-  background: linear-gradient(to bottom, #fdeff9, #ec38bc, #7303c0, #03001e);
+  background: -webkit-gradient(linear, left bottom, left top, from(#240b36), to(#c31432));
+  background: linear-gradient(to top, #240b36, #c31432);
   /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 }
 
@@ -219,6 +289,10 @@
 
 .project__todo::after {
   content: 'js';
+}
+
+.project__react {
+  cursor: no-drop;
 }
 
 .project__react:hover,

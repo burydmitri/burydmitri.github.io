@@ -8,6 +8,7 @@
     text-align: center;
 
     background-color: #fff;
+
 }
 .hi{
     background: #8A2387;  /* fallback for old browsers */
@@ -35,6 +36,64 @@
         .media(320px, {
             font-size: calc(34px + (46 + 46 * .7) * ((100vw - 320px) / 1440));
         });
+    }
+}
+.skills{
+    flex-direction: column;
+    justify-content: space-evenly;
+
+    background: #FFE000;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #799F0C, #FFE000);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #799F0C, #FFE000); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+    &__card{
+        height: 20vh;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        position: relative;
+
+        font-size: 42px;
+        font-weight: normal;
+        background-color: rgba(255, 255, 255, .2);
+
+        padding: 30px;
+
+        &::before{
+            content: '1';
+
+            position: absolute;
+            top: 50%;
+            left: -20%;
+            transform: translateY(-50%);
+
+            font-size: 100px;
+            font-weight: 900;
+            color: rgba(255, 255, 255, .3)
+
+        }
+
+        &:nth-child(2)::before{
+            content: '2';
+            left: 90%;
+            font-size: 200px;
+        }
+        &:nth-child(3)::before{
+            content: '3';
+            left: -10%;
+            font-size: 150px;
+        }
+        &:nth-child(4)::before{
+            content: '4';
+            left: 100%;
+            font-size: 400px;
+        }
+    }
+
+    &:hover{
+
     }
 }
 .projects{
@@ -110,9 +169,10 @@
     &:hover + .bg{
         color: #fff;
         opacity: 1;
-        background: #03001e;  /* fallback for old browsers */
-        background: -webkit-linear-gradient(to bottom, #fdeff9, #ec38bc, #7303c0, #03001e);  /* Chrome 10-25, Safari 5.1-6 */
-        background: linear-gradient(to bottom, #fdeff9, #ec38bc, #7303c0, #03001e); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+        background: #c31432;  /* fallback for old browsers */
+        background: -webkit-linear-gradient(to top, #240b36, #c31432);  /* Chrome 10-25, Safari 5.1-6 */
+        background: linear-gradient(to top, #240b36, #c31432); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
     }
 
     &::before{
@@ -167,6 +227,8 @@
     }
 }
 .project__react{
+    cursor: no-drop;
+
     &:hover,
     &:hover + .bg{
         background: #f7ff00;  /* fallback for old browsers */
