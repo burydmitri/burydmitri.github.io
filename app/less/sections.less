@@ -166,7 +166,11 @@
     });
 
     &:hover,
-    &:hover + .bg{
+    &:focus,
+    &:active,
+    &:hover + .bg,
+    &:focus + .bg,
+    &:active + .bg{
         color: #fff;
         opacity: 1;
         background: #c31432;  /* fallback for old browsers */
@@ -216,7 +220,11 @@
 }
 .project__todo{
     &:hover,
-    &:hover + .bg{
+    &:focus,
+    &:active,
+    &:hover + .bg,
+    &:focus + .bg,
+    &:active + .bg{
         background: #134E5E;  /* fallback for old browsers */
         background: -webkit-linear-gradient(to bottom, #71B280, #134E5E);  /* Chrome 10-25, Safari 5.1-6 */
         background: linear-gradient(to bottom, #71B280, #134E5E); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
@@ -230,7 +238,11 @@
     cursor: no-drop;
 
     &:hover,
-    &:hover + .bg{
+    &:focus,
+    &:active,
+    &:hover + .bg,
+    &:focus + .bg,
+    &:active + .bg{
         background: #f7ff00;  /* fallback for old browsers */
         background: -webkit-linear-gradient(to bottom, #03A9F4, #e91e63);  /* Chrome 10-25, Safari 5.1-6 */
         background: linear-gradient(to bottom, #03A9F4, #e91e63); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */

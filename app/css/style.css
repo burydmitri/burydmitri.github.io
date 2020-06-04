@@ -223,9 +223,21 @@
 .project__casa:hover,
 .project__todo:hover,
 .project__react:hover,
+.project__casa:focus,
+.project__todo:focus,
+.project__react:focus,
+.project__casa:active,
+.project__todo:active,
+.project__react:active,
 .project__casa:hover + .bg,
 .project__todo:hover + .bg,
-.project__react:hover + .bg {
+.project__react:hover + .bg,
+.project__casa:focus + .bg,
+.project__todo:focus + .bg,
+.project__react:focus + .bg,
+.project__casa:active + .bg,
+.project__todo:active + .bg,
+.project__react:active + .bg {
   color: #fff;
   opacity: 1;
   background: #c31432;
@@ -278,7 +290,11 @@
 }
 
 .project__todo:hover,
-.project__todo:hover + .bg {
+.project__todo:focus,
+.project__todo:active,
+.project__todo:hover + .bg,
+.project__todo:focus + .bg,
+.project__todo:active + .bg {
   background: #134E5E;
   /* fallback for old browsers */
   /* Chrome 10-25, Safari 5.1-6 */
@@ -296,7 +312,11 @@
 }
 
 .project__react:hover,
-.project__react:hover + .bg {
+.project__react:focus,
+.project__react:active,
+.project__react:hover + .bg,
+.project__react:focus + .bg,
+.project__react:active + .bg {
   background: #f7ff00;
   /* fallback for old browsers */
   /* Chrome 10-25, Safari 5.1-6 */
