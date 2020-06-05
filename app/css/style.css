@@ -77,12 +77,18 @@
   -webkit-justify-content: space-evenly;
       -ms-flex-pack: space-evenly;
           justify-content: space-evenly;
-  background: #FFE000;
+  background: #360033;
   /* fallback for old browsers */
   /* Chrome 10-25, Safari 5.1-6 */
-  background: -webkit-gradient(linear, left top, right top, from(#799F0C), to(#FFE000));
-  background: linear-gradient(to right, #799F0C, #FFE000);
+  background: -webkit-gradient(linear, left top, right top, from(#0b8793), to(#360033));
+  background: linear-gradient(to right, #0b8793, #360033);
   /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  padding-top: 30px;
+}
+
+.skills__title {
+  font-size: 80px;
+  color: rgba(255, 255, 255, 0.5);
 }
 
 .skills__card {
@@ -103,6 +109,8 @@
   font-size: 42px;
   font-weight: normal;
   background-color: rgba(255, 255, 255, 0.2);
+  -webkit-transition: 0.1s;
+  transition: 0.1s;
   padding: 30px;
 }
 
@@ -116,7 +124,22 @@
           transform: translateY(-50%);
   font-size: 100px;
   font-weight: 900;
-  color: rgba(255, 255, 255, 0.3);
+  color: rgba(255, 255, 255, 0.4);
+  -webkit-transition: 0.2s;
+  transition: 0.2s;
+}
+
+.skills__card::after {
+  content: '';
+  width: 50%;
+  height: 100%;
+  display: none;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 5;
+  background-color: rgba(255, 255, 255, 0.1);
+  pointer-events: none;
 }
 
 .skills__card:nth-child(2)::before {
@@ -135,6 +158,23 @@
   content: '4';
   left: 100%;
   font-size: 400px;
+}
+
+.skills__card:hover {
+  background: #360033;
+  /* fallback for old browsers */
+  /* Chrome 10-25, Safari 5.1-6 */
+  background: -webkit-gradient(linear, left top, left bottom, from(#0b8793), to(#360033));
+  background: linear-gradient(to bottom, #0b8793, #360033);
+  /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+
+.skills__card:hover::before {
+  color: #fff;
+}
+
+.skills__card:hover::after {
+  display: block;
 }
 
 .projects {
