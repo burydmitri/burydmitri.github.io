@@ -35,3 +35,22 @@
     horizontal: true
   });
 }());
+
+// links at .projects
+(function (){
+  const links = document.querySelectorAll('.js-project__link');
+  const loadingLine = document.querySelector('.js-projects__loading-line');
+
+  function styledLink(event, href){
+    event.preventDefault();
+    loadingLine.classList.add('projects__loading-line_active');
+    setTimeout(() => {
+      document.location.href = href
+      loadingLine.classList.remove('projects__loading-line_active');
+    }, 1500);
+  }
+
+  for (let link of links){
+    link.addEventListener('click', (e) => styledLink(e, link.href));
+  }
+}());

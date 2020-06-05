@@ -173,6 +173,54 @@
           justify-content: space-evenly;
 }
 
+.projects__loading-line {
+  width: 100%;
+  height: 5px;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  z-index: 3;
+  -webkit-transform: translateX(-100%);
+      -ms-transform: translateX(-100%);
+          transform: translateX(-100%);
+  box-shadow: 0px -2px 2px rgba(0, 0, 0, 0.3);
+  background: #833ab4;
+  /* fallback for old browsers */
+  /* Chrome 10-25, Safari 5.1-6 */
+  background: -webkit-gradient(linear, left top, right top, from(#fcb045), color-stop(#fd1d1d), to(#833ab4));
+  background: linear-gradient(to right, #fcb045, #fd1d1d, #833ab4);
+  /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+
+.projects__loading-line_active {
+  -webkit-animation: loading-line 1.5s cubic-bezier(0.1, 0.7, 1, 0.1);
+          animation: loading-line 1.5s cubic-bezier(0.1, 0.7, 1, 0.1);
+}
+
+@-webkit-keyframes loading-line {
+  0% {
+    -webkit-transform: translateX(-100%);
+            transform: translateX(-100%);
+  }
+
+  100% {
+    -webkit-transform: translateX(0%);
+            transform: translateX(0%);
+  }
+}
+
+@keyframes loading-line {
+  0% {
+    -webkit-transform: translateX(-100%);
+            transform: translateX(-100%);
+  }
+
+  100% {
+    -webkit-transform: translateX(0%);
+            transform: translateX(0%);
+  }
+}
+
 .bg {
   width: 100%;
   height: 100%;
@@ -281,7 +329,13 @@
 
 .project__casa:hover::before,
 .project__todo:hover::before,
-.project__react:hover::before {
+.project__react:hover::before,
+.project__casa:focus::before,
+.project__todo:focus::before,
+.project__react:focus::before,
+.project__casa:active::before,
+.project__todo:active::before,
+.project__react:active::before {
   display: block;
 }
 
