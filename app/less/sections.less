@@ -42,15 +42,21 @@
     flex-direction: column;
     justify-content: space-evenly;
 
+    position: relative;
+
     background: #360033;  /* fallback for old browsers */
     background: -webkit-linear-gradient(to right, #0b8793, #360033);  /* Chrome 10-25, Safari 5.1-6 */
     background: linear-gradient(to right, #0b8793, #360033); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 
-    padding-top: 30px;
-
     &__title{
-        font-size: 80px;
+        width: 90%;
+
+        font-size: calc(24px + 56 * (100vw / 1440));
         color: rgba(255, 255, 255, .5);
+
+        .media(320px, {
+            font-size: calc(24px + (56 + 56 * .7) * ((100vw - 320px) / 1440));
+        });
     }
     &__card{
         height: 20vh;
@@ -61,13 +67,16 @@
 
         position: relative;
 
-        font-size: 42px;
+        font-size: calc(24px + 18 * (100vw/ 1440));
         font-weight: normal;
         background-color: rgba(255, 255, 255, .2);
         transition: .1s;
 
         padding: 30px;
 
+        .media(320px, {
+            font-size: calc(24px + (18 + 18 * .7) * ((100vw - 320px) / 1440));
+        });
         &::before{
             content: '1';
 
@@ -80,7 +89,6 @@
             font-weight: 900;
             color: rgba(255, 255, 255, .4);
             transition: .2s;
-
         }
         &::after{
             content: '';
@@ -111,8 +119,13 @@
         }
         &:nth-child(4)::before{
             content: '4';
-            left: 100%;
+            left: 86%;
             font-size: 400px;
+        }
+        &::before{
+            .media(767px, {
+                display: none;
+            });
         }
         &:hover{
             background: #360033;  /* fallback for old browsers */

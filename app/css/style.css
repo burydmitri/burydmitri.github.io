@@ -77,17 +77,19 @@
   -webkit-justify-content: space-evenly;
       -ms-flex-pack: space-evenly;
           justify-content: space-evenly;
+  position: relative;
   background: #360033;
   /* fallback for old browsers */
   /* Chrome 10-25, Safari 5.1-6 */
   background: -webkit-gradient(linear, left top, right top, from(#0b8793), to(#360033));
   background: linear-gradient(to right, #0b8793, #360033);
   /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-  padding-top: 30px;
 }
 
 .skills__title {
-  font-size: 80px;
+  width: 90%;
+  font-size: -webkit-calc(24px + 56 * (100vw / 1440));
+  font-size: calc(24px + 56 * (100vw / 1440));
   color: rgba(255, 255, 255, 0.5);
 }
 
@@ -106,7 +108,8 @@
       -ms-flex-pack: center;
           justify-content: center;
   position: relative;
-  font-size: 42px;
+  font-size: -webkit-calc(24px + 18 * (100vw/1440));
+  font-size: calc(24px + 18 * (100vw/1440));
   font-weight: normal;
   background-color: rgba(255, 255, 255, 0.2);
   -webkit-transition: 0.1s;
@@ -156,7 +159,7 @@
 
 .skills__card:nth-child(4)::before {
   content: '4';
-  left: 100%;
+  left: 86%;
   font-size: 400px;
 }
 
@@ -511,6 +514,12 @@ h3 {
   margin: 0;
 }
 
+@media screen and (max-width: 767px) {
+  .skills__card::before {
+    display: none;
+  }
+}
+
 @media screen and (max-width: 720px) {
   .project__casa,
   .project__todo,
@@ -538,6 +547,16 @@ h3 {
   .intro__title {
     font-size: -webkit-calc(34px + (46 + 46 * 0.7) * ((100vw - 320px) / 1440));
     font-size: calc(34px + (46 + 46 * 0.7) * ((100vw - 320px) / 1440));
+  }
+
+  .skills__title {
+    font-size: -webkit-calc(24px + (56 + 56 * 0.7) * ((100vw - 320px) / 1440));
+    font-size: calc(24px + (56 + 56 * 0.7) * ((100vw - 320px) / 1440));
+  }
+
+  .skills__card {
+    font-size: -webkit-calc(24px + (18 + 18 * 0.7) * ((100vw - 320px) / 1440));
+    font-size: calc(24px + (18 + 18 * 0.7) * ((100vw - 320px) / 1440));
   }
 
   .projects__title {
