@@ -88,12 +88,13 @@
 
 .skills__title {
   width: 90%;
-  font-size: -webkit-calc(24px + 56 * (100vw / 1440));
-  font-size: calc(24px + 56 * (100vw / 1440));
+  font-size: -webkit-calc(24px + 40 * (100vw / 1440));
+  font-size: calc(24px + 40 * (100vw / 1440));
   color: rgba(255, 255, 255, 0.5);
 }
 
 .skills__card {
+  max-width: 80vw;
   height: 20vh;
   display: -webkit-box;
   display: -webkit-flex;
@@ -112,8 +113,8 @@
   font-size: calc(24px + 18 * (100vw/1440));
   font-weight: normal;
   background-color: rgba(255, 255, 255, 0.2);
-  -webkit-transition: 0.1s;
-  transition: 0.1s;
+  -webkit-transition: 0.2s;
+  transition: 0.2s;
   padding: 30px;
 }
 
@@ -132,23 +133,24 @@
   transition: 0.2s;
 }
 
-.skills__card::after {
-  content: '';
-  width: 50%;
-  height: 100%;
-  display: none;
-  position: absolute;
-  top: 0;
-  left: 0;
-  z-index: 5;
-  background-color: rgba(255, 255, 255, 0.1);
-  pointer-events: none;
+.skills__card:hover {
+  background: #E44D26;
+  /* fallback for old browsers */
+  /* Chrome 10-25, Safari 5.1-6 */
+  background: -webkit-gradient(linear, left top, right top, from(#F16529), to(#E44D26));
+  background: linear-gradient(to right, #F16529, #E44D26);
+  /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 }
 
 .skills__card:nth-child(2)::before {
   content: '2';
-  left: 90%;
-  font-size: 200px;
+  left: 86%;
+  font-size: 400px;
+}
+
+.skills__card:nth-child(2):hover {
+  background: #f0db4f;
+  color: #323330;
 }
 
 .skills__card:nth-child(3)::before {
@@ -157,19 +159,19 @@
   font-size: 150px;
 }
 
-.skills__card:nth-child(4)::before {
-  content: '4';
-  left: 86%;
-  font-size: 400px;
+.skills__card:nth-child(3):hover {
+  background: #e84c50;
 }
 
-.skills__card:hover {
-  background: #360033;
-  /* fallback for old browsers */
-  /* Chrome 10-25, Safari 5.1-6 */
-  background: -webkit-gradient(linear, left top, left bottom, from(#0b8793), to(#360033));
-  background: linear-gradient(to bottom, #0b8793, #360033);
-  /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+.skills__card:nth-child(4)::before {
+  content: '4';
+  left: 90%;
+  font-size: 200px;
+}
+
+.skills__card:nth-child(4):hover {
+  color: #00d8ff;
+  background: #222222;
 }
 
 .skills__card:hover::before {
@@ -190,13 +192,18 @@
   -webkit-justify-content: space-evenly;
       -ms-flex-pack: space-evenly;
           justify-content: space-evenly;
+  background: #f12711;
+  /* fallback for old browsers */
+  /* Chrome 10-25, Safari 5.1-6 */
+  background: -webkit-gradient(linear, left top, left bottom, from(#f5af19), to(#f12711));
+  background: linear-gradient(to bottom, #f5af19, #f12711);
+  /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 }
 
 .projects__title {
-  color: #fff;
-  text-shadow: 0 3px 5px rgba(0, 0, 0, 0.3);
-  font-size: -webkit-calc(34px + 46 * (100vw / 1440));
-  font-size: calc(34px + 46 * (100vw / 1440));
+  color: rgba(255, 255, 255, 0.5);
+  font-size: -webkit-calc(24px + 56 * (100vw / 1440));
+  font-size: calc(24px + 56 * (100vw / 1440));
   max-width: 80%;
   z-index: 2;
 }
@@ -303,7 +310,8 @@
       -ms-flex-pack: space-evenly;
           justify-content: space-evenly;
   color: #000;
-  font-size: 20px;
+  font-size: -webkit-calc(14px + 10 * (100vw / 1440));
+  font-size: calc(14px + 10 * (100vw / 1440));
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
   text-decoration: none;
   overflow: hidden;
@@ -526,7 +534,6 @@ h3 {
   .project__react {
     height: 20vh;
     width: 70vw;
-    font-size: 18px;
   }
 }
 
@@ -534,7 +541,8 @@ h3 {
   .project__casa,
   .project__todo,
   .project__react {
-    font-size: 14px;
+    font-size: -webkit-calc(14px + (10 + 10 * 0.7) * ((100vw - 320px) / 1440));
+    font-size: calc(14px + (10 + 10 * 0.7) * ((100vw - 320px) / 1440));
   }
 }
 
@@ -555,13 +563,12 @@ h3 {
   }
 
   .skills__card {
-    font-size: -webkit-calc(24px + (18 + 18 * 0.7) * ((100vw - 320px) / 1440));
-    font-size: calc(24px + (18 + 18 * 0.7) * ((100vw - 320px) / 1440));
+    font-size: 16px;
   }
 
   .projects__title {
-    font-size: -webkit-calc(34px + (46 + 46 * 0.7) * ((100vw - 320px) / 1440));
-    font-size: calc(34px + (46 + 46 * 0.7) * ((100vw - 320px) / 1440));
+    font-size: -webkit-calc(24px + (18 + 18 * 0.7) * ((100vw - 320px) / 1440));
+    font-size: calc(24px + (18 + 18 * 0.7) * ((100vw - 320px) / 1440));
   }
 }
 /*# sourceMappingURL=style.css.map */
