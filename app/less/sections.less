@@ -24,6 +24,11 @@
         });
     }
 }
+.touch .hi{
+    &__svipe{
+        
+    }
+}
 .intro{
     background: #00F260;  /* fallback for old browsers */
     background: -webkit-linear-gradient(to right, #0575E6, #00F260);  /* Chrome 10-25, Safari 5.1-6 */
@@ -51,7 +56,7 @@
     &__title{
         width: 90%;
 
-        font-size: calc(24px + 56 * (100vw / 1440));
+        font-size: calc(24px + 40 * (100vw / 1440));
         color: rgba(255, 255, 255, .5);
 
         .media(320px, {
@@ -59,6 +64,7 @@
         });
     }
     &__card{
+        max-width: 80vw;
         height: 20vh;
 
         display: flex;
@@ -75,7 +81,8 @@
         padding: 30px;
 
         .media(320px, {
-            font-size: calc(24px + (18 + 18 * .7) * ((100vw - 320px) / 1440));
+            // font-size: calc(24px + (18 + 18 * .7) * ((100vw - 320px) / 1440));
+            font-size: 16px;
         });
         &::before{
             content: '1';
@@ -109,8 +116,8 @@
 
         &:nth-child(2)::before{
             content: '2';
-            left: 90%;
-            font-size: 200px;
+            left: 86%;
+            font-size: 400px;
         }
         &:nth-child(3)::before{
             content: '3';
@@ -119,8 +126,8 @@
         }
         &:nth-child(4)::before{
             content: '4';
-            left: 86%;
-            font-size: 400px;
+            left: 90%;
+            font-size: 200px;
         }
         &::before{
             .media(767px, {
@@ -145,16 +152,19 @@
 .projects{
     flex-direction: column;
     justify-content: space-evenly;
+    background-color: rgba(0, 0, 0, .2);
 
     &__title{
-        color: #fff;
-        text-shadow: 0 3px 5px rgba(0, 0, 0, .3);
-        font-size: calc(34px + 46 * (100vw / 1440));
+        color: rgba(255, 255, 255, .5);
+        // text-shadow: 0 3px 5px rgba(0, 0, 0, .3);
+        font-size: calc(24px + 56 * (100vw / 1440));
+        // calc(34px + 46 * (100vw / 1440));
         max-width: 80%;
         z-index: 2;
 
         .media(320px, {
-            font-size: calc(34px + (46 + 46 * .7) * ((100vw - 320px) / 1440));
+            font-size: calc(24px + (18 + 18 * .7) * ((100vw - 320px) / 1440));
+            // font-size: calc(34px + (46 + 46 * .7) * ((100vw - 320px) / 1440));
         });
     }
     &__wrap{
@@ -218,7 +228,7 @@
     justify-content: space-evenly;
 
     color: #000;
-    font-size: 20px;
+    font-size: calc(14px + 10 * (100vw / 1440));
     box-shadow: 0 5px 15px rgba(0, 0, 0, .3);
     text-decoration: none;
     overflow: hidden;
@@ -229,10 +239,11 @@
     .media(720px, {
         height: 20vh;
         width: 70vw;
-        font-size: 18px;
+        // font-size: 18px;
     });
     .media(374px, {
-        font-size: 14px;
+        font-size: calc(14px + (10 + 10 * .7) * ((100vw - 320px) / 1440));
+        // font-size: 14px;
     });
 
     &:hover,

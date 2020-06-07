@@ -88,12 +88,13 @@
 
 .skills__title {
   width: 90%;
-  font-size: -webkit-calc(24px + 56 * (100vw / 1440));
-  font-size: calc(24px + 56 * (100vw / 1440));
+  font-size: -webkit-calc(24px + 40 * (100vw / 1440));
+  font-size: calc(24px + 40 * (100vw / 1440));
   color: rgba(255, 255, 255, 0.5);
 }
 
 .skills__card {
+  max-width: 80vw;
   height: 20vh;
   display: -webkit-box;
   display: -webkit-flex;
@@ -147,8 +148,8 @@
 
 .skills__card:nth-child(2)::before {
   content: '2';
-  left: 90%;
-  font-size: 200px;
+  left: 86%;
+  font-size: 400px;
 }
 
 .skills__card:nth-child(3)::before {
@@ -159,8 +160,8 @@
 
 .skills__card:nth-child(4)::before {
   content: '4';
-  left: 86%;
-  font-size: 400px;
+  left: 90%;
+  font-size: 200px;
 }
 
 .skills__card:hover {
@@ -190,13 +191,13 @@
   -webkit-justify-content: space-evenly;
       -ms-flex-pack: space-evenly;
           justify-content: space-evenly;
+  background-color: rgba(0, 0, 0, 0.2);
 }
 
 .projects__title {
-  color: #fff;
-  text-shadow: 0 3px 5px rgba(0, 0, 0, 0.3);
-  font-size: -webkit-calc(34px + 46 * (100vw / 1440));
-  font-size: calc(34px + 46 * (100vw / 1440));
+  color: rgba(255, 255, 255, 0.5);
+  font-size: -webkit-calc(24px + 56 * (100vw / 1440));
+  font-size: calc(24px + 56 * (100vw / 1440));
   max-width: 80%;
   z-index: 2;
 }
@@ -303,7 +304,8 @@
       -ms-flex-pack: space-evenly;
           justify-content: space-evenly;
   color: #000;
-  font-size: 20px;
+  font-size: -webkit-calc(14px + 10 * (100vw / 1440));
+  font-size: calc(14px + 10 * (100vw / 1440));
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
   text-decoration: none;
   overflow: hidden;
@@ -526,7 +528,6 @@ h3 {
   .project__react {
     height: 20vh;
     width: 70vw;
-    font-size: 18px;
   }
 }
 
@@ -534,7 +535,8 @@ h3 {
   .project__casa,
   .project__todo,
   .project__react {
-    font-size: 14px;
+    font-size: -webkit-calc(14px + (10 + 10 * 0.7) * ((100vw - 320px) / 1440));
+    font-size: calc(14px + (10 + 10 * 0.7) * ((100vw - 320px) / 1440));
   }
 }
 
@@ -555,13 +557,12 @@ h3 {
   }
 
   .skills__card {
-    font-size: -webkit-calc(24px + (18 + 18 * 0.7) * ((100vw - 320px) / 1440));
-    font-size: calc(24px + (18 + 18 * 0.7) * ((100vw - 320px) / 1440));
+    font-size: 16px;
   }
 
   .projects__title {
-    font-size: -webkit-calc(34px + (46 + 46 * 0.7) * ((100vw - 320px) / 1440));
-    font-size: calc(34px + (46 + 46 * 0.7) * ((100vw - 320px) / 1440));
+    font-size: -webkit-calc(24px + (18 + 18 * 0.7) * ((100vw - 320px) / 1440));
+    font-size: calc(24px + (18 + 18 * 0.7) * ((100vw - 320px) / 1440));
   }
 }
 /*# sourceMappingURL=style.css.map */
