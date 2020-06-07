@@ -52,6 +52,50 @@
   font-size: calc(40px + 60 * (100vw / 1440));
 }
 
+.touch .hi__swipe {
+  width: 40px;
+  height: 30px;
+  position: absolute;
+  top: 50%;
+  right: 0;
+  -webkit-transform: translateY(-50%) rotate(-90deg);
+      -ms-transform: translateY(-50%) rotate(-90deg);
+          transform: translateY(-50%) rotate(-90deg);
+  opacity: 0.5;
+  background: url(../img/src/swipe.svg) no-repeat center;
+  background-size: cover;
+  -webkit-animation: swipe 1s infinite alternate;
+          animation: swipe 1s infinite alternate;
+}
+
+.touch .hi__swipe:nth-child(2) {
+  top: 40%;
+}
+
+.touch .hi__swipe:last-child {
+  top: 60%;
+}
+
+@-webkit-keyframes swipe {
+  0% {
+    opacity: 0.5;
+  }
+
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes swipe {
+  0% {
+    opacity: 0.5;
+  }
+
+  100% {
+    opacity: 0;
+  }
+}
+
 .intro {
   background: #00F260;
   /* fallback for old browsers */
