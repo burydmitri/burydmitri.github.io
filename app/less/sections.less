@@ -76,10 +76,9 @@
         font-size: calc(24px + 18 * (100vw/ 1440));
         font-weight: normal;
         background-color: rgba(255, 255, 255, .2);
-        transition: .1s;
+        transition: .2s;
 
         padding: 30px;
-
         .media(320px, {
             // font-size: calc(24px + (18 + 18 * .7) * ((100vw - 320px) / 1440));
             font-size: 16px;
@@ -97,37 +96,44 @@
             color: rgba(255, 255, 255, .4);
             transition: .2s;
         }
-        &::after{
-            content: '';
-    
-            width: 50%;
-            height: 100%;
-            
-            display: none;
-    
-            position: absolute;
-            top: 0;
-            left: 0;
-            z-index: 5;
-    
-            background-color: rgba(255, 255, 255, .1);
-            pointer-events: none;
+        &:hover{
+            background: #E44D26;  /* fallback for old browsers */
+            background: -webkit-linear-gradient(to right, #F16529, #E44D26);  /* Chrome 10-25, Safari 5.1-6 */
+            background: linear-gradient(to right, #F16529, #E44D26); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
         }
 
-        &:nth-child(2)::before{
-            content: '2';
-            left: 86%;
-            font-size: 400px;
+        &:nth-child(2){
+            &::before{
+                content: '2';
+                left: 86%;
+                font-size: 400px;
+    
+            }
+            &:hover{
+                background: #f0db4f;
+                color: #323330;
+            }
         }
-        &:nth-child(3)::before{
-            content: '3';
-            left: -10%;
-            font-size: 150px;
+        &:nth-child(3){
+            &::before{
+                content: '3';
+                left: -10%;
+                font-size: 150px;
+            }
+            &:hover{
+                background: #e84c50;
+            }
         }
-        &:nth-child(4)::before{
+        &:nth-child(4){
+            &::before{
             content: '4';
             left: 90%;
             font-size: 200px;
+            }
+            &:hover{
+                color: #00d8ff;
+                background: #222222;
+            }
         }
         &::before{
             .media(767px, {
@@ -135,9 +141,9 @@
             });
         }
         &:hover{
-            background: #360033;  /* fallback for old browsers */
-            background: -webkit-linear-gradient(to bottom, #0b8793, #360033);  /* Chrome 10-25, Safari 5.1-6 */
-            background: linear-gradient(to bottom, #0b8793, #360033); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+            // background: #360033;  /* fallback for old browsers */
+            // background: -webkit-linear-gradient(to bottom, #0b8793, #360033);  /* Chrome 10-25, Safari 5.1-6 */
+            // background: linear-gradient(to bottom, #0b8793, #360033); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 
             &::before{
                 color: #fff;
@@ -152,8 +158,10 @@
 .projects{
     flex-direction: column;
     justify-content: space-evenly;
-    background-color: rgba(0, 0, 0, .2);
-
+    background: #f12711;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to bottom, #f5af19, #f12711);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to bottom, #f5af19, #f12711); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+     
     &__title{
         color: rgba(255, 255, 255, .5);
         // text-shadow: 0 3px 5px rgba(0, 0, 0, .3);

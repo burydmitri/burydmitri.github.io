@@ -113,8 +113,8 @@
   font-size: calc(24px + 18 * (100vw/1440));
   font-weight: normal;
   background-color: rgba(255, 255, 255, 0.2);
-  -webkit-transition: 0.1s;
-  transition: 0.1s;
+  -webkit-transition: 0.2s;
+  transition: 0.2s;
   padding: 30px;
 }
 
@@ -133,17 +133,13 @@
   transition: 0.2s;
 }
 
-.skills__card::after {
-  content: '';
-  width: 50%;
-  height: 100%;
-  display: none;
-  position: absolute;
-  top: 0;
-  left: 0;
-  z-index: 5;
-  background-color: rgba(255, 255, 255, 0.1);
-  pointer-events: none;
+.skills__card:hover {
+  background: #E44D26;
+  /* fallback for old browsers */
+  /* Chrome 10-25, Safari 5.1-6 */
+  background: -webkit-gradient(linear, left top, right top, from(#F16529), to(#E44D26));
+  background: linear-gradient(to right, #F16529, #E44D26);
+  /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 }
 
 .skills__card:nth-child(2)::before {
@@ -152,10 +148,19 @@
   font-size: 400px;
 }
 
+.skills__card:nth-child(2):hover {
+  background: #f0db4f;
+  color: #323330;
+}
+
 .skills__card:nth-child(3)::before {
   content: '3';
   left: -10%;
   font-size: 150px;
+}
+
+.skills__card:nth-child(3):hover {
+  background: #e84c50;
 }
 
 .skills__card:nth-child(4)::before {
@@ -164,13 +169,9 @@
   font-size: 200px;
 }
 
-.skills__card:hover {
-  background: #360033;
-  /* fallback for old browsers */
-  /* Chrome 10-25, Safari 5.1-6 */
-  background: -webkit-gradient(linear, left top, left bottom, from(#0b8793), to(#360033));
-  background: linear-gradient(to bottom, #0b8793, #360033);
-  /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+.skills__card:nth-child(4):hover {
+  color: #00d8ff;
+  background: #222222;
 }
 
 .skills__card:hover::before {
@@ -191,7 +192,12 @@
   -webkit-justify-content: space-evenly;
       -ms-flex-pack: space-evenly;
           justify-content: space-evenly;
-  background-color: rgba(0, 0, 0, 0.2);
+  background: #f12711;
+  /* fallback for old browsers */
+  /* Chrome 10-25, Safari 5.1-6 */
+  background: -webkit-gradient(linear, left top, left bottom, from(#f5af19), to(#f12711));
+  background: linear-gradient(to bottom, #f5af19, #f12711);
+  /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 }
 
 .projects__title {
