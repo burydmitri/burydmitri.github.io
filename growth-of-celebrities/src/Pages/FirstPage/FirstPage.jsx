@@ -28,6 +28,8 @@ const useStyles = makeStyles({
     padding: '15px'
    },
    title: {
+    fontSize: 'calc(36px + 16 * (100vw / 1440))',
+    fontWeight: '700',
     color: '#e5e5e5',
     textAlign: 'center',
 

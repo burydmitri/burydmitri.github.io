@@ -38,6 +38,9 @@ const useStyles = makeStyles({
 
         padding: '20px',
     },
+    card__title: {
+        marginBottom: '10px'
+    }
 });
 
 export function Main() {
@@ -54,7 +57,17 @@ export function Main() {
                 174
             </Typography>
             <Card className={classes.card} component="div">
-                Hello, world!
+                <Typography
+                    className={classes.card__title}
+                    variant="h6"
+                    component="p">
+                    Вы одного роста с Жан-Клод Ван Даммом
+                </Typography>
+                <Typography
+                    variant="body1"
+                    component="p">
+                    Американский актёр, режиссёр, сценарист, постановщик боевых сцен и продюсер бельгийского происхождения; культурист, мастер боевых искусств.
+                </Typography>
             </Card>
         </Box>
     </Box>
