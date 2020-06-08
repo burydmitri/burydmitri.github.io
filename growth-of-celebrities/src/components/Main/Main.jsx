@@ -16,28 +16,19 @@ const useStyles = makeStyles({
         display: 'flex',
         flexDirection: 'column',
 
-        padding: '30px',
+        padding: '40px 10px',
         margin: '0 auto'
     },
     title: {
         fontWeight: '700',
-        color: '#191919'
+        color: '#191919',
+        textAlign: 'center',
     },
-    scaleWrap: {
-        height: '100vh',
+    wrap: {
+        minHeight: 'calc(100vh - 144px)',
+        overflowY: 'auto',
 
         position: 'relative'
-    },
-    line: {
-        width: '5px',
-        height: '100%',
-
-        position: 'absolute',
-        top: '0',
-        left: '0',
-
-        background: '#5b5553',
-        borderRadius: '3px',
     },
     card: {
 
@@ -45,7 +36,6 @@ const useStyles = makeStyles({
         color: '#191919',
         borderBottom: '3px solid #ea3057',
 
-        marginLeft: '30px',
         padding: '20px',
     },
 });
@@ -56,15 +46,13 @@ export function Main() {
 
   return (
     <Box className={classes.main} component="main">
-        {/* <Typography 
-            className={classes.title}
-            variant="body1" 
-            component="h2">
-            Scale:
-        </Typography> */}
-        <Box className={classes.scaleWrap} component="div">
-            <Box className={classes.line} component="div" />
-
+        <Box className={classes.wrap} component="div">
+            <Typography 
+                className={classes.title}
+                variant="h1" 
+                component="h2">
+                174
+            </Typography>
             <Card className={classes.card} component="div">
                 Hello, world!
             </Card>

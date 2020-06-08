@@ -34,7 +34,7 @@ export function Header() {
         <Toolbar className={classes.toolbar} variant="regular">
           <Typography 
             className={classes.title}
-            component="h1" 
+            component="h2" 
             variant="h6"
           >
             Growth of Celebrities
