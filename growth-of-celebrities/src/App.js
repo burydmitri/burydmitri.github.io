@@ -11,8 +11,8 @@ import './App.css';
 export function App() {
   return (
     <>
-      <Sidebar />
-      {/* <FirstPage /> */}
+      {/* <Sidebar /> */}
+      <FirstPage />
       {/* <Header />
       <Main /> */}
     </>

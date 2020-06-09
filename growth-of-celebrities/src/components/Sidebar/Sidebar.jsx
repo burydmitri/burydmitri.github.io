@@ -3,20 +3,21 @@ import {
   Box,  
   Link } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
+import GitHubIcon from '@material-ui/icons/GitHub';
 import TelegramIcon from '@material-ui/icons/Telegram';
 import LinkedInIcon from '@material-ui/icons/LinkedIn';
 
 const useStyles = makeStyles({
     sidebar: {
-        maxWidth: '320px',
-        width: '100%',
+        width: '320px',
         height: '100vh',
 
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
 
-        backgroundColor: '#191919',
+        // backgroundColor: '#191919',
+        backgroundColor: '#ea3057',
     },
     wrap: {
         display: 'flex',
@@ -47,13 +48,18 @@ export function Sidebar() {
             </Box>
             <Link 
                 className={classes.link}
-                href="https://t.me/dmitri_bury">
-                <TelegramIcon className={classes.icon}/>
+                href="https://burydmitri.github.io/">
+                <GitHubIcon className={classes.icon} color="secondary"/>
             </Link>
             <Link 
                 className={classes.link}
                 href="https://t.me/dmitri_bury">
-                <LinkedInIcon className={classes.icon}/>
+                <TelegramIcon className={classes.icon} color="secondary"/>
+            </Link>
+            <Link 
+                className={classes.link}
+                href="https://www.linkedin.com/in/dmitri-bury-4639681ab/">
+                <LinkedInIcon className={classes.icon} color="secondary"/>
             </Link>
         </Box>
     </Box>
