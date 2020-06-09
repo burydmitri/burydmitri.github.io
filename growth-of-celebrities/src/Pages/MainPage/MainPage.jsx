@@ -2,11 +2,11 @@ import React from 'react';
 import { Header } from '../../components/Header/';
 import { Main } from '../../components/Main/';
 
-export function MainPage() {
+export function MainPage(props) {
   return (
     <>
       <Header />
-      <Main />
+      <Main height={props.height}/>
     </>
   );
 }

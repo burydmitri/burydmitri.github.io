@@ -46,9 +46,17 @@ const celebrities = [
     {height: 180, name: 'Жан-Клод Ван Даммом', text: 'Американский актёр, режиссёр, сценарист, постановщик боевых сцен и продюсер бельгийского происхождения; культурист, мастер боевых искусств.'},
 ]
 
-export function Main() {
+export function Main(props) {
 
   const classes = useStyles()
+
+  let title;
+
+  if (props.height.replace(/\s/g, '').length === 0 || isNaN(props.height)) {
+      title = "Err"
+  } else {
+      title = props.height
+  }
 
   return (
     <Box className={classes.main} component="main">
@@ -57,7 +65,8 @@ export function Main() {
                 className={classes.title}
                 variant="h1" 
                 component="h2">
-                174
+                {title}
+                {/* {props.height} */}
             </Typography>
             <Card className={classes.card} component="div">
                 <Typography

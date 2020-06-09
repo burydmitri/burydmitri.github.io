@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 import { Link } from 'react-router-dom';
 
@@ -41,7 +41,7 @@ const useStyles = makeStyles({
    },
    form: {
     width: '100%',
-    
+
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
@@ -60,9 +60,14 @@ const useStyles = makeStyles({
    }
 });
 
-export function FirstPage() {
+export function FirstPage(props) {
+  
+  const [height, setHeight] = useState('')
+  const classes = useStyles();
 
-  const classes = useStyles()
+  function changeHeight(e) {
+    setHeight(e.target.value);
+  }
 
   return (
     <Box className={classes.section} component="section">
@@ -75,12 +80,15 @@ export function FirstPage() {
             </Typography>
             <form className={classes.form}>
                 <TextField 
+                    type="number"
                     className={classes.input}
                     color="secondary"
                     autoFocus
                     fullWidth={true}
                     label="Your height"
                     variant="filled"
+                    value={height}
+                    onChange={changeHeight}
                     >   
 
                 </TextField>
@@ -89,7 +97,7 @@ export function FirstPage() {
                         className={classes.button}
                         color="secondary"
                         variant="contained"
-                        onClick={console.log('d')}>
+                        onClick={props.func(height)}>
                         Искать!
                     </Button>
                 </Link>
