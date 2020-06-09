@@ -9,7 +9,7 @@ import LinkedInIcon from '@material-ui/icons/LinkedIn';
 
 const useStyles = makeStyles({
     sidebar: {
-        width: '320px',
+        width: '240px',
         height: '100vh',
 
         display: 'flex',

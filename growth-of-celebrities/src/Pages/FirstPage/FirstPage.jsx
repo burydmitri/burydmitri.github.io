@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 import { 
   Box,  
   Typography,
-  Input,
+  TextField,
   Button } from '@material-ui/core';
 
 import { makeStyles } from '@material-ui/core/styles';
@@ -39,10 +39,16 @@ const useStyles = makeStyles({
 
     marginBottom: '10px',
    },
+   form: {
+    width: '100%',
+    
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+   },
    input: {
        fontSize: 'calc(24px + 12 * (100vw / 1440))',
        
-       padding: '15px',
        marginBottom: '20px',
    },
    link: {
@@ -67,23 +73,27 @@ export function FirstPage() {
                 component="h1">
                 Write your height
             </Typography>
-            <Input 
-                className={classes.input}
-                color="secondary"
-                autoFocus
-                fullWidth={true}
-                placeholder="174"
-                >   
-
-            </Input>
-            <Link className={classes.link} to="/resault">
-                <Button 
-                    className={classes.button}
+            <form className={classes.form}>
+                <TextField 
+                    className={classes.input}
                     color="secondary"
-                    variant="contained">
-                    Искать!
-                </Button>
-            </Link>
+                    autoFocus
+                    fullWidth={true}
+                    label="Your height"
+                    variant="filled"
+                    >   
+
+                </TextField>
+                <Link className={classes.link} to="/resault">
+                    <Button 
+                        className={classes.button}
+                        color="secondary"
+                        variant="contained"
+                        onClick={console.log('d')}>
+                        Искать!
+                    </Button>
+                </Link>
+            </form>
         </Box>
     </Box>
   );

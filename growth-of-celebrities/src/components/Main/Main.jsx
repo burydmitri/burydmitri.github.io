@@ -2,10 +2,8 @@ import React from 'react';
 import { 
   Box,  
   Typography,
-  Card,
-  Paper,
-  IconButton } from '@material-ui/core';
-import { Menu } from '@material-ui/icons'
+  Card} from '@material-ui/core';
+
 import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles({
@@ -42,6 +40,11 @@ const useStyles = makeStyles({
         marginBottom: '10px'
     }
 });
+
+const celebrities = [
+    {height: 174, name: 'Жан-Клод Ван Даммом', text: 'Американский актёр, режиссёр, сценарист, постановщик боевых сцен и продюсер бельгийского происхождения; культурист, мастер боевых искусств.'},
+    {height: 180, name: 'Жан-Клод Ван Даммом', text: 'Американский актёр, режиссёр, сценарист, постановщик боевых сцен и продюсер бельгийского происхождения; культурист, мастер боевых искусств.'},
+]
 
 export function Main() {
 

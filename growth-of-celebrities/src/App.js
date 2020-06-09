@@ -2,8 +2,6 @@ import React from 'react';
 
 import { Route } from 'react-router-dom';
 
-import { Button } from '@material-ui/core/';
-
 import { FirstPage } from './Pages/FirstPage';
 import { MainPage } from './Pages/MainPage';
 
