@@ -1,20 +1,19 @@
 import React from 'react';
+
+import { Route } from 'react-router-dom';
+
 import { Button } from '@material-ui/core/';
 
-import { FirstPage } from './Pages/FirstPage/FirstPage';
-import { Header } from './components/Header'
-import { Main } from './components/Main'
-import { Sidebar } from './components/Sidebar';
+import { FirstPage } from './Pages/FirstPage';
+import { MainPage } from './Pages/MainPage';
 
 import './App.css';
 
 export function App() {
   return (
     <>
-      {/* <Sidebar /> */}
-      <FirstPage />
-      {/* <Header />
-      <Main /> */}
+      <Route exact path="/" component={FirstPage}/>
+      <Route path="/resault" component={MainPage} />
     </>
   );
 }

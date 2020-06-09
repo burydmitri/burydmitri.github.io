@@ -1,9 +1,13 @@
 import React from 'react';
+
+import { Link } from 'react-router-dom';
+
 import { 
   Box,  
   Typography,
   Input,
   Button } from '@material-ui/core';
+
 import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles({
@@ -41,6 +45,9 @@ const useStyles = makeStyles({
        padding: '15px',
        marginBottom: '20px',
    },
+   link: {
+    textDecoration: 'none',
+   },
    button: {
        color: '#e5e5e5',
        fontSize: 'calc(24px + 12 * (100vw / 1440))',
@@ -69,12 +76,14 @@ export function FirstPage() {
                 >   
 
             </Input>
-            <Button 
-                className={classes.button}
-                color="secondary"
-                variant="contained">
-                Искать!
-            </Button>
+            <Link className={classes.link} to="/resault">
+                <Button 
+                    className={classes.button}
+                    color="secondary"
+                    variant="contained">
+                    Искать!
+                </Button>
+            </Link>
         </Box>
     </Box>
   );
