@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { 
   Box,  
   Typography,
@@ -50,13 +50,32 @@ export function Main(props) {
 
   const classes = useStyles()
 
-  let title;
+  let title = '';
+  let person = {};
 
   if (props.height.replace(/\s/g, '').length === 0 || isNaN(props.height)) {
-      title = "Err"
-  } else {
-      title = props.height
-  }
+    title = "Err";
+    } else {
+        title = props.height
+    }
+
+    celebrities.forEach((item) => {
+        if (item.height === +props.height) person = item;
+        console.log(person);
+    });
+//   useEffect(() => {
+//     if (props.height.replace(/\s/g, '').length === 0 || isNaN(props.height)) {
+//         title = "Err";
+//         return;
+//     } else {
+//         title = props.height
+//     }
+
+//     celebrities.forEach((item) => {
+//         if (item.height === +props.height) card = item;
+//         console.log(item);
+//     })
+//   });
 
   return (
     <Box className={classes.main} component="main">
@@ -66,19 +85,18 @@ export function Main(props) {
                 variant="h1" 
                 component="h2">
                 {title}
-                {/* {props.height} */}
             </Typography>
             <Card className={classes.card} component="div">
                 <Typography
                     className={classes.card__title}
                     variant="h6"
                     component="p">
-                    Вы одного роста с Жан-Клод Ван Даммом
+                    {/* Вы одного роста с {person.name} */}
                 </Typography>
                 <Typography
                     variant="body1"
                     component="p">
-                    Американский актёр, режиссёр, сценарист, постановщик боевых сцен и продюсер бельгийского происхождения; культурист, мастер боевых искусств.
+                    {/* {person.text} */}
                 </Typography>
             </Card>
         </Box>

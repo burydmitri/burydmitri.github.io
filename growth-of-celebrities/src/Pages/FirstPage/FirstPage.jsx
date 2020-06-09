@@ -68,6 +68,9 @@ export function FirstPage(props) {
   function changeHeight(e) {
     setHeight(e.target.value);
   }
+  function submit(e) {
+    e.preventDefault();
+  }
 
   return (
     <Box className={classes.section} component="section">
@@ -78,7 +81,7 @@ export function FirstPage(props) {
                 component="h1">
                 Write your height
             </Typography>
-            <form className={classes.form}>
+            <form className={classes.form} onSubmit={submit}>
                 <TextField 
                     type="number"
                     className={classes.input}
