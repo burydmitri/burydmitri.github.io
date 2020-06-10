@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 
 import { Route } from 'react-router-dom';
 
@@ -9,20 +9,10 @@ import './App.css';
 
 export function App() {
 
-  const [height, setHeight] = useState('');
-
-  function changeHeight(H) {
-    setHeight(H);
-  }
-
   return (
     <>
-      <Route exact path="/" render={() => {
-        return <FirstPage func={changeHeight.bind(this)}/>
-      }}/>
-      <Route path="/resault" render={() => {
-        return <MainPage height={height}/>
-      }} />
+      <Route exact path="/" component={FirstPage}/>
+      <Route path="/resault" component={MainPage}/>
     </>
   );
 }

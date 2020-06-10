@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { 
   Box,  
   Typography,
@@ -46,22 +46,22 @@ const celebrities = [
     {height: 180, name: 'Жан-Клод Ван Даммом', text: 'Американский актёр, режиссёр, сценарист, постановщик боевых сцен и продюсер бельгийского происхождения; культурист, мастер боевых искусств.'},
 ];
 
-export function Main(props) {
+export function Main() {
 
   const classes = useStyles();
 
-
+  let height = localStorage.getItem('height');
 
   let title = '';
 
-  if (props.height.replace(/\s/g, '').length === 0 || isNaN(props.height)) {
+  if (height.replace(/\s/g, '').length === 0 || isNaN(height)) {
     title = "Err";
     } else {
-        title = props.height
+        title = height
     }
 
     const person = celebrities.filter((item) => {
-        if (item.height === +props.height) return item;
+        if (item.height === +height) return item;
     });
 
     console.log(person);
