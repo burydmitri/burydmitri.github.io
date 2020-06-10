@@ -44,14 +44,13 @@ const useStyles = makeStyles({
 const celebrities = [
     {height: 174, name: 'Жан-Клод Ван Даммом', text: 'Американский актёр, режиссёр, сценарист, постановщик боевых сцен и продюсер бельгийского происхождения; культурист, мастер боевых искусств.'},
     {height: 180, name: 'Жан-Клод Ван Даммом', text: 'Американский актёр, режиссёр, сценарист, постановщик боевых сцен и продюсер бельгийского происхождения; культурист, мастер боевых искусств.'},
-]
+];
 
 export function Main(props) {
 
   const classes = useStyles()
 
   let title = '';
-  let person = {};
 
   if (props.height.replace(/\s/g, '').length === 0 || isNaN(props.height)) {
     title = "Err";
@@ -59,10 +58,11 @@ export function Main(props) {
         title = props.height
     }
 
-    celebrities.forEach((item) => {
-        if (item.height === +props.height) person = item;
-        console.log(person);
+    const person = celebrities.filter((item) => {
+        if (item.height === +props.height) return item;
     });
+
+    console.log(person);
 //   useEffect(() => {
 //     if (props.height.replace(/\s/g, '').length === 0 || isNaN(props.height)) {
 //         title = "Err";
@@ -91,12 +91,12 @@ export function Main(props) {
                     className={classes.card__title}
                     variant="h6"
                     component="p">
-                    {/* Вы одного роста с {person.name} */}
+                    Вы одного роста с {person[0].name}
                 </Typography>
                 <Typography
                     variant="body1"
                     component="p">
-                    {/* {person.text} */}
+                    {person[0].text}
                 </Typography>
             </Card>
         </Box>
