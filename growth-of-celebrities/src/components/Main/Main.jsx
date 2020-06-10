@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { 
   Box,  
   Typography,
@@ -48,7 +48,9 @@ const celebrities = [
 
 export function Main(props) {
 
-  const classes = useStyles()
+  const classes = useStyles();
+
+
 
   let title = '';
 

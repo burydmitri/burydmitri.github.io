@@ -39,13 +39,6 @@ const useStyles = makeStyles({
 
     marginBottom: '10px',
    },
-   form: {
-    width: '100%',
-
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
-   },
    input: {
        fontSize: 'calc(24px + 12 * (100vw / 1440))',
        
@@ -68,8 +61,8 @@ export function FirstPage(props) {
   function changeHeight(e) {
     setHeight(e.target.value);
   }
-  function submit(e) {
-    e.preventDefault();
+  function savaHeight() {
+    localStorage.setItem('height', height)
   }
 
   return (
@@ -81,30 +74,28 @@ export function FirstPage(props) {
                 component="h1">
                 Write your height
             </Typography>
-            <form className={classes.form} onSubmit={submit}>
-                <TextField 
-                    type="number"
-                    className={classes.input}
-                    color="secondary"
-                    autoFocus
-                    fullWidth={true}
-                    label="Your height"
-                    variant="filled"
-                    value={height}
-                    onChange={changeHeight}
-                    >   
+            <TextField 
+              type="number"
+              className={classes.input}
+              color="secondary"
+              autoFocus
+              fullWidth={true}
+              label="Your height"
+              variant="filled"
+              value={height}
+              onChange={changeHeight}
+              >   
 
-                </TextField>
-                <Link className={classes.link} to="/resault">
-                    <Button 
-                        className={classes.button}
-                        color="secondary"
-                        variant="contained"
-                        onClick={props.func(height)}>
-                        Искать!
-                    </Button>
-                </Link>
-            </form>
+            </TextField>
+            <Link className={classes.link} to="/resault">
+              <Button 
+                className={classes.button}
+                color="secondary"
+                variant="contained"
+                onClick={savaHeight}>
+                Искать!
+              </Button>
+            </Link>
         </Box>
     </Box>
   );
