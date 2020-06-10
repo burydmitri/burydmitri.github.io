@@ -42,11 +42,12 @@ const useStyles = makeStyles({
 });
 
 const celebrities = [
-    {height: 174, name: 'Жан-Клод Ван Даммом', text: 'Американский актёр, режиссёр, сценарист, постановщик боевых сцен и продюсер бельгийского происхождения; культурист, мастер боевых искусств.'},
-    {height: 180, name: 'Жан-Клод Ван Даммом', text: 'Американский актёр, режиссёр, сценарист, постановщик боевых сцен и продюсер бельгийского происхождения; культурист, мастер боевых искусств.'},
+    {height: 174, cardTitle: 'Вы одного роста с Жан-Клод Ван Даммом', text: 'Американский актёр, режиссёр, сценарист, постановщик боевых сцен и продюсер бельгийского происхождения; культурист, мастер боевых искусств.'},
+    {height: 180, cardTitle: 'Вы одного роста с  Жан-Клод Ван Даммом', text: 'Американский актёр, режиссёр, сценарист, постановщик боевых сцен и продюсер бельгийского происхождения; культурист, мастер боевых искусств.'},
 ];
 
 export function Main() {
+
 
   const classes = useStyles();
 
@@ -63,21 +64,10 @@ export function Main() {
     const person = celebrities.filter((item) => {
         if (item.height === +height) return item;
     });
-
-    console.log(person);
-//   useEffect(() => {
-//     if (props.height.replace(/\s/g, '').length === 0 || isNaN(props.height)) {
-//         title = "Err";
-//         return;
-//     } else {
-//         title = props.height
-//     }
-
-//     celebrities.forEach((item) => {
-//         if (item.height === +props.height) card = item;
-//         console.log(item);
-//     })
-//   });
+    if (person.length === 0) person.push({
+        cardTitle: 'Человека с таким ростом нет в базе',
+        text: '',
+    })
 
   return (
     <Box className={classes.main} component="main">
@@ -93,7 +83,7 @@ export function Main() {
                     className={classes.card__title}
                     variant="h6"
                     component="p">
-                    Вы одного роста с {person[0].name}
+                    {person[0].cardTitle}
                 </Typography>
                 <Typography
                     variant="body1"
