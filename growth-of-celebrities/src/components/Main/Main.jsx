@@ -4,7 +4,10 @@ import {
   Typography,
   Card} from '@material-ui/core';
 
+import { data } from '../../data'
+
 import { makeStyles } from '@material-ui/core/styles';
+
 
 const useStyles = makeStyles({
     main: {
@@ -38,13 +41,13 @@ const useStyles = makeStyles({
     },
     card__title: {
         marginBottom: '10px'
+    },
+    ps: {
+        marginTop: '15px',
+        color: '#5b5553',
     }
 });
 
-const celebrities = [
-    {height: 174, cardTitle: 'Вы одного роста с Жан-Клод Ван Даммом', text: 'Американский актёр, режиссёр, сценарист, постановщик боевых сцен и продюсер бельгийского происхождения; культурист, мастер боевых искусств.'},
-    {height: 180, cardTitle: 'Вы одного роста с  Жан-Клод Ван Даммом', text: 'Американский актёр, режиссёр, сценарист, постановщик боевых сцен и продюсер бельгийского происхождения; культурист, мастер боевых искусств.'},
-];
 
 export function Main() {
 
@@ -61,7 +64,7 @@ export function Main() {
         title = height
     }
 
-    const person = celebrities.filter((item) => {
+    const person = data.filter((item) => {
         if (item.height === +height) return item;
     });
     if (person.length === 0) person.push({
@@ -89,6 +92,12 @@ export function Main() {
                     variant="body1"
                     component="p">
                     {person[0].text}
+                </Typography>
+                <Typography
+                    className={classes.ps}
+                    variant="body1"
+                    component="p">
+                    Попробуйте еще раз! Введите рост ваших знакомых: семьи, друзей, коллег и узнайте знаменитостей с таким же ростом. Убедитесь что человек независимо от роста, или других физических характеристик, может достичь любых высот!
                 </Typography>
             </Card>
         </Box>
