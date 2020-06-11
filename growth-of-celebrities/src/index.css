@@ -1,0 +1,78 @@
+html {
+  box-sizing: border-box;
+}
+
+* {
+  box-sizing: inherit;
+}
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+*::selection {
+  background-color: #bf2727;
+  color: white;
+}
+
+figure {
+  margin: 0;
+}
+
+input,
+select,
+textarea {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  font-family: 'CenturyGothic', sans-serif;
+}
+
+input:invalid {
+  box-shadow: none;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+}
+
+input::-webkit-calendar-picker-indicator {
+  color: transparent;
+}
+
+input::-webkit-clear-button {
+  display: none;
+}
+
+select::-ms-expand {
+  display: none;
+}
+
+textarea {
+  overflow: hidden;
+}
+
+button {
+  margin: 0;
+  padding: 0;
+  font-family: 'Aril', sans-serif;
+}
+
+section:focus,
+div:focus {
+  outline: none;
+}
+
+.iOS * {
+  cursor: pointer;
+}
+
+body {
+  overflow-x: hidden;
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 24px;
+  line-height: 28px;
+  margin: 0;
+  background: #e5e5e5;
+}
