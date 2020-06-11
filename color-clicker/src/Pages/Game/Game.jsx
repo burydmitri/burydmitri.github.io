@@ -1,9 +1,9 @@
 import React from 'react';
 
-export function App() {
+export function Game() {
   return (
-    <>
+    <div >
      
-    </>
+    </div>
   );
 }
