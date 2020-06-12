@@ -1,0 +1,22 @@
+{
+  "files": {
+    "main.css": "/growth-of-celebrities/ya/static/css/main.a31b8c04.chunk.css",
+    "main.js": "/growth-of-celebrities/ya/static/js/main.bc915581.chunk.js",
+    "main.js.map": "/growth-of-celebrities/ya/static/js/main.bc915581.chunk.js.map",
+    "runtime-main.js": "/growth-of-celebrities/ya/static/js/runtime-main.a8b3dfcd.js",
+    "runtime-main.js.map": "/growth-of-celebrities/ya/static/js/runtime-main.a8b3dfcd.js.map",
+    "static/js/2.cf010895.chunk.js": "/growth-of-celebrities/ya/static/js/2.cf010895.chunk.js",
+    "static/js/2.cf010895.chunk.js.map": "/growth-of-celebrities/ya/static/js/2.cf010895.chunk.js.map",
+    "index.html": "/growth-of-celebrities/ya/index.html",
+    "precache-manifest.bb7ce2013a8107331a7ce9d4bb1b0f12.js": "/growth-of-celebrities/ya/precache-manifest.bb7ce2013a8107331a7ce9d4bb1b0f12.js",
+    "service-worker.js": "/growth-of-celebrities/ya/service-worker.js",
+    "static/css/main.a31b8c04.chunk.css.map": "/growth-of-celebrities/ya/static/css/main.a31b8c04.chunk.css.map",
+    "static/js/2.cf010895.chunk.js.LICENSE.txt": "/growth-of-celebrities/ya/static/js/2.cf010895.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.a8b3dfcd.js",
+    "static/js/2.cf010895.chunk.js",
+    "static/css/main.a31b8c04.chunk.css",
+    "static/js/main.bc915581.chunk.js"
+  ]
+}
