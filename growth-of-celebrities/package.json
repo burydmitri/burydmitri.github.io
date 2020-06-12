@@ -2,7 +2,7 @@
   "name": "growth-of-celebrities",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://burydmitri.github.io/growth-of-celebrities/ya",
+  "homepage": "https://burydmitri.github.io/growth-of-celebrities/",
   "dependencies": {
     "@material-ui/core": "^4.10.1",
     "@material-ui/icons": "^4.9.1",
