@@ -458,10 +458,6 @@
   content: 'js';
 }
 
-.project__react {
-  cursor: no-drop;
-}
-
 .project__react:hover,
 .project__react:focus,
 .project__react:active,
