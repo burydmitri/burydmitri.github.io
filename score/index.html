@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+  <!--<![endif]-->
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Open-sourse counter for the table games</title>
+    <meta name="keywords" content="" />
+    <meta name="description" content="" />
+    <link
+      rel="shortcut icon"
+      href="./img/favicon/favicon.ico"
+      type="image/x-icon"
+    />
+    <link rel="apple-touch-icon" sizes="180x180" href="./img/favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="./img/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="./img/favicon/favicon-16x16.png">
+    <link rel="manifest" href="./img/favicon/site.webmanifest">
+    <link rel="mask-icon" href="./img/favicon/safari-pinned-tab.svg" color="#5bbad5">
+    <meta name="msapplication-TileColor" content="#b91d47">
+    <meta name="theme-color" content="#ffffff">
+    <!-- css libs-->
+    <link property="stylesheet" href="./libs/normalize.min.css" rel="stylesheet" />
+    <!-- user css-->
+    <link property="stylesheet" href="./css/style.min.css" rel="stylesheet" />
+  </head>
+  <body>
+    <header class="header wrap">
+      <a href="" class="header__logo">SC&nbsp;&nbsp;&nbsp;RE</a>
+    </header>
+    <main id="home" class="main wrap">
+      <a 
+        href="game.html"
+        v-for="game of games"
+        class="main__item"
+        @click.prevent="currentGame(game.title)">
+        {{ game.title }}
+      </a>
+      <div class="main__item main__item--add" @click="toggleMenu"></div>
+
+      <div class="pop-up" :class="{ 'pop-up--active': showMenu }">
+        <form class="pop-up__form">
+          <h2 class="pop-up__title">
+            CREATE A GAME
+          </h2>
+          <input class="pop-up__input" type="text" placeholder="NAME OF THE GAME" v-model="formData.title">
+          <h2 class="pop-up__subtitle">
+            PLAYERS
+          </h2>
+          <input
+            v-for="player of formData.players"
+            class="pop-up__input"
+            type="text" placeholder="NAME OF PLAYER"
+            v-model="player.name"
+          >
+          <div class="pop-up__add" type="text" @click="addPlayer"></div>
+          <div class="pop-up__button" @click="createGame">CREATE</div>
+        </form>
+      </div>
+
+      <div class="shadow" :class="{ 'shadow--active': showMenu }" @click="toggleMenu"></div>
+    </main>
+    <footer class="footer">
+      <a class="footer__link" href="https://github.com/burydmitri/score">
+        <img class="footer__icon" src="./img/dist/github.png" alt="github">
+      </a>
+    </footer>
+
+    <!-- libs-->
+    <script src="https://unpkg.com/vue@next"></script>
+    <!-- user scripts-->
+    <script src="./js/common.es5.js"></script>
+  </body>
+</html>
