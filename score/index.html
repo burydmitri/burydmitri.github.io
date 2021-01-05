@@ -33,8 +33,20 @@
       <a 
         href="game.html"
         v-for="game of games"
-        class="main__item"
-        @click.prevent="currentGame(game.title)">
+        class="item main__item"
+        @click.prevent="currentGame(game.title)"
+        @contextmenu.prevent="openGameMenu(game.title)"
+        >
+        <div
+          class="item__buttons"
+          :class="{ 'item__buttons--active': game.title === gameMenu }"
+          @click.stop.prevent="closeGameMenu"
+        >
+          <div class="item__delete" @click="deleteGame(game.title)">
+            <span></span>
+            <span></span>
+          </div>
+        </div>
         {{ game.title }}
       </a>
       <div class="main__item main__item--add" @click="toggleMenu"></div>

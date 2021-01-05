@@ -10,9 +10,9 @@ var home = Vue.createApp({
       showMenu: false,
       formData: {
         title: '',
-        players: [{ name: '', scores: 0 }],
-        id: 0
-      }
+        players: [{ name: '', scores: 0 }]
+      },
+      gameMenu: null
     };
   },
   mounted: async function mounted() {
@@ -46,6 +46,19 @@ var home = Vue.createApp({
     addPlayer: function addPlayer() {
       var player = { name: '', scores: 0 };
       this.formData.players.push(player);
+    },
+    openGameMenu: function openGameMenu(game) {
+      this.gameMenu = game;
+    },
+    closeGameMenu: function closeGameMenu() {
+      this.gameMenu = null;
+    },
+    deleteGame: function deleteGame(game) {
+      var id = this.games.findIndex(function (item) {
+        return item.title == game;
+      });
+      this.games.splice(id, 1);
+      localStorage.setItem('score/games', JSON.stringify(this.games));
     }
   }
 });
@@ -69,7 +82,6 @@ var game = Vue.createApp({
       this.game = this.games.filter(function (g) {
         return g.title == localStorage.getItem('score/current');
       })[0];
-      console.log(this.game);
     },
     addScore: function addScore(id) {
       this.game.players[id].scores++;
@@ -83,6 +95,16 @@ var game = Vue.createApp({
 });
 
 game.mount('#game');
+
+var gameTitle = Vue.createApp({
+  data: function data() {
+    return {
+      title: localStorage.getItem('score/current')
+    };
+  }
+});
+
+gameTitle.mount('#gameTitle');
 
 // check isTouch and isIOS
 function isTouchIOS() {

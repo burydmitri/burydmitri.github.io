@@ -26,11 +26,12 @@
     <link property="stylesheet" href="./css/style.min.css" rel="stylesheet" />
   </head>
   <body>
-    <header class="header wrap">
+    <header id="gameTitle" class="header wrap">
       <a href="/" class="header__logo">SC&nbsp;&nbsp;&nbsp;RE</a>
+      <h1 class="header__title">{{ title }}</h1>
     </header>
     
-    <main id="game" class="main wrap">
+    <main id="game" class="main main--game wrap">
       <div v-for="player of game.players" class="player main__player">
         <span class="player__name">{{ player.name }}</span>
         <span class="player__score">{{ player.scores }}</span>

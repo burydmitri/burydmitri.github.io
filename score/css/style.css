@@ -57,10 +57,15 @@ body {
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: center;
-  -webkit-justify-content: center;
-      -ms-flex-pack: center;
-          justify-content: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: column;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
 }
 
 .header__logo {
@@ -104,6 +109,13 @@ body {
           transform: translateX(-50%) translateY(-50%);
 }
 
+.header__title {
+  font-size: 24px;
+  line-height: 29px;
+  color: #E85A4F;
+  margin: 15px 0 0 0;
+}
+
 .main {
   display: -ms-grid;
   display: grid;
@@ -112,6 +124,10 @@ body {
   gap: 20px;
   padding-top: 100px;
   padding-bottom: 75px;
+}
+
+.main--game {
+  padding-top: 60px;
 }
 
 .main__item {
@@ -129,6 +145,7 @@ body {
       -ms-flex-pack: center;
           justify-content: center;
   position: relative;
+  overflow: hidden;
   color: #FFFFFF;
   border-radius: 10px;
   background-color: #E85A4F;
@@ -207,6 +224,60 @@ body {
 .main__item--add::before {
   width: 10px;
   height: 40px;
+}
+
+.item__buttons {
+  width: 40%;
+  height: 43px;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: end;
+  -webkit-justify-content: flex-end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
+  -webkit-box-align: end;
+  -webkit-align-items: flex-end;
+      -ms-flex-align: end;
+          align-items: flex-end;
+  position: absolute;
+  right: -100%;
+  top: -10px;
+  background: #FFFFFF;
+  border-radius: 10px;
+  -webkit-transition: 0.3s;
+  transition: 0.3s;
+  padding: 10px 20px 10px 0;
+}
+
+.item__buttons--active {
+  right: -10px;
+}
+
+.item__delete {
+  width: 17px;
+  height: 17px;
+  position: relative;
+}
+
+.item__delete span {
+  width: 21px;
+  height: 3px;
+  display: block;
+  position: absolute;
+  top: 50%;
+  left: 0;
+  -webkit-transform: rotate(45deg);
+      -ms-transform: rotate(45deg);
+          transform: rotate(45deg);
+  background: #E85A4F;
+}
+
+.item__delete span:last-child {
+  -webkit-transform: rotate(-45deg);
+      -ms-transform: rotate(-45deg);
+          transform: rotate(-45deg);
 }
 
 .player {
@@ -580,8 +651,16 @@ body {
 }
 
 @media screen and (max-width: 500px) {
+  .header__title {
+    margin: 5px 0 0 0;
+  }
+
   .main {
     padding-top: 50px;
+  }
+
+  .main--game {
+    padding-top: 15px;
   }
 }
 /*# sourceMappingURL=style.css.map */
