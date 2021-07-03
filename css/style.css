@@ -316,13 +316,12 @@ img {
 }
 
 .footer__link {
-  height: 35px;
+  width: 100px;
+  height: 50px;
   display: block;
-  position: relative;
-  font-size: 24px;
-  line-height: 35px;
-  color: #111;
+  text-decoration: none;
   transition: 0.2s;
+  will-change: transform;
   margin-right: 25px;
 }
 
@@ -330,37 +329,16 @@ img {
   margin-right: 0;
 }
 
-.footer__link::before {
-  content: '';
-  z-index: -1;
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  background-color: #781111;
-  -webkit-transform-origin: center right;
-      -ms-transform-origin: center right;
-          transform-origin: center right;
-  -webkit-transform: scaleX(0);
-      -ms-transform: scaleX(0);
-          transform: scaleX(0);
-  transition: -webkit-transform 0.25s ease-in-out;
-  transition: transform 0.25s ease-in-out;
-  transition: transform 0.25s ease-in-out, -webkit-transform 0.25s ease-in-out;
+.footer__link--todo {
+  font-family: Tahoma;
+  font-size: 26px;
+  font-weight: 400;
+  line-height: 50px;
+  color: #111;
 }
 
-.footer__link:hover::before {
-  -webkit-transform-origin: center left;
-      -ms-transform-origin: center left;
-          transform-origin: center left;
-  -webkit-transform: scaleX(1);
-      -ms-transform: scaleX(1);
-          transform: scaleX(1);
-}
-
-.footer__link:hover {
-  color: #fff;
+.footer__link--todo::first-letter {
+  color: #39c9c0;
 }
 
 .red-color {
@@ -429,7 +407,7 @@ mark {
 }
 
 /* W3C standard
-   сейчас только для Firefox */
+ сейчас только для Firefox */
 
 * {
   scrollbar-width: none;
@@ -537,9 +515,8 @@ mark {
   }
 
   .footer__link {
-    font-size: 18px;
-    line-height: 20px;
-    height: 20px;
+    width: 60px;
+    height: 30px;
   }
 
   .touch {
